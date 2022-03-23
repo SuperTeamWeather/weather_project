@@ -13,6 +13,7 @@ import "./App.scss"
 
 
 function App() {
+  console.log("start");
   return (
     <div className='app'>
       <Provider store={store} >
