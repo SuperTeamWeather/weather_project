@@ -1,0 +1,35 @@
+.weather-search {
+
+
+    &__form {
+        width: 40vw;
+        margin: 0 auto;
+    }
+
+    &__title {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    &__input {
+        width: 100%;
+        font-size: 24px;
+        padding: 10px;
+       border-radius:  10px 0 0 10px;
+    }
+
+   &__block-search {
+       display: flex; 
+   }
+
+   &__btn {
+    padding: 2px 12px 2px 12px;
+    font-size: 18px;
+    border-radius: 0 10px 10px 0px;
+    border: 1px solid black;
+    background-color: white;
+    border-left: none;
+   }
+}

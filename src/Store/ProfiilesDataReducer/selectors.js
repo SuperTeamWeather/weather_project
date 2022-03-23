@@ -1,0 +1,1 @@
+export const getSelectorProfilesDataReducer = (state => state.profilesDataReducer)

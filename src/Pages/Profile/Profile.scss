@@ -1,0 +1,34 @@
+.profile {
+
+    &__title {
+        text-align: center;
+        font-size: 40px;
+        margin: 30px;
+    }
+    &__title span {
+        color: white;
+    }
+
+    &__btn-exit {
+        width: 100px;
+        display: block;
+        margin-left: auto;
+        padding: 5px;
+        font-size: 28px;
+        border-radius: 10px;
+    }
+
+    &__favorite-title {
+        color: white;
+        margin: 5px;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    &__favorite-weather-block {
+        width: 40vw;
+        height: 40vh;
+        border: 1px solid white;
+       margin: 20px auto;
+    }
+}

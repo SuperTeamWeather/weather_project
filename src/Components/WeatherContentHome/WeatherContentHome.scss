@@ -1,0 +1,49 @@
+.weather-home {
+    margin-top: 25px;
+    height: 280px;
+    // height: 41vh;
+    border-radius: 10px;
+    background-color: rgba(17, 73, 66, 0.5);
+    box-shadow: 0px 0px 8px 0px black;
+
+    &__content {
+        
+        padding: 20px;
+    }
+
+    &__description {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__name-city {
+        font-size: 36px;
+        color: white;
+    }
+
+   &__temperature {
+       font-size: 74px;
+       color: white;
+       margin-top: 50px;
+   }
+
+   &__text{
+        padding: 5px;
+        width: 400px;
+        margin-top: 30px;
+        font-size: 32px;
+        text-align: center;
+        color: white;
+   }
+
+   &__info {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+   }
+   &__info-time {
+       font-size: 30px;
+       color: white;
+   }
+}
+

@@ -1,0 +1,60 @@
+.sign-up {
+   
+    &__form {
+
+    }
+
+    &__title {
+        font-size: 32px;
+        padding: 5px;
+        margin-bottom: 10px;
+        color: black;
+        text-align: center;
+    }
+
+    &__input {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: wheat;
+        font-size: 18px;
+    }
+
+    &__btn {
+        background-color:rgb(57, 87, 105);
+        padding: 5px;
+        border-radius: 5px;
+        width: auto;
+        margin-left: auto;
+        display: block;
+        font-size: 18px;
+        cursor: pointer;
+        color: wheat;
+    }
+
+    &__message-error {
+        color: white;
+    }
+
+
+    p {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+
+    &__btn-signin {
+        font-size: 32px;
+        text-align:  center;
+        display: block;
+        width: auto;
+        margin: 0 auto;
+        background-color: transparent;
+        border: none;
+        color: rgb(243, 188, 70);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}

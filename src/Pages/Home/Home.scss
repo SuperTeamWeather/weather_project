@@ -1,0 +1,49 @@
+.home-page {
+    width: 100%;
+    &__svg-icons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 20vh;
+    }
+
+    &__btn-block {
+        margin-top: 5px;
+        width: 132px;
+        margin-left: auto;
+    }
+
+    &__btn {
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    &__btn:first-child {
+       background-color: rgb(248, 103, 59);
+    }
+    &__btn:last-child {
+        background-color: rgb(243, 188, 70);
+     }
+
+
+}
+
+.wather-content {
+    transform: scale(0);
+    animation-name: show-weather;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes show-weather {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+
