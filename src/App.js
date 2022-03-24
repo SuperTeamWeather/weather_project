@@ -11,7 +11,7 @@ import { PrivateRoute } from "./Components/PrivateRoute/PrivateRoute"
 import { PersistGate } from 'redux-persist/integration/react';
 import "./App.scss"
 
-
+console.log("1111")
 function App() {
   return (
     <div className='app'>
