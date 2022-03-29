@@ -29,7 +29,7 @@ export const WeatherContentHome = () => {
         getPositionGeoAndWeather()
             .then(data => {
 
-                fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${data.lat}&lon=${data.lon}&appid=06f902b2237e5817af2494e552d5c471`)
+                fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${data.lat}&lon=${data.lon}&appid=06f902b2237e5817af2494e552d5c471`)
                     .then(response => response.json())
                     .then(data => {
                         return {
@@ -38,7 +38,7 @@ export const WeatherContentHome = () => {
                         }
                     })
                     .then(data => {
-                        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${data.lat}&lon=${data.lon}&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
+                        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${data.lat}&lon=${data.lon}&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
                             .then(response => response.json())
                             .then(data => {
                                 setCurrentWeather(prev => prev = data)

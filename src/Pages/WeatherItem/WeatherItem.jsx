@@ -11,7 +11,7 @@ export const WeatherItem = () => {
 
         //! Сдесь перчислены разные варианты получения данных погоды можно выбрать одно
 
-        fetch(`http://api.openweathermap.org/data/2.5/weather?id=${id}&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?id=${id}&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
             .then(response => response.json())
             .then(data => console.log(data))
 
