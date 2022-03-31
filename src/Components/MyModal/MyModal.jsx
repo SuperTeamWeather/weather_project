@@ -18,14 +18,13 @@ export const MyModal = ({ active, children }) => {
     return (
         <div
             className={active ? "modal active" : "modal"}
-            onClick={closeModal}
-        >
+            onClick={closeModal}>
             <div
                 className={`modal__content-${styleModal}`}
                 onClick={(ev) => ev.stopPropagation()}
             >
                 {children}
             </div>
-        </div >
+        </div>
     )
 }
