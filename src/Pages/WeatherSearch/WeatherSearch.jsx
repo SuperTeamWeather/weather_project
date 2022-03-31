@@ -12,13 +12,13 @@ export const WeatherSearch = () => {
     const [listWeatherCitys, setListWeatherCitys] = useState([])
 
     useEffect(() => {
-        // fetch(`http://api.openweathermap.org/data/2.5/weather?q=Ливингстон,us&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
+        // fetch(`https://api.openweathermap.org/data/2.5/weather?q=Ливингстон,us&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
         //     .then(data => data.json())
         //     .then(data => console.log(data))
     })
 
     const fetchCitys = (nameCitys) => {
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${nameCitys}&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${nameCitys}&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
             .then(response => response.json())
             .then(dataCity => {
                 fetch("city.list.json")
@@ -34,7 +34,7 @@ export const WeatherSearch = () => {
 
         // Сдесь можно сразу получать несколько городов без использования скаченного файла которвый 32mb, при помощи "limit" Но тут города не всегда коректные приходят и по русски нельзя написать. А в примере выше можно и по русски писать и по английски
 
-        // fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${nameCitys}&limit=5&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
+        // fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${nameCitys}&limit=5&appid=06f902b2237e5817af2494e552d5c471&lang=ru`)
         //     .then(response => response.json())
         //     .then(data => console.log(data))
 
