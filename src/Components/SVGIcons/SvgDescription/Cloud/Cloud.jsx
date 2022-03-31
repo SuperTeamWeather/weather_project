@@ -2,9 +2,7 @@ import React from "react";
 import "./Cloud.scss"
 
 export const Cloud = () => {
-
     return (
-
         <div className="block-item">
             <div className="preloader" style={{ opacity: 1 }}>
                 <svg version="1.1" id="cloud-one" xmlns="http://www.w3.org/2000/svg"
