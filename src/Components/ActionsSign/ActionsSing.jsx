@@ -4,16 +4,16 @@ import {
     changeActiveModal,
     changeActiveStyleModal
 } from "../../Store/CurrentUserDataReducer/action";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
     getSelectorCurrentUserActiveBtnModal,
     getSelectorCurrentUserActiveModal,
     getSelectorCurrentUserLogin
 } from "../../Store/CurrentUserDataReducer/selectors";
 import "./ActionsSing.scss"
-import {MyModal} from "../MyModal/MyModal";
-import {SignUpForm} from "../SignUpForm/SignUpForm";
-import {SignInForm} from "../SignInForm/SignInForm";
+import { MyModal } from "../MyModal/MyModal";
+import { SignUpForm } from "../SignUpForm/SignUpForm";
+import { SignInForm } from "../SignInForm/SignInForm";
 
 export const ActionsSing = () => {
     const dispatch = useDispatch()
@@ -21,6 +21,9 @@ export const ActionsSing = () => {
     const currentUserLog = useSelector(getSelectorCurrentUserLogin)
     const activeModal = useSelector(getSelectorCurrentUserActiveModal)
     const activeBtn = useSelector(getSelectorCurrentUserActiveBtnModal)
+
+
+
     const openModal = (event) => {
 
         if (event.target.textContent === "SignUp") {
@@ -46,10 +49,12 @@ export const ActionsSing = () => {
                 className="signIn-btn home-page__btn">SignIn
             </button>
             <div>
-                <MyModal active={activeModal}>
-                    {activeBtn === "SignUp" ? <SignUpForm/> : ""}
-                    {activeBtn === "SignIn" ? <SignInForm/> : ""}
-                </MyModal>
+                {activeBtn === "city-change-open-modal" ? ""
+                    : <MyModal active={activeModal} >
+                        {activeBtn === "SignUp" ? <SignUpForm /> : ""}
+                        {activeBtn === "SignIn" ? <SignInForm /> : ""}
+                    </MyModal>}
+
             </div>
         </div>
     )

@@ -15,7 +15,7 @@
     }
 
     &__logo {
-        
+
         // background-position-x: -28px;
     }
 
@@ -25,12 +25,10 @@
         display: block;
         border-radius: 10px;
         background-image: url(../../../public/img/logo.jpg);
-        background-size:cover;
+        background-size: cover;
     }
 
-    &__nav {
-     
-    }
+    &__nav {}
 
     &__nav-btn {
         color: white;
@@ -40,4 +38,3 @@
 
 
 }
-
