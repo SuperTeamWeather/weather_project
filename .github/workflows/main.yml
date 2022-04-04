@@ -30,4 +30,4 @@ jobs:
         server: ovz1.j53595132.me78p.vps.myjino.ru:49516
         username: root
         password: ${{ secrets.ftp_pass }}
-        local-dir: /var/www/html
+        local-dir: /var/www/html/
