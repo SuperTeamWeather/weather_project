@@ -17,10 +17,9 @@ jobs:
         node-version: '14'
       
     - name: 🔨 Build Project
-      run: |        
-        npm install -g live-server
+      run: |
         npm install
-        npm run-script build
+        npm build
     
     - name: List output files
       run: find build/ -print
