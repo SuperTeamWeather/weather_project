@@ -19,7 +19,7 @@ jobs:
     - name: 🔨 Build Project
       run: |        
         npm install
-        npm run build
+        npm run-script build
     
     - name: List output files
       run: find build/ -print
