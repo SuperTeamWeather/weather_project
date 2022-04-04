@@ -15,7 +15,7 @@ export const Header = () => {
                 </div>
                 <nav className="header__nav">
                     <Link to={"/weather"} className="header__nav-btn">Weather</Link>
-                    <Link to={"/profile"} className="header__nav-btn">Profile</Link>
+                    <Link to={"/profile"} className="header__nav-btn">Profile*</Link>
                 </nav>
             </div>
         </header>
