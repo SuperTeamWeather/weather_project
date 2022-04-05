@@ -29,5 +29,5 @@ jobs:
       with:
         server: ovz1.j53595132.me78p.vps.myjino.ru:49516
         username: root@ovz1.j53595132.me78p.vps.myjino.ru
-        password: ${{ secrets.ftp_pass }}
+        password: gjuhen,0322
         local-dir: /var/www/html/
