@@ -27,8 +27,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:        
-        server: sftp.ovz1.j53595132.me78p.vps.myjino.ru
-        port: 49516        
-        username: root
-        password: gjuhen,0322        
+        server: 81.177.139.101
+        username: testuser
+        password: testuser        
         server-dir: /var/www/html/
