@@ -11,6 +11,7 @@ export const MyModal = ({ active, children }) => {
     const styleModal = useSelector(getSelectorCurrentUserActiveStyleModal)
 
     const closeModal = () => {
+
         dispatch(changeActiveModal(false))
         dispatch(changeActiveBtnModal(""))
     }

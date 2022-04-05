@@ -5,9 +5,9 @@ export const Sun = () => {
 
 
     return (
-        <div class="block-item">
+        <div className="block-item">
             <div className="preloader" style={{ opacity: "1" }} >
-                <svg version="1.1" className="sun" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 10 10" enable-background="new 0 0 10 10" style={{ opacity: "1", marginLeft: "0px", marginTop: "0px" }}>
+                <svg version="1.1" className="sun" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 10 10" enableBackground="new 0 0 10 10" style={{ opacity: "1", marginLeft: "0px", marginTop: "0px" }}>
                     <g>
                         <path fill="none" d="M6.942,3.876c-0.4-0.692-1.146-1.123-1.946-1.123c-0.392,0-0.779,0.104-1.121,0.301c-1.072,0.619-1.44,1.994-0.821,3.067C3.454,6.815,4.2,7.245,5,7.245c0.392,0,0.779-0.104,1.121-0.301C6.64,6.644,7.013,6.159,7.167,5.581C7.321,5,7.243,4.396,6.942,3.876z"></path>
                         <path fill="none" d="M8.759,2.828C8.718,2.757,8.626,2.732,8.556,2.774L7.345,3.473c-0.07,0.041-0.094,0.132-0.053,0.202C7.319,3.723,7.368,3.75,7.419,3.75c0.025,0,0.053-0.007,0.074-0.02l1.211-0.699C8.774,2.989,8.8,2.899,8.759,2.828z"></path>

@@ -58,6 +58,7 @@ export const SignUpForm = () => {
         setMessageError(prev => prev = "")
 
         dispatch(changeActiveModal(false))
+        dispatch(changeActiveBtnModal(""))
 
     }
 

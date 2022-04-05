@@ -17,19 +17,24 @@
         width: 100%;
         font-size: 24px;
         padding: 10px;
-       border-radius:  10px 0 0 10px;
+        border-radius: 10px 0 0 10px;
     }
 
-   &__block-search {
-       display: flex; 
-   }
+    &__block-search {
+        display: flex;
+    }
 
-   &__btn {
-    padding: 2px 12px 2px 12px;
-    font-size: 18px;
-    border-radius: 0 10px 10px 0px;
-    border: 1px solid black;
-    background-color: white;
-    border-left: none;
-   }
+    &__btn {
+        padding: 2px 12px 2px 12px;
+        font-size: 18px;
+        border-radius: 0 10px 10px 0px;
+        border: 1px solid black;
+        background-color: white;
+        border-left: none;
+    }
+
+    &__city-list {
+        width: 35vw;
+        margin: 0 auto;
+    }
 }

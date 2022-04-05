@@ -63,6 +63,7 @@ export const SignInForm = () => {
         navigate("profile")
 
         dispatch(changeActiveModal(false))
+        dispatch(changeActiveBtnModal(""))
 
     }
 
