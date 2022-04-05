@@ -30,4 +30,4 @@ jobs:
         server: ovz1.j53595132.me78p.vps.myjino.ru:49516
         username: root@ovz1.j53595132.me78p.vps.myjino.ru
         password: gjuhen,0322
-        local-dir: /var/www/html/
+        local-dir: /build
