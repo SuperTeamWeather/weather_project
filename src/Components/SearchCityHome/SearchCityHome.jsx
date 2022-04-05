@@ -59,18 +59,24 @@ export const SearchCityHome = ({ getNewWeather }) => {
             <div className="search-city__city-list">
                 <div className="search-city__content">
                     <ul className="search-city__list">
-                        {listWeatherCitys.map(el => {
-                            return <li
-                                onClick={() => getNewCity(el)}
-                                key={el.id}
-                                className="search-city__item"
-                            >
-                                <div className="search-city__item-name">{el.name}</div>
-                                <div className="search-city__item-country">{el.country}</div>
-                                <div className="search-city__item-flag"><img src={`https://openweathermap.org/images/flags/${el.country.toLowerCase()}.png`} alt="flag" /></div>
-                                <div className="search-city__item-state">{el.state ? "state " + el.state : ""}</div>
-                            </li>
-                        })}
+                        {Array.isArray(listWeatherCitys) ?
+
+                            listWeatherCitys.map(el => {
+                                return <li
+                                    onClick={() => getNewCity(el)}
+                                    key={el.id}
+                                    className="search-city__item"
+                                >
+                                    <div className="search-city__item-name">{el.name}</div>
+                                    <div className="search-city__item-country">{el.country}</div>
+                                    <div className="search-city__item-flag"><img src={`https://openweathermap.org/images/flags/${el.country.toLowerCase()}.png`} alt="flag" /></div>
+                                    <div className="search-city__item-state">{el.state ? "state " + el.state : ""}</div>
+                                </li>
+                            })
+
+                            : <div
+                                className="search-city__err-message">{listWeatherCitys}</div>}
+
                     </ul>
                 </div>
             </div>

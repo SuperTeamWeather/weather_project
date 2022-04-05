@@ -1,13 +1,13 @@
-import {_apiKeyOpenWeather, _lang, _urlOpenWeather} from './Constant'
+import { _apiKeyOpenWeather, _lang, _urlOpenWeather } from './Constant'
 
 export const getOpenWeather = async (coordinates) => {
     if (coordinates) {
         return fetch(getUrlWeather(_urlOpenWeather, coordinates, _apiKeyOpenWeather))
             .then(response => response.json())
             .then(data => {
-                    //console.log(data);
-                    return data
-                }
+                //console.log(data);
+                return data
+            }
             )
     } else
         return 'Координаты отсутствуют'

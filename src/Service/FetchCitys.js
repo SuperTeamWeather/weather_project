@@ -10,8 +10,10 @@ export const fetchCitys = async (nameCitys) => {
                         return el.name === dataCity[0].name
                     })
 
-                    // setListWeatherCitys(prev => prev = citys)
                     return citys
                 })
+        })
+        .catch(err => {
+            return "Нет такого города"
         })
 }
