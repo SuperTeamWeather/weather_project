@@ -29,5 +29,5 @@ jobs:
       with:        
         server: 81.177.139.101
         username: testuser
-        password: testuser        
+        password: 111
         server-dir: /var/www/html/
