@@ -28,6 +28,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
         server: sftp.superweather.site:49516        
-        username: root
+        username: root@superweather.site
         password: gjuhen,0322        
         server-dir: /var/www/html/
