@@ -31,4 +31,4 @@ jobs:
         username: root@ovz1.j53595132.me78p.vps.myjino.ru
         password: gjuhen,0322
         protocol:	ftps
-        local-dir: /var/www/html/
+        server-dir: /var/www/html/
