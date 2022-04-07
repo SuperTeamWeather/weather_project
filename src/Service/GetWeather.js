@@ -1,20 +1,24 @@
-import { _apiKeyOpenWeather, _lang, _urlOpenWeather } from './Constant'
-
 export const getOpenWeather = async (coordinates) => {
     if (coordinates) {
-        return fetch(getUrlWeather(_urlOpenWeather, coordinates, _apiKeyOpenWeather))
+        //получаем адрес до нашего локального сервиса
+        const addressServer = await getAddressToServer();
+        // делаем запрос до нашего локального сервиса
+        return fetch(`${addressServer.server}/api/v1/OpenWeather/lat=${coordinates.latitude}&lot=${coordinates.longitude}`)
             .then(response => response.json())
             .then(data => {
-                //console.log(data);
-                return data
-            }
+                    //console.log(data);
+                    return data
+                }
             )
     } else
         return 'Координаты отсутствуют'
 }
-
-const getUrlWeather = (name, coordinates, apiKey) => {
-    return `${name}/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${apiKey}&lang=${_lang}`
+//Запрашиваем адрес до сервиса
+const getAddressToServer = async () => {
+    return fetch('settings.json')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            return data
+        })
 }
-
-
