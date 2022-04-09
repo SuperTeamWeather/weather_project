@@ -20,6 +20,35 @@ app.get('/api/v1/OpenWeather/lat=:lat&lot=:lot', async function (req, res) {
     res.send(await openWeather.getOpenWeather(content));
 });
 
+app.get('/api/v1/WeatherBit/lat=:lat&lot=:lot', async function (req, res) {
+    console.log('Запрос от клиента:', req.url);
+    console.log('параметры запроса:', req.params);
+    const content = {
+        latitude: req.params.lat,
+        longitude: req.params.lot
+    };
+    res.send(await openWeather.getWeatherBit(content));
+});
+
+app.get('/api/v1/VisualcrossingWeather/lat=:lat&lot=:lot', async function (req, res) {
+    console.log('Запрос от клиента:', req.url);
+    console.log('параметры запроса:', req.params);
+    const content = {
+        latitude: req.params.lat,
+        longitude: req.params.lot
+    };
+    res.send(await openWeather.getVisualcrossingWeather(content));
+});
+
+app.get('/api/v1/YandexWeather/lat=:lat&lot=:lot', async function (req, res) {
+    console.log('Запрос от клиента:', req.url);
+    console.log('параметры запроса:', req.params);
+    const content = {
+        latitude: req.params.lat,
+        longitude: req.params.lot
+    };
+    res.send(await openWeather.getYandexWeather(content));
+});
 
 app.listen(port, host, () =>
     console.log(`Server listens http://${host}:${port}`)
