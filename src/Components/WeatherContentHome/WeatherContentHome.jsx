@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react"
 import "./WeatherContentHome.scss"
 import { getGeoCoordinatesUser } from "../../Service/UserGeoLocation";
-import { getOpenWeather, getWeatherBit, getVisualcrossingWeather, getYandexWeather} from "../../Service/GetWeather";
-import { getCurrentTime, getLogoWeatherDescription, getWindDirText, getWindDirTextYandex, getRusWeatherConditionYandex } from "../../Service/tools";
+import { getOpenWeather, getWeatherFromWebService} from "../../Service/GetWeather";
+import { getCurrentTime, getLogoWeatherDescription, getWindDirText, getWindDirTextYandex, getRusWeatherConditionYandex, getRusWeatherConditionVisualcrossing } from "../../Service/tools";
 import { useDispatch, useSelector } from "react-redux";
 import { changeActiveModal } from "../../Store/CurrentUserDataReducer/action";
 import { changeActiveBtnModal } from "../../Store/CurrentUserDataReducer/action";
@@ -32,12 +32,11 @@ export const WeatherContentHome = () => {
     useEffect(async () => {
         if (currentPositionCoordinates) {
             let cw = [];
-            cw[0] = await getOpenWeather(currentPositionCoordinates?.coords);
-            cw[1] = await getWeatherBit(currentPositionCoordinates?.coords);
-            cw[2] = await getVisualcrossingWeather(currentPositionCoordinates?.coords);
-            cw[3] = await getYandexWeather(currentPositionCoordinates?.coords);
+            cw[0] = await getWeatherFromWebService(currentPositionCoordinates?.coords, 'OpenWeather');
+            cw[1] = await getWeatherFromWebService(currentPositionCoordinates?.coords, 'WeatherBit');
+            cw[2] = await getWeatherFromWebService(currentPositionCoordinates?.coords, 'VisualcrossingWeather');
+            cw[3] = await getWeatherFromWebService(currentPositionCoordinates?.coords, 'YandexWeather');
             setWeather(cw);
-            //setWeather(await getOpenWeather(currentPositionCoordinates?.coords));
         }
     }, [currentPositionCoordinates])
 
@@ -119,7 +118,7 @@ export const WeatherContentHome = () => {
                             <p className="weather-home__weather_text">Visual crossing weather</p>
                             <div className="weather-home__description">
                                 <span className="weather-home__weather_text">{Math.round(currentWeather[2].currentConditions.temp)}&#176;C</span>
-                                <span className="weather-home__weather_text">{currentWeather[2].currentConditions.conditions}</span>
+                                <span className="weather-home__weather_text">{currentWeather[2].currentConditions.conditions} {getRusWeatherConditionVisualcrossing(currentWeather[2].currentConditions.conditions)}</span>
                                 <span className="weather-home__weather_text">Ощущается как {Math.round(currentWeather[2].currentConditions.feelslike)}&#176;C</span>
                             </div>
                             <div className="weather-home__description">

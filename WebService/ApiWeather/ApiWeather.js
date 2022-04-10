@@ -13,6 +13,7 @@ const _apiKeyYandexWeather = 'b7ab09cb-cfaf-484d-bf9f-820c9bf9b192';
 const _lang = 'ru'
 const fetchNode = require('node-fetch');
 
+// OpenWeatherMap source
 exports.getOpenWeather = function async (coordinates) {
     if (coordinates) {
         return fetchNode(getUrlWeather(_urlOpenWeather, coordinates, _apiKeyOpenWeather))
@@ -31,6 +32,7 @@ const getUrlWeather = (name, coordinates, apiKey) => {
     return `${name}/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${apiKey}&lang=${_lang}&units=metric`
 }
 
+// WeatherBit source
 exports.getWeatherBit = function async (coordinates) {
     if (coordinates) {
         return fetchNode(getUrlWeatherBit(_urlWeatherBit, coordinates, _apiKeyWeatherBit))
@@ -49,6 +51,7 @@ const getUrlWeatherBit = (name, coordinates, apiKey) => {
     return `${name}/v2.0/current?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&lang=${_lang}`
 }
 
+// Visual crossing source
 exports.getVisualcrossingWeather = function async (coordinates) {
     if (coordinates) {
         return fetchNode(getUrlVisualcrossingWeather(_urlVisualcrossingWeather, coordinates, _apiKeyVisualcrossingWeather))
@@ -67,6 +70,7 @@ const getUrlVisualcrossingWeather = (name, coordinates, apiKey) => {
     return `${name}/VisualCrossingWebServices/rest/services/timeline/${coordinates.latitude}%2C${coordinates.longitude}?unitGroup=metric&key=${apiKey}&contentType=json`
 }
 
+// Yandex source
 exports.getYandexWeather = function async (coordinates) {
     if (coordinates) {
         return fetchNode(getUrlYandexWeather(_urlYandexWeather, coordinates), {
