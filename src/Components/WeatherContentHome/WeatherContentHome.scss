@@ -35,10 +35,22 @@
         cursor: pointer;
     }
 
+    &__name-city span {
+        font-size: 22px;
+        color: white;
+    }
+
+
     &__temperature {
         font-size: 74px;
         color: white;
         margin-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    &__temperature-felt {
+        font-size: 22px;
+
     }
 
     &__text {

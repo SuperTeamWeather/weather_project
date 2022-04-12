@@ -1,3 +1,6 @@
-export const _urlOpenWeather = 'https://api.openweathermap.org';
-export const _apiKeyOpenWeather = '06f902b2237e5817af2494e552d5c471';
-export const _lang = 'ru'
+export const _urlOpenWeather = 'api/v1/OpenWeather';
+export const _urlWeatherBit = 'api/v1/WeatherBit';
+export const _urlVisualWeather = 'api/v1/VisualcrossingWeather';
+export const _urlYandex = 'api/v1/YandexWeather';
+
+

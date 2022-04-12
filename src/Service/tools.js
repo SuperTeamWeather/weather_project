@@ -1,8 +1,17 @@
-import {Sun} from "../Components/SVGIcons/SvgDescription/Sun/Sun";
-import {SunAndCloud} from "../Components/SVGIcons/SvgDescription/SunAndCloud/SunAndCloud";
-import {Cloud} from "../Components/SVGIcons/SvgDescription/Cloud/Cloud";
-import {Rain} from "../Components/SVGIcons/SvgDescription/Rain/Rain";
-import {Snow} from "../Components/SVGIcons/SvgDescription/Snow/Snow";
+import { Sun } from "../Components/SVGIcons/SvgDescription/Sun/Sun";
+import { SunAndCloud } from "../Components/SVGIcons/SvgDescription/SunAndCloud/SunAndCloud";
+import { Cloud } from "../Components/SVGIcons/SvgDescription/Cloud/Cloud";
+import { Rain } from "../Components/SVGIcons/SvgDescription/Rain/Rain";
+import { Snow } from "../Components/SVGIcons/SvgDescription/Snow/Snow";
+import { SnowAndRain } from "../Components/SVGIcons/SvgDescription/SnowAndRain/SnowAndRain";
+
+
+
+export const getNameWeatherFromRegExp = (urlName) => {
+    const reg = /api\/v1\//gi;
+    return urlName.replace(reg, "")
+
+}
 
 const getWeek = (week) => {
     switch (week) {
@@ -47,42 +56,41 @@ export const getCurrentTime = (currentDate) => {
 }
 export const getLogoWeatherDescription = (logo) => {
     switch (logo) {
-        case "01d":
-            return <Sun/>
-        case "01n":
-            return <Sun/>
+        case "01d": case "01n": case "c01d": case "c01n": case "clear-day":
+        case "clear-night":
+            return <Sun />
 
-        case "02d":
-            return <SunAndCloud/>
-        case "02n":
-            return <SunAndCloud/>
 
-        case "03d":
-            return <Cloud/>
-        case "03n":
-            return <Cloud/>
-        case "04d":
-            return <Cloud/>
-        case "04n":
-            return <Cloud/>
+        case "02d": case "02n": case "c02d": case "c02n": case "partly-cloudy-day": case "partly-cloudy-night":
+            return <SunAndCloud />
 
-        case "09d":
-            return <Rain/>
-        case "09n":
-            return <Rain/>
-        case "10d":
-            return <Rain/>
-        case "10n":
-            return <Rain/>
-        case "11d":
-            return <Rain/>
-        case "11n":
-            return <Rain/>
 
-        case "13d" || "13n":
-            return <Snow/>
-        case "13n":
-            return <Snow/>
+        case "03d": case "03n": case "c04d": case "c04n": case "c03d": case "c03n":
+        case "04d": case "04n": case "a06d": case "a06n": case "a05d": case "a05n":
+        case "a04d": case "a04n": case "a03d": case "a03dn": case "a02d": case "a02n":
+        case "a01d": case "a01dn": case "fog": case "wind": case "cloudy":
+            return <Cloud />
+
+
+        case "09d": case "09n": case "10d": case "10n": case "11d": case "11n":
+        case "r06d": case "r06n": case "r05d": case "r05n": case "r04d": case "r04n":
+        case "r03d": case "r03n": case "r02d": case "r02n": case "r01d": case "r01n":
+        case "d01d": case "d01n": case "t05d": case "t05n": case "t04d": case "t04n":
+        case "t03d": case "t03n": case "t02d": case "t02n": case "t01d": case "t01n":
+        case "rain": case "thunder-rain": case "thunder-showers-day":
+        case "thunder-showers-night": case "showers-day": case "showers-night":
+            return <Rain />
+
+
+        case "13d": case "13n": case "s06d": case "s06n": case "s02d": case "s02n":
+        case "s01d": case "s01n": case "s05d": case "s05n": case "s03d": case "s03n": case "snow": case "snow-showers-day":
+        case "snow-showers-night":
+            return <Snow />
+
+
+        case "u00d": case "u00n": case "s04d": case "s04n": case "f01d": case "f01n":
+            return <SnowAndRain />
+
 
         default:
             return ""
@@ -90,39 +98,40 @@ export const getLogoWeatherDescription = (logo) => {
 }
 
 
-export const getWindDirText = (windDirDegree) => {
-    const windDirText = ["С", "ССВ", "СВ", "ВСВ", "В", "ВЮВ", "ЮВ", "ЮЮВ", "Ю", "ЮЮЗ", "ЮЗ", "ЗЮЗ", "З", "ЗСЗ", "СЗ", "ССЗ", "С"]
-    return windDirText[Math.round(windDirDegree / 22.5)]
-}
+export const getLogoFromYandex = (description) => {
 
-export const getWindDirTextYandex = (windDir) => {
-    switch (windDir) {
-        case "nw":
-            return "СЗ"
-        case "n":
-            return "С"
-        case "ne":
-            return "СВ"
-        case "e":
-            return "В"
-        case "se":
-            return "ЮВ"
-        case "s":
-            return "Ю"
-        case "sw":
-            return "ЮЗ"
-        case "w":
-            return "З"
-        case "c":
-            return "штиль"
+    switch (description) {
+
+        case "Ясно":
+            return <Sun />
+
+        case "Малооблачно":
+            return <SunAndCloud />
+
+        case "Облачно с прояснениями": case "Пасмурно":
+            return <Cloud />
+
+        case "Морось": case "Небольшой дождь": case "Дождь": case "Ливень":
+        case "Умеренно сильный дождь": case "Сильный дождь":
+        case "Длительный сильный дождь": case "Гроза": case "Дождь с грозой":
+            return <Rain />
+
+        case "Небольшой снег": case "Снег": case "Снегопад":
+            return <Snow />
+
+        case "Дождь со снегом": case "Град": case "Гроза с градом":
+            return <SnowAndRain />
+
         default:
             return ""
     }
+
 }
+
 
 export const getRusWeatherConditionYandex = (condition) => {
     switch (condition) {
-        case "clear ":
+        case "clear":
             return "Ясно"
         case "partly-cloudy":
             return "Малооблачно"
@@ -134,7 +143,7 @@ export const getRusWeatherConditionYandex = (condition) => {
             return "Морось"
         case "light-rain":
             return "Небольшой дождь"
-        case "rain ":
+        case "rain":
             return "Дождь"
         case "moderate-rain":
             return "Умеренно сильный дождь"
