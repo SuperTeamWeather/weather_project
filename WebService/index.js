@@ -1,5 +1,5 @@
 const express = require('express');
-const openWeather = require('./ApiWeather/ApiWeather');
+const apiWeather = require('./ApiWeather/ApiWeather');
 const cors = require('cors');
 const app = express();
 
@@ -10,45 +10,35 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
-app.get('/api/v1/OpenWeather/lat=:lat&lot=:lot', async function (req, res) {
-    console.log('Запрос от клиента:', req.url);
-    console.log('параметры запроса:', req.params);
-    const content = {
-        latitude: req.params.lat,
-        longitude: req.params.lot
-    };
-    res.send(await openWeather.getOpenWeather(content));
-});
+function getReq(sourceName, getWeatherFunc) {
+    app.get(`/api/v1/${sourceName}/lat=:lat&lot=:lot`, async function (req, res) {
+        console.log('Запрос от клиента:', req.url);
+        console.log('параметры запроса:', req.params);
+        const content = {
+            latitude: req.params.lat,
+            longitude: req.params.lot
+        };
+        res.send(await getWeatherFunc(content));
+    });
+}
 
-app.get('/api/v1/WeatherBit/lat=:lat&lot=:lot', async function (req, res) {
-    console.log('Запрос от клиента:', req.url);
-    console.log('параметры запроса:', req.params);
-    const content = {
-        latitude: req.params.lat,
-        longitude: req.params.lot
-    };
-    res.send(await openWeather.getWeatherBit(content));
-});
+getReq('OpenWeather', apiWeather.getOpenWeather);
 
-app.get('/api/v1/VisualcrossingWeather/lat=:lat&lot=:lot', async function (req, res) {
-    console.log('Запрос от клиента:', req.url);
-    console.log('параметры запроса:', req.params);
-    const content = {
-        latitude: req.params.lat,
-        longitude: req.params.lot
-    };
-    res.send(await openWeather.getVisualcrossingWeather(content));
-});
+getReq('WeatherBit', apiWeather.getWeatherBit);
 
-app.get('/api/v1/YandexWeather/lat=:lat&lot=:lot', async function (req, res) {
-    console.log('Запрос от клиента:', req.url);
-    console.log('параметры запроса:', req.params);
-    const content = {
-        latitude: req.params.lat,
-        longitude: req.params.lot
-    };
-    res.send(await openWeather.getYandexWeather(content));
-});
+getReq('VisualcrossingWeather', apiWeather.getVisualcrossingWeather);
+
+getReq('YandexWeather', apiWeather.getYandexWeather);
+
+// app.get('/api/v1/OpenWeather/lat=:lat&lot=:lot', async function (req, res) {
+//     console.log('Запрос от клиента:', req.url);
+//     console.log('параметры запроса:', req.params);
+//     const content = {
+//         latitude: req.params.lat,
+//         longitude: req.params.lot
+//     };
+//     res.send(await openWeather.getOpenWeather(content));
+// });
 
 app.listen(port, host, () =>
     console.log(`Server listens http://${host}:${port}`)
