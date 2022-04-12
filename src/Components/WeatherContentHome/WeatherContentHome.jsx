@@ -19,7 +19,7 @@ import "./WeatherContentHome.scss"
 
 
 
-export const WeatherContentHome = ({ nameWeatherUtl }) => {
+export const WeatherContentHome = ({ nameWeatherUrl }) => {
 
     const dispatch = useDispatch()
     const activeModal = useSelector(getSelectorCurrentUserActiveModal)
@@ -37,7 +37,7 @@ export const WeatherContentHome = ({ nameWeatherUtl }) => {
     useEffect(async () => {
         if (currentPositionCoordinates) {
             setWeather(await getWeatherData(
-                currentPositionCoordinates?.coords, nameWeatherUtl));
+                currentPositionCoordinates?.coords, nameWeatherUrl));
         }
     }, [currentPositionCoordinates])
 
@@ -49,9 +49,9 @@ export const WeatherContentHome = ({ nameWeatherUtl }) => {
 
     }
 
-    const getNewWeather = useCallback(async (cityCoord, urlName = nameWeatherUtl) => {
+    const getNewWeather = useCallback(async (cityCoord, urlName = nameWeatherUrl) => {
         setWeather(await getWeatherData(cityCoord, urlName));
-    }, [nameWeatherUtl])
+    }, [nameWeatherUrl])
 
 
 
@@ -78,7 +78,7 @@ export const WeatherContentHome = ({ nameWeatherUtl }) => {
                                 {currentWeather?.cityName}
                                 <span
                                     data-name="city-change-open-modal"
-                                > ({getNameWeatherFromRegExp(nameWeatherUtl)})</span>
+                                > ({getNameWeatherFromRegExp(nameWeatherUrl)})</span>
                             </h2>
 
                             <p className="weather-home__info-time">
@@ -87,7 +87,7 @@ export const WeatherContentHome = ({ nameWeatherUtl }) => {
                         </div>
 
                         <div className="weather-home__description">
-                            {nameWeatherUtl === "api/v1/YandexWeather" ?
+                            {nameWeatherUrl === "api/v1/YandexWeather" ?
                                 getLogoFromYandex(currentWeather.description)
                                 :
                                 getLogoWeatherDescription(currentWeather.icon)}

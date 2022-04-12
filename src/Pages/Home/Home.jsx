@@ -30,10 +30,10 @@ export const Home = () => {
             </div>
 
             <div className="wather-content">
-                <WeatherContentHome nameWeatherUtl={_urlOpenWeather} />
-                <WeatherContentHome nameWeatherUtl={_urlYandex} />
-                <WeatherContentHome nameWeatherUtl={_urlWeatherBit} />
-                <WeatherContentHome nameWeatherUtl={_urlVisualWeather} />
+                <WeatherContentHome nameWeatherUrl={_urlOpenWeather} />
+                <WeatherContentHome nameWeatherUrl={_urlYandex} />
+                <WeatherContentHome nameWeatherUrl={_urlWeatherBit} />
+                <WeatherContentHome nameWeatherUrl={_urlVisualWeather} />
             </div>
 
         </div>
