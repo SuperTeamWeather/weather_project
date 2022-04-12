@@ -3,16 +3,23 @@ import { WeatherContentHome } from '../../Components/WeatherContentHome/WeatherC
 import { SvgSun } from '../../Components/SVGIcons/SvgSun/SvgSun';
 import { SvgCloud } from '../../Components/SVGIcons/SvgCloud/SvgCloud';
 import { SvgRain } from '../../Components/SVGIcons/SvgRain/SvgRain';
+import { ActionsSing } from "../../Components/ActionsSign/ActionsSing";
+import {
+    _urlOpenWeather,
+    _urlWeatherBit,
+    _urlVisualWeather,
+    _urlYandex
+} from '../../Service/Constant';
 import "./Home.scss"
-import {ActionsSing} from "../../Components/ActionsSign/ActionsSing";
 
 
 export const Home = () => {
+
     return (
         <div className="home-page container">
 
             <div className="home-page__btn-block">
-                <ActionsSing/>
+                <ActionsSing />
             </div>
 
 
@@ -23,7 +30,10 @@ export const Home = () => {
             </div>
 
             <div className="wather-content">
-                <WeatherContentHome />
+                <WeatherContentHome nameWeatherUrl={_urlOpenWeather} />
+                <WeatherContentHome nameWeatherUrl={_urlYandex} />
+                <WeatherContentHome nameWeatherUrl={_urlWeatherBit} />
+                <WeatherContentHome nameWeatherUrl={_urlVisualWeather} />
             </div>
 
         </div>
