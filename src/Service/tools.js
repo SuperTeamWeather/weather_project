@@ -68,7 +68,8 @@ export const getLogoWeatherDescription = (logo) => {
         case "03d": case "03n": case "c04d": case "c04n": case "c03d": case "c03n":
         case "04d": case "04n": case "a06d": case "a06n": case "a05d": case "a05n":
         case "a04d": case "a04n": case "a03d": case "a03dn": case "a02d": case "a02n":
-        case "a01d": case "a01dn": case "fog": case "wind": case "cloudy":
+        case "a01d": case "a01dn": case "fog": case "wind": case "cloudy": case "50d":
+        case "50n":
             return <Cloud />
 
 

@@ -4,6 +4,12 @@ import { useDispatch } from "react-redux";
 import { fetchCitys } from "../../Service/FetchCitys";
 import { changeActiveModal } from "../../Store/CurrentUserDataReducer/action";
 import { changeActiveBtnModal } from "../../Store/CurrentUserDataReducer/action";
+import {
+    _urlYandex,
+    _urlVisualWeather,
+    _urlWeatherBit,
+    _urlOpenWeather
+} from "../../Service/Constant";
 import "./SearchCityHome.scss"
 
 export const SearchCityHome = ({ getNewWeather }) => {
@@ -32,7 +38,11 @@ export const SearchCityHome = ({ getNewWeather }) => {
             longitude: cityItem.coord.lon
         }
 
-        getNewWeather(cityCoord)
+        getNewWeather(cityCoord, _urlOpenWeather)
+        getNewWeather(cityCoord, _urlYandex)
+        getNewWeather(cityCoord, _urlWeatherBit)
+        getNewWeather(cityCoord, _urlVisualWeather)
+
 
         setValueInput(prev => prev = "")
         setListWeatherCitys(prev => prev = [])

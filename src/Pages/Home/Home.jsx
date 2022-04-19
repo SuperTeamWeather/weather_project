@@ -4,6 +4,7 @@ import { SvgSun } from '../../Components/SVGIcons/SvgSun/SvgSun';
 import { SvgCloud } from '../../Components/SVGIcons/SvgCloud/SvgCloud';
 import { SvgRain } from '../../Components/SVGIcons/SvgRain/SvgRain';
 import { ActionsSing } from "../../Components/ActionsSign/ActionsSing";
+import { CityName } from '../../Components/CityName/CityName';
 import {
     _urlOpenWeather,
     _urlWeatherBit,
@@ -14,6 +15,7 @@ import "./Home.scss"
 
 
 export const Home = () => {
+
 
     return (
         <div className="home-page container">
@@ -29,7 +31,11 @@ export const Home = () => {
                 <SvgRain />
             </div>
 
-            <div className="wather-content">
+            <div className="home-page__city-name">
+                <CityName />
+            </div>
+
+            <div className="home-page__wather-content">
                 <WeatherContentHome nameWeatherUrl={_urlOpenWeather} />
                 <WeatherContentHome nameWeatherUrl={_urlYandex} />
                 <WeatherContentHome nameWeatherUrl={_urlWeatherBit} />
