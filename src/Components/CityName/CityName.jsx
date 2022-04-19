@@ -1,0 +1,77 @@
+import React from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { MyModal } from "../MyModal/MyModal";
+import { SearchCityHome } from "../SearchCityHome/SearchCityHome";
+import { featchWeather } from "../../Store/WeatherReducer/action";
+import {
+    changeActiveModal,
+    changeActiveBtnModal
+} from "../../Store/CurrentUserDataReducer/action";
+import {
+    getSelectorCurrentUserActiveModal,
+    getSelectorCurrentUserActiveBtnModal
+} from "../../Store/CurrentUserDataReducer/selectors";
+import { getSelectorWeathersData } from "../../Store/WeatherReducer/selectors";
+import "./CityName.scss"
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+
+export const CityName = () => {
+
+    const activeModal = useSelector(getSelectorCurrentUserActiveModal)
+    const activeBtn = useSelector(getSelectorCurrentUserActiveBtnModal)
+    const weather = useSelector(getSelectorWeathersData)
+
+    const dispatch = useDispatch()
+
+    const [cityName, setCityName] = useState("")
+
+
+    useEffect(() => {
+
+        for (let key in weather) {
+
+            if (weather[key]?.cityName) {
+                setCityName(prev => prev = weather[key]?.cityName)
+                return
+            } else {
+                setCityName(prev => prev = "")
+            }
+        }
+    }, [weather])
+
+
+    const changeCity = (event) => {
+
+        dispatch(changeActiveBtnModal(event.target.dataset.name))
+        dispatch(changeActiveModal(true))
+
+    }
+
+    const getNewWeather = useCallback(async (cityCoord, urlName) => {
+        dispatch(featchWeather(cityCoord, urlName))
+    }, [dispatch])
+
+
+    return (
+        <div className="city-name">
+            <div>
+                {activeBtn === "city-change-open-modal" ?
+                    <MyModal active={activeModal}>
+                        <SearchCityHome getNewWeather={getNewWeather} />
+                    </MyModal>
+                    : ""
+                }
+            </div>
+
+
+            <h2
+                className="city-name__title"
+                data-name="city-change-open-modal"
+                onClick={changeCity}>
+                {cityName}
+            </h2>
+        </div>
+    )
+}

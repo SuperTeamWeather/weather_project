@@ -6,13 +6,16 @@ import {
 } from "./Constant"
 import { WeatherData } from "./classWeatherData"
 import { getRusWeatherConditionYandex } from "./tools"
+import { getNameWeatherFromRegExp } from "./tools"
 
 
 export const getUnitedWeatherData = (data, apiName) => {
 
     switch (apiName) {
         case _urlOpenWeather:
-            return new WeatherData(
+            const openWeather = {}
+
+            openWeather[getNameWeatherFromRegExp(apiName)] = new WeatherData(
                 data.name,
                 data.main.temp,
                 data.main.feels_like,
@@ -22,11 +25,12 @@ export const getUnitedWeatherData = (data, apiName) => {
                 data.main.humidity,
                 Math.round(data.main.pressure * 0.75),
                 data.weather[0].icon
-
             )
+            return openWeather
 
         case _urlYandex:
-            return new WeatherData(
+            let yandex = {}
+            yandex[getNameWeatherFromRegExp(apiName)] = new WeatherData(
                 data.geo_object.locality.name,
                 data.fact.temp,
                 data.fact.feels_like,
@@ -37,9 +41,11 @@ export const getUnitedWeatherData = (data, apiName) => {
                 data.fact.pressure_mm,
                 data.fact.icon
             )
+            return yandex
 
         case _urlWeatherBit:
-            return new WeatherData(
+            const weatherBit = {}
+            weatherBit[getNameWeatherFromRegExp(apiName)] = new WeatherData(
                 data.data[0].city_name,
                 data.data[0].temp,
                 data.data[0].app_temp,
@@ -50,9 +56,11 @@ export const getUnitedWeatherData = (data, apiName) => {
                 Math.round(data.data[0].pres * 0.75),
                 data.data[0].weather.icon
             )
+            return weatherBit
 
         case _urlVisualWeather:
-            return new WeatherData(
+            const visualWeather = {}
+            visualWeather[getNameWeatherFromRegExp(apiName)] = new WeatherData(
                 data.timezone,
                 data.currentConditions.temp,
                 data.currentConditions.feelslike,
@@ -63,6 +71,7 @@ export const getUnitedWeatherData = (data, apiName) => {
                 Math.round(data.currentConditions.pressure * 0.75),
                 data.currentConditions.icon
             )
+            return visualWeather
 
         default:
             return new WeatherData()

@@ -18,10 +18,10 @@ export const MyModal = ({ active, children }) => {
 
     return (
         <div
-            className={active ? "modal active" : "modal"}
+            className={active ? "modal-comp active-modal-comp" : "modal-comp"}
             onClick={closeModal}>
             <div
-                className={`modal__content-${styleModal}`}
+                className={`modal-comp__content-${styleModal}`}
                 onClick={(ev) => ev.stopPropagation()}
             >
                 {children}

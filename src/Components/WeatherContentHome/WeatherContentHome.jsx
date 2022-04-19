@@ -1,7 +1,6 @@
 import React from "react";
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState } from "react"
 import { getGeoCoordinatesUser } from "../../Service/UserGeoLocation";
-import { getWeatherData } from "../../Service/GetWeather";
 import {
     getCurrentTime,
     getLogoFromYandex,
@@ -9,77 +8,59 @@ import {
     getNameWeatherFromRegExp
 } from "../../Service/tools";
 import { useDispatch, useSelector } from "react-redux";
-import { changeActiveModal } from "../../Store/CurrentUserDataReducer/action";
-import { changeActiveBtnModal } from "../../Store/CurrentUserDataReducer/action";
-import { getSelectorCurrentUserActiveModal } from "../../Store/CurrentUserDataReducer/selectors";
-import { getSelectorCurrentUserActiveBtnModal } from "../../Store/CurrentUserDataReducer/selectors";
-import { MyModal } from "../MyModal/MyModal";
-import { SearchCityHome } from "../SearchCityHome/SearchCityHome";
+import {
+    getSelectorWeathersData,
+    getSelectorWeathersAlert,
+    getSelectorWeathersIsLoader
+} from "../../Store/WeatherReducer/selectors";
+import { featchWeather } from "../../Store/WeatherReducer/action";
+import Spinner from 'react-bootstrap/Spinner'
 import "./WeatherContentHome.scss"
-
 
 
 export const WeatherContentHome = ({ nameWeatherUrl }) => {
 
     const dispatch = useDispatch()
-    const activeModal = useSelector(getSelectorCurrentUserActiveModal)
-    const activeBtn = useSelector(getSelectorCurrentUserActiveBtnModal)
 
-    const [currentWeather, setWeather] = useState(null);
+    const weather = useSelector(getSelectorWeathersData)
+    const isLoader = useSelector(getSelectorWeathersIsLoader)
+    const alertText = useSelector(getSelectorWeathersAlert)
+    const nameWeather = getNameWeatherFromRegExp(nameWeatherUrl)
+
     const [currentDate, setCurrentDate] = useState(() => new Date());
     const [currentPositionCoordinates, setPositionCoordinates] = useState(null);
-
 
     useEffect(async () => {
         setPositionCoordinates(await getGeoCoordinatesUser());
     }, [])
 
-    useEffect(async () => {
+    useEffect(() => {
         if (currentPositionCoordinates) {
-            setWeather(await getWeatherData(
-                currentPositionCoordinates?.coords, nameWeatherUrl));
+            dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl))
         }
-    }, [currentPositionCoordinates])
-
-
-    const changeCity = (event) => {
-
-        dispatch(changeActiveBtnModal(event.target.dataset.name))
-        dispatch(changeActiveModal(true))
-
-    }
-
-    const getNewWeather = useCallback(async (cityCoord, urlName = nameWeatherUrl) => {
-        setWeather(await getWeatherData(cityCoord, urlName));
-    }, [nameWeatherUrl])
-
+    }, [currentPositionCoordinates, nameWeatherUrl, dispatch])
 
 
     return (
+
         <div>
-            <div>
-                {activeBtn === "city-change-open-modal" ?
-                    <MyModal active={activeModal}>
-                        <SearchCityHome getNewWeather={getNewWeather} />
-                    </MyModal>
-                    : ""
-                }
+
+            <div className="loader-spiner">
+                {!weather[nameWeather] && isLoader ? <Spinner animation="grow" variant="warning" /> : ""}
             </div>
+
             <main className="weather-home">
 
-                {currentWeather ?
+                {weather[nameWeather] ?
+
                     <div className="weather-home__content">
 
                         <div className="weather-home__info">
-                            <h2
-                                data-name="city-change-open-modal"
-                                onClick={changeCity}
-                                className="weather-home__name-city">
-                                {currentWeather?.cityName}
-                                <span
-                                    data-name="city-change-open-modal"
-                                > ({getNameWeatherFromRegExp(nameWeatherUrl)})</span>
-                            </h2>
+                            <h3
+                                className="weather-home__name-api-weather">
+                                {nameWeather}
+
+                            </h3>
 
                             <p className="weather-home__info-time">
                                 {getCurrentTime(currentDate)}
@@ -88,22 +69,25 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
 
                         <div className="weather-home__description">
                             {nameWeatherUrl === "api/v1/YandexWeather" ?
-                                getLogoFromYandex(currentWeather.description)
+                                getLogoFromYandex(weather[nameWeather].description)
                                 :
-                                getLogoWeatherDescription(currentWeather.icon)}
+                                getLogoWeatherDescription(weather[nameWeather].icon)}
 
-                            <p className="weather-home__text">{currentWeather.description}</p>
+                            <p className="weather-home__text">{weather[nameWeather].description}</p>
 
                             <div className="weather-home__temperature">
-                                <p>{Math.round(currentWeather.temp)}&#176;C</p>
+                                <p>{Math.round(weather[nameWeather].temp)}&#176;C</p>
                                 <p className="weather-home__temperature-felt">
-                                    Ощущается как {Math.round(currentWeather.feelsTemp)}&#176;C
+                                    Ощущается как {Math.round(weather[nameWeather].feelsTemp)}&#176;C
                                 </p>
                             </div>
                         </div>
 
                     </div >
-                    : ""}
+
+                    : <div className="weather-home__alert">{alertText}</div>
+
+                }
             </main >
         </div>
 

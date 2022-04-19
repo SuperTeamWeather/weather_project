@@ -29,14 +29,8 @@
         color: white;
     }
 
-    &__name-city {
-        font-size: 36px;
-        color: white;
-        cursor: pointer;
-    }
-
-    &__name-city span {
-        font-size: 22px;
+    &__name-api-weather {
+        font-size: 24px;
         color: white;
     }
 
@@ -50,7 +44,6 @@
 
     &__temperature-felt {
         font-size: 22px;
-
     }
 
     &__text {
@@ -71,6 +64,12 @@
     &__info-time {
         font-size: 30px;
         color: white;
+    }
+
+    &__alert {
+        color: red;
+        font-size: 32px;
+        text-align: center;
     }
 }
 
