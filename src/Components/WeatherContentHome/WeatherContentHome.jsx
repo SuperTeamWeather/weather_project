@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react"
 import { getGeoCoordinatesUser } from "../../Service/UserGeoLocation";
 import {
-    getCurrentTime,
     getLogoFromYandex,
     getLogoWeatherDescription,
     getNameWeatherFromRegExp
@@ -27,7 +26,6 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
     const alertText = useSelector(getSelectorWeathersAlert)
     const nameWeather = getNameWeatherFromRegExp(nameWeatherUrl)
 
-    const [currentDate, setCurrentDate] = useState(() => new Date());
     const [currentPositionCoordinates, setPositionCoordinates] = useState(null);
 
     useEffect(async () => {
@@ -35,10 +33,11 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
     }, [])
 
     useEffect(() => {
+        console.log(nameWeather)
         if (currentPositionCoordinates) {
-            dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl))
+            dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl, nameWeather))
         }
-    }, [currentPositionCoordinates, nameWeatherUrl, dispatch])
+    }, [currentPositionCoordinates, nameWeatherUrl, dispatch, nameWeather])
 
 
     return (
@@ -46,7 +45,7 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
         <div>
 
             <div className="loader-spiner">
-                {!weather[nameWeather] && isLoader ? <Spinner animation="grow" variant="warning" /> : ""}
+                {isLoader[nameWeather] ? <Spinner animation="grow" variant="warning" /> : ""}
             </div>
 
             <main className="weather-home">
@@ -61,10 +60,6 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
                                 {nameWeather}
 
                             </h3>
-
-                            <p className="weather-home__info-time">
-                                {getCurrentTime(currentDate)}
-                            </p>
                         </div>
 
                         <div className="weather-home__description">
@@ -85,7 +80,7 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
 
                     </div >
 
-                    : <div className="weather-home__alert">{alertText}</div>
+                    : <div className="weather-home__alert">{alertText[nameWeather]}</div>
 
                 }
             </main >

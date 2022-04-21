@@ -13,15 +13,15 @@ import {
     getSelectorCurrentUserActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/selectors";
 import { getSelectorWeathersData } from "../../Store/WeatherReducer/selectors";
+import { getCurrentTime } from "../../Service/tools";
 import "./CityName.scss"
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
 
 export const CityName = () => {
 
     const activeModal = useSelector(getSelectorCurrentUserActiveModal)
     const activeBtn = useSelector(getSelectorCurrentUserActiveBtnModal)
     const weather = useSelector(getSelectorWeathersData)
+    const [currentDate, setCurrentDate] = useState(() => new Date());
 
     const dispatch = useDispatch()
 
@@ -35,8 +35,6 @@ export const CityName = () => {
             if (weather[key]?.cityName) {
                 setCityName(prev => prev = weather[key]?.cityName)
                 return
-            } else {
-                setCityName(prev => prev = "")
             }
         }
     }, [weather])
@@ -72,6 +70,9 @@ export const CityName = () => {
                 onClick={changeCity}>
                 {cityName}
             </h2>
+            <p className="weather-home__info-time">
+                {getCurrentTime(currentDate)}
+            </p>
         </div>
     )
 }

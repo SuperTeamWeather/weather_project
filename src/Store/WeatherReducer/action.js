@@ -1,9 +1,10 @@
 export const FETCH_WEATHER = "WEATHER::FETCH_WEATHER"
-export const featchWeather = (coordinates, nameUrl) => ({
+export const featchWeather = (coordinates, nameUrl, nameWeather) => ({
     type: FETCH_WEATHER,
     payload: {
         coordinates,
-        nameUrl
+        nameUrl,
+        nameWeather
     }
 
 
@@ -17,24 +18,27 @@ export const addWeatherData = (data) => ({
 
 
 export const SHOW_LOADER = "WEATHER::SHOW_LOADER"
-export const showLoader = () => ({
-    type: SHOW_LOADER
+export const showLoader = (nameWeather) => ({
+    type: SHOW_LOADER,
+    payload: nameWeather
 })
 
 
 export const HIDE_LOADER = "WEATHER::HIDE_LOADER"
-export const hideLoader = () => ({
-    type: HIDE_LOADER
+export const hideLoader = (nameWeather) => ({
+    type: HIDE_LOADER,
+    payload: nameWeather
 })
 
 
 export const SHOW_ALERT = "WEATHER::SHOW_ALERT"
-export const showAlert = (text) => ({
+export const showAlert = (text, nameWeather) => ({
     type: SHOW_ALERT,
-    payload: text
+    payload: { text, nameWeather }
 })
 
 export const HIDE_ALERT = "WEATHER::HIDE_ALERT"
-export const hideAlert = () => ({
-    type: HIDE_ALERT
+export const hideAlert = (nameWeather) => ({
+    type: HIDE_ALERT,
+    payload: nameWeather
 })
