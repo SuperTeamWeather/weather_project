@@ -103,7 +103,8 @@
 .hours {
   display: flex;
   gap: 16px;
-  overflow: auto;
+  overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 .item-hours {
@@ -128,4 +129,17 @@
   background: none;
   color: #ffffffba;
   font-size: 25px;
+}
+
+.btn-style {
+  cursor: pointer;
+
+  &:hover {
+    color: #f5e241;
+  }
+
+  &:active {
+    color: #9d912c;
+  }
+
 }

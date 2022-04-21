@@ -1,23 +1,23 @@
-import React from "react";
-import { useEffect, useState } from "react"
-import { getGeoCoordinatesUser } from "../../Service/UserGeoLocation";
+import React, {useRef} from "react";
+import {useEffect, useState} from "react"
+import {getGeoCoordinatesUser} from "../../Service/UserGeoLocation";
 import {
     getLogoFromYandex,
     getLogoWeatherDescription,
     getNameWeatherFromRegExp
 } from "../../Service/tools";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
     getSelectorWeathersData,
     getSelectorWeathersAlert,
     getSelectorWeathersIsLoader
 } from "../../Store/WeatherReducer/selectors";
-import { featchWeather } from "../../Store/WeatherReducer/action";
+import {featchWeather} from "../../Store/WeatherReducer/action";
 import Spinner from 'react-bootstrap/Spinner'
 import "./WeatherContentHome.scss"
-import { Accordion, useAccordionButton } from "react-bootstrap";
+import {Accordion, useAccordionButton} from "react-bootstrap";
 
-export const WeatherContentHome = ({ nameWeatherUrl }) => {
+export const WeatherContentHome = ({nameWeatherUrl}) => {
 
     const dispatch = useDispatch()
 
@@ -36,12 +36,23 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
         if (currentPositionCoordinates) {
             dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl, nameWeather))
         }
-    }, [currentPositionCoordinates, nameWeatherUrl, dispatch, nameWeather])
+    }, [currentPositionCoordinates, nameWeatherUrl, dispatch]);
+
+    const myRef = useRef(null);
+
+    const scrollRight = () => {
+        let leftPos = myRef.current.scrollLeft;
+        myRef.current.scrollLeft = leftPos + 85
+    }
+    const scrollLeft = () => {
+        let leftPos = myRef.current.scrollLeft;
+        myRef.current.scrollLeft = leftPos - 85
+    }
 
     return (
         <div>
             <div className="loader-spinner">
-                {isLoader[nameWeather] ? <Spinner animation="border" variant="warning" /> : ""}
+                {isLoader[nameWeather] ? <Spinner animation="border" variant="warning"/> : ""}
             </div>
             <main className="weather-home">
                 {weather[nameWeather] ?
@@ -50,10 +61,10 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
                             <div className="weather-home__name-api-weather text-style">
                                 {nameWeather}
                             </div>
-                            <a href="#/" className="link-custom text-style">По&nbsp;дням</a>
+                            <div className="link-custom text-style btn-style unselectable">По&nbsp;дням</div>
                         </div>
                         <div className="text-style">
-                            Сегодня от +3°C ... +11°C; переменная облачность; без осадков
+                            Сегодня от +3°C ... +11°C; {weather[nameWeather].description}; без осадков
                         </div>
                         <Accordion className="accordion-style">
                             <div className="weather-home__description">
@@ -70,20 +81,20 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
                                     </div>
                                 </div>
                                 <div className="text-style">
-                                    <div>Ветер: 1,0 м/с, северный</div>
-                                    <div>Влажность: 36%</div>
-                                    <div>Давление: 747 мм рт. ст.</div>
+                                    <div>Ветер: {weather[nameWeather].windSpeed} м/с,{weather[nameWeather].windDirection}</div>
+                                    <div>Влажность: {weather[nameWeather].humidity}%</div>
+                                    <div>Давление: {weather[nameWeather].pressure} мм рт. ст.</div>
                                 </div>
-                                <CustomToggle className="" eventKey="0">
+                                <CustomToggle eventKey="0">
                                     По&nbsp;часам
                                 </CustomToggle>
                             </div>
                             <Accordion.Collapse eventKey="0">
                                 <div className="carousel">
-                                    <button className="carousel-btn">
+                                    <button className="carousel-btn btn-style" onClick={scrollLeft}>
                                         <i className="fa-solid fa-circle-chevron-left"></i>
                                     </button>
-                                    <div className="hours">
+                                    <div className="hours" ref={myRef}>
                                         <div className="item-hours text-style">
                                             <div>00:00</div>
                                             <img src="/img/test.png" alt="test.png"></img>
@@ -185,7 +196,7 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
                                             <div>+11°C</div>
                                         </div>
                                     </div>
-                                    <button className="carousel-btn">
+                                    <button className="carousel-btn btn-style" onClick={scrollRight}>
                                         <i className="fa-solid fa-circle-chevron-right"></i>
                                     </button>
                                 </div>
@@ -200,11 +211,11 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
     )
 }
 
-function CustomToggle({ children, eventKey }) {
+function CustomToggle ({children, eventKey}) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
         console.log('totally custom!'),
     );
     return (
-        <div className="link-custom text-style" onClick={decoratedOnClick}>{children}</div>
+        <div className="link-custom text-style btn-style unselectable" onClick={decoratedOnClick}>{children}</div>
     );
 }
