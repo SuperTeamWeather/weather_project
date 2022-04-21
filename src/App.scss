@@ -1,34 +1,35 @@
 @import "~bootstrap/scss/bootstrap";
 
+#root {
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
 *,
 *::after,
 *::before {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-a {
-    text-decoration: none;
-}
-
-.container {
-    max-width: 1160px;
-    padding: 0 10px;
-    margin: 0 auto;
-}
 
 .app {
-    // width: 100vw;
-    // height: 100%;
-    background: url(../public/img/1.jpg);
-    background-size: cover;
-    background-attachment: fixed;
-    // background-color: gray;
-    padding-bottom: 100px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
 }
 
-.loader-spiner {
-    text-align: center;
-    margin: 50px;
+.background {
+  background: linear-gradient(180deg, #0462AC 0%, rgba(73, 147, 193, 0.59375) 52.6%, rgba(162, 230, 251, 0) 100%);
+}
+
+.content-center {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
 }
