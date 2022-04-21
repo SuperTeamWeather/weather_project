@@ -1,72 +1,73 @@
 .block-cloud {
+  width: 90px;
+  height: 70px;
+  position: relative;
+
+  &__cloud {
     position: relative;
-    &__cloud {
-      position: relative;
-      z-index: 2;
-      top: 30px;
-      left: 30px;
-    }
-  }
-  
-  
-  
-  
-  #cloud path {
-    fill: #68BBE5;
-    
-  }
-
-  #sun {
-    margin-left: -10px;
-    margin-top: 6px;
-    opacity: 0;
-    width: 140px;
-    height: 140px;
-    position: absolute;
-    top: 0;
+    z-index: 2;
+    top: 30px;
     left: 30px;
-    z-index: 1;
-    animation-name: rotate;
-    animation-duration: 16000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+  }
+}
+
+
+#cloud path {
+  fill: #68BBE5;
+
+}
+
+#sun {
+  margin-left: -10px;
+  margin-top: 6px;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  z-index: 1;
+  animation-name: rotate;
+  animation-duration: 16000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.sun-cloud {
+  left: 75px;
+  top: 15px;
+  width: 100%;
+  height: 100%;
+}
+
+#sun path {
+  stroke-width: 0.18;
+  animation: anime-sun infinite 2s linear;
+}
+
+@keyframes anime-sun {
+  0% {
+    fill: yellow;
+  }
+  33% {
+    fill: rgb(236, 219, 69);
+  }
+  66% {
+    fill: rgb(241, 214, 94);
   }
 
-  .sun-cloud{
-    left: 75px;
-    top: 15px;
-    width: 210px;
-    height: 210px;
+  100% {
+    fill: yellow;
   }
-  #sun path {
-    stroke-width: 0.18;
-    animation: anime-sun infinite 2s linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
   }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
   
-  @keyframes anime-sun {
-    0% {
-        fill: yellow;
-    }
-    33% {
-      fill: rgb(236, 219, 69);
-    }
-    66% {
-      fill:  rgb(241, 214, 94);
-    }
-    
-    100% {
-      fill: yellow;
-    }
-  }
-  
-  @keyframes rotate {
-    0% {
-      transform: rotateZ(0deg);
-    }
-   
-    100% {
-      transform: rotateZ(360deg);
-    }
-  }
-  
- 

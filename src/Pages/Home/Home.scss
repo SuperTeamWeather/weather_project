@@ -1,23 +1,14 @@
 .home-page {
-    width: 100%;
+  overflow: auto;
+  height: 100%;
+}
 
-    &__svg-icons {
-        margin-top: 20px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        height: 20vh;
-    }
+.hello-icon {
+  display: flex;
+  justify-content: space-between;
+}
 
-    &__btn-block {
-        margin-top: 5px;
-        width: 132px;
-        margin-left: auto;
-    }
-
-    &__city-name {
-        margin-top: 20px;
-    }
-
-    &__wather-content {}
+.grid-layout {
+  display: grid;
+  grid-gap: 24px;
 }

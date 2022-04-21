@@ -1,23 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {NavDropdown} from "react-bootstrap";
 import './Header.scss'
-
+import {CityName} from "../CityName/CityName";
+import {Link} from "react-router-dom";
 
 export const Header = () => {
-
-    return (
-        <header className="header">
-            <div className="header__content container">
-                <div className="header__logo">
-                    <Link to={"/"} className="header__logo-title">
-                        {/* <img src="./img/logo.jpg" alt="logo" /> */}
-                    </Link>
-                </div>
-                <nav className="header__nav">
-                    <Link to={"/weather"} className="header__nav-btn">Weather</Link>
-                    <Link to={"/profile"} className="header__nav-btn">Profile</Link>
-                </nav>
+    return (<header className="header">
+        <div className="content content-center">
+            <div className="logo-title">
+                <img className="logo" src="./img/logo_small.png" alt="logo"/>
+                <CityName/>
             </div>
-        </header>
-    )
+            <div>
+                {/*   <ActionsSing/>*/}
+                <NavDropdown title="UserName">
+                    <NavDropdown.Item>
+                        <Link to={"/weather"} className="header__nav-btn">Погода</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                        <Link to={"/profile"} className="header__nav-btn">Профиль</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider/>
+                    <NavDropdown.Item href="#action/3.4">Выйти</NavDropdown.Item>
+                </NavDropdown>
+            </div>
+        </div>
+    </header>)
 }
