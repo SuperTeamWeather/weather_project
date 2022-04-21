@@ -2,7 +2,6 @@ import React from "react";
 import {useEffect, useState} from "react"
 import {getGeoCoordinatesUser} from "../../Service/UserGeoLocation";
 import {
-    getCurrentTime,
     getLogoFromYandex,
     getLogoWeatherDescription,
     getNameWeatherFromRegExp
@@ -16,13 +15,7 @@ import {
 import {featchWeather} from "../../Store/WeatherReducer/action";
 import Spinner from 'react-bootstrap/Spinner'
 import "./WeatherContentHome.scss"
-import {Sun} from "../SVGIcons/SvgDescription/Sun/Sun";
-import {Cloud} from "../SVGIcons/SvgDescription/Cloud/Cloud";
-import {SunAndCloud} from "../SVGIcons/SvgDescription/SunAndCloud/SunAndCloud";
-import {Rain} from "../SVGIcons/SvgDescription/Rain/Rain";
-import {Snow} from "../SVGIcons/SvgDescription/Snow/Snow";
-import {SnowAndRain} from "../SVGIcons/SvgDescription/SnowAndRain/SnowAndRain";
-import {Accordion, Card, Carousel, useAccordionButton} from "react-bootstrap";
+import {Accordion, useAccordionButton} from "react-bootstrap";
 
 export const WeatherContentHome = ({nameWeatherUrl}) => {
 
@@ -33,7 +26,6 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
     const alertText = useSelector(getSelectorWeathersAlert)
     const nameWeather = getNameWeatherFromRegExp(nameWeatherUrl)
 
-    const [currentDate, setCurrentDate] = useState(() => new Date());
     const [currentPositionCoordinates, setPositionCoordinates] = useState(null);
 
     useEffect(async () => {
