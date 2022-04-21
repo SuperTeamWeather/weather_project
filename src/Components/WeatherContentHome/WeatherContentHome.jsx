@@ -34,14 +34,14 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
 
     useEffect(() => {
         if (currentPositionCoordinates) {
-            dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl))
+            dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl, nameWeather))
         }
-    }, [currentPositionCoordinates, nameWeatherUrl, dispatch])
+    }, [currentPositionCoordinates, nameWeatherUrl, dispatch, nameWeather])
 
     return (
         <div>
             <div className="loader-spinner">
-                {!weather[nameWeather] && isLoader ? <Spinner animation="border" variant="warning" /> : ""}
+                {isLoader[nameWeather] ? <Spinner animation="border" variant="warning" /> : ""}
             </div>
             <main className="weather-home">
                 {weather[nameWeather] ?
@@ -192,7 +192,7 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
                             </Accordion.Collapse>
                         </Accordion>
                     </div>
-                    : <div className="weather-home__alert">{alertText}</div>
+                    : <div className="weather-home__alert">{alertText[nameWeather]}</div>
                 }
             </main>
         </div>
