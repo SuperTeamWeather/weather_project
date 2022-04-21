@@ -11,7 +11,7 @@ import {
     getSelectorCurrentUserActiveModal, getSelectorCurrentUserActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/selectors";
 import {getSelectorWeathersData} from "../../Store/WeatherReducer/selectors";
-import { getCurrentTime } from "../../Service/tools";
+import {getCurrentTime} from "../../Service/tools";
 import "./CityName.scss"
 
 export const CityName = () => {
@@ -57,8 +57,8 @@ export const CityName = () => {
             {cityName}
             <i data-name="city-change-open-modal" onClick={changeCity} className="fa-regular fa-pen-to-square"></i>
         </div>
-        <p>
+        <div>
             {getCurrentTime(currentDate)}
-        </p>
+        </div>
     </div>)
 }
