@@ -1,56 +1,53 @@
 
-  .block-item {
-    position: relative;
-  }
-  
-  
- .sun {
-    margin-left: -10px;
-    margin-top: 6px;
-    opacity: 0;
-    width: 140px;
-    height: 140px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    animation-name: rotate;
-    animation-duration: 16000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
+.block-item {
+  position: relative;
+}
 
 
-  .sun path {
-    stroke-width: 0.18;
-    animation: anime-sun infinite 2s linear;
+.sun {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  animation-name: rotate;
+  animation-duration: 16000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+.sun path {
+  stroke-width: 0.18;
+  animation: anime-sun infinite 2s linear;
+}
+
+@keyframes anime-sun {
+  0% {
+    fill: yellow;
   }
-  
-  @keyframes anime-sun {
-    0% {
-        fill: yellow;
-    }
-    33% {
-      fill: rgb(236, 219, 69);
-    }
-    66% {
-      fill:  rgb(241, 214, 94);
-    }
-    
-    100% {
-      fill: yellow;
-    }
+  33% {
+    fill: rgb(236, 219, 69);
+  }
+  66% {
+    fill: rgb(241, 214, 94);
   }
 
-  
-  @keyframes rotate {
-    0% {
-      transform: rotateZ(0deg);
-    }
-   
-    100% {
-      transform: rotateZ(360deg);
-    }
+  100% {
+    fill: yellow;
   }
+}
+
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
   
- 

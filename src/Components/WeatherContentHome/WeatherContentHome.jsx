@@ -1,24 +1,30 @@
 import React from "react";
-import { useEffect, useState } from "react"
-import { getGeoCoordinatesUser } from "../../Service/UserGeoLocation";
+import {useEffect, useState} from "react"
+import {getGeoCoordinatesUser} from "../../Service/UserGeoLocation";
 import {
     getCurrentTime,
     getLogoFromYandex,
     getLogoWeatherDescription,
     getNameWeatherFromRegExp
 } from "../../Service/tools";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
     getSelectorWeathersData,
     getSelectorWeathersAlert,
     getSelectorWeathersIsLoader
 } from "../../Store/WeatherReducer/selectors";
-import { featchWeather } from "../../Store/WeatherReducer/action";
+import {featchWeather} from "../../Store/WeatherReducer/action";
 import Spinner from 'react-bootstrap/Spinner'
 import "./WeatherContentHome.scss"
+import {Sun} from "../SVGIcons/SvgDescription/Sun/Sun";
+import {Cloud} from "../SVGIcons/SvgDescription/Cloud/Cloud";
+import {SunAndCloud} from "../SVGIcons/SvgDescription/SunAndCloud/SunAndCloud";
+import {Rain} from "../SVGIcons/SvgDescription/Rain/Rain";
+import {Snow} from "../SVGIcons/SvgDescription/Snow/Snow";
+import {SnowAndRain} from "../SVGIcons/SvgDescription/SnowAndRain/SnowAndRain";
+import {Accordion, Card, Carousel, useAccordionButton} from "react-bootstrap";
 
-
-export const WeatherContentHome = ({ nameWeatherUrl }) => {
+export const WeatherContentHome = ({nameWeatherUrl}) => {
 
     const dispatch = useDispatch()
 
@@ -40,56 +46,176 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
         }
     }, [currentPositionCoordinates, nameWeatherUrl, dispatch])
 
-
     return (
-
         <div>
-
-            <div className="loader-spiner">
-                {!weather[nameWeather] && isLoader ? <Spinner animation="grow" variant="warning" /> : ""}
+            <div className="loader-spinner">
+                {!weather[nameWeather] && isLoader ? <Spinner animation="border" variant="warning"/> : ""}
             </div>
-
             <main className="weather-home">
-
                 {weather[nameWeather] ?
-
                     <div className="weather-home__content">
-
                         <div className="weather-home__info">
-                            <h3
-                                className="weather-home__name-api-weather">
+                            <div className="weather-home__name-api-weather text-style">
                                 {nameWeather}
-
-                            </h3>
-
-                            <p className="weather-home__info-time">
-                                {getCurrentTime(currentDate)}
-                            </p>
-                        </div>
-
-                        <div className="weather-home__description">
-                            {nameWeatherUrl === "api/v1/YandexWeather" ?
-                                getLogoFromYandex(weather[nameWeather].description)
-                                :
-                                getLogoWeatherDescription(weather[nameWeather].icon)}
-
-                            <p className="weather-home__text">{weather[nameWeather].description}</p>
-
-                            <div className="weather-home__temperature">
-                                <p>{Math.round(weather[nameWeather].temp)}&#176;C</p>
-                                <p className="weather-home__temperature-felt">
-                                    Ощущается как {Math.round(weather[nameWeather].feelsTemp)}&#176;C
-                                </p>
                             </div>
+                            <a href="#/" className="link-custom text-style">По&nbsp;дням</a>
+                            {/*                            <p className="weather-home__info-time">
+                                {getCurrentTime(currentDate)}
+                            </p>*/}
                         </div>
-
-                    </div >
-
+                        <div className="text-style">
+                            Сегодня от +3°C ... +11°C; переменная облачность; без осадков
+                        </div>
+                        <Accordion className="accordion-style">
+                            <div className="weather-home__description">
+                                <div className="weather-home__temperature text-style">
+                                    <div className="big-text">{Math.round(weather[nameWeather].temp)}&nbsp;&#176;C</div>
+                                    <div className="weather-home__temperature-felt text-style">
+                                        Ощущается как {Math.round(weather[nameWeather].feelsTemp)}&nbsp;&#176;C
+                                    </div>
+                                </div>
+                                <div className="icon-weather">
+                                    {nameWeatherUrl === "api/v1/YandexWeather" ? getLogoFromYandex(weather[nameWeather].description) : getLogoWeatherDescription(weather[nameWeather].icon)}
+                                    <div className="weather-home__text text-style">
+                                        {weather[nameWeather].description}
+                                    </div>
+                                </div>
+                                <div className="text-style">
+                                    <div>Ветер: 1,0 м/с, северный</div>
+                                    <div>Влажность: 36%</div>
+                                    <div>Давление: 747 мм рт. ст.</div>
+                                </div>
+                                <CustomToggle className="" eventKey="0">
+                                    По&nbsp;часам
+                                </CustomToggle>
+                            </div>
+                            <Accordion.Collapse eventKey="0">
+                                <div className="carousel">
+                                    <button className="carousel-btn">
+                                        <i className="fa-solid fa-circle-chevron-left"></i>
+                                    </button>
+                                    <div className="hours">
+                                        <div className="item-hours text-style">
+                                            <div>00:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                        <div className="item-hours text-style">
+                                            <div>01:00</div>
+                                            <img src="/img/test.png" alt="test.png"></img>
+                                            <div>+11°C</div>
+                                        </div>
+                                    </div>
+                                    <button className="carousel-btn">
+                                        <i className="fa-solid fa-circle-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </Accordion.Collapse>
+                        </Accordion>
+                    </div>
                     : <div className="weather-home__alert">{alertText}</div>
-
                 }
-            </main >
+            </main>
         </div>
 
     )
+}
+
+function CustomToggle ({children, eventKey}) {
+    const decoratedOnClick = useAccordionButton(eventKey, () =>
+        console.log('totally custom!'),
+    );
+    return (
+        <div className="link-custom text-style" onClick={decoratedOnClick}>{children}</div>
+    );
 }

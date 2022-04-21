@@ -1,85 +1,84 @@
-  .block-item {
-    position: relative;
-    width: 160px;
-    height: 160px;
+.block-item {
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+
+
+#cloud-one {
+  width: 100%;
+  height: 100%;
+}
+
+#cloud-one path {
+  stroke-width: 0.18;
+  animation: anime-cloud infinite 2s linear;
+}
+
+#sun {
+  margin-left: -10px;
+  margin-top: 6px;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  animation-name: rotate;
+  animation-duration: 16000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+.sun-cloud {
+  left: 75px;
+  top: 15px;
+}
+
+#sun path {
+  stroke-width: 0.18;
+  animation: anime-sun infinite 2s linear;
+}
+
+@keyframes anime-sun {
+  0% {
+    fill: yellow;
   }
-  
-  
-  #cloud-one {
-    width: 100%;
-    height: 100%;
+  33% {
+    fill: rgb(236, 219, 69);
   }
-  
-  #cloud-one path{
-    stroke-width: 0.18;
-    animation: anime-cloud infinite 2s linear;
+  66% {
+    fill: rgb(241, 214, 94);
   }
-  
-  #sun {
-    margin-left: -10px;
-    margin-top: 6px;
-    opacity: 0;
-    width: 140px;
-    height: 140px;
-    position: absolute;
-    z-index: 1;
-    animation-name: rotate;
-    animation-duration: 16000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+
+  100% {
+    fill: yellow;
   }
-  .sun{
-    left: 15%;
-    top: 15%;
-  }
-  .sun-cloud{
-    left: 75px;
-    top: 15px;
-  }
-  #sun path {
-    stroke-width: 0.18;
-    animation: anime-sun infinite 2s linear;
-  }
-  
-  @keyframes anime-sun {
-    0% {
-        fill: yellow;
-    }
-    33% {
-      fill: rgb(236, 219, 69);
-    }
-    66% {
-      fill:  rgb(241, 214, 94);
-    }
-    
-    100% {
-      fill: yellow;
-    }
-  }
-  @keyframes anime-cloud {
-    0% {
-      fill: #68BBE5;
+}
+
+@keyframes anime-cloud {
+  0% {
+    fill: #68BBE5;
   }
   33% {
     fill: #268ec2;
   }
   66% {
-    fill:  #0a80bb;
+    fill: #0a80bb;
   }
-  
+
   100% {
     fill: #68BBE5;
   }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
   }
-  
-  @keyframes rotate {
-    0% {
-      transform: rotateZ(0deg);
-    }
-   
-    100% {
-      transform: rotateZ(360deg);
-    }
+
+  100% {
+    transform: rotateZ(360deg);
   }
+}
   
- 
