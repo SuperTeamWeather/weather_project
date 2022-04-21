@@ -11,6 +11,7 @@ import {
     getSelectorCurrentUserActiveModal, getSelectorCurrentUserActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/selectors";
 import {getSelectorWeathersData} from "../../Store/WeatherReducer/selectors";
+import {getCurrentTime} from "../../Service/tools";
 import "./CityName.scss"
 
 export const CityName = () => {
@@ -18,6 +19,7 @@ export const CityName = () => {
     const activeModal = useSelector(getSelectorCurrentUserActiveModal)
     const activeBtn = useSelector(getSelectorCurrentUserActiveBtnModal)
     const weather = useSelector(getSelectorWeathersData)
+    const [currentDate, setCurrentDate] = useState(() => new Date());
 
     const dispatch = useDispatch()
 
@@ -30,8 +32,6 @@ export const CityName = () => {
             if (weather[key]?.cityName) {
                 setCityName(prev => prev = weather[key]?.cityName)
                 return
-            } else {
-                setCityName(prev => prev = "")
             }
         }
     }, [weather])
@@ -56,6 +56,9 @@ export const CityName = () => {
         <div className="city-name__title">
             {cityName}
             <i data-name="city-change-open-modal" onClick={changeCity} className="fa-regular fa-pen-to-square"></i>
+        </div>
+        <div>
+            {getCurrentTime(currentDate)}
         </div>
     </div>)
 }

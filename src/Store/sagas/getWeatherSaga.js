@@ -11,19 +11,19 @@ import { getWeatherData } from "../../Service/GetWeather"
 
 
 
-function* workerFetchWeather({ payload: { coordinates, nameUrl } }) {
+function* workerFetchWeather({ payload: { coordinates, nameUrl, nameWeather } }) {
 
     try {
-        yield put(showLoader())
+        yield put(showLoader(nameWeather))
         const dataWeather = yield call(getWeatherData, coordinates, nameUrl)
         yield delay(1500)
         yield put(addWeatherData(dataWeather))
-        yield put(hideLoader())
+        yield put(hideLoader(nameWeather))
     } catch (err) {
-        yield put(showAlert(err.message))
+        yield put(hideLoader(nameWeather))
+        yield put(showAlert(err.message, nameWeather))
         yield delay(7000)
-        yield put(hideLoader())
-        yield put(hideAlert())
+        yield put(hideAlert(nameWeather))
     }
 }
 

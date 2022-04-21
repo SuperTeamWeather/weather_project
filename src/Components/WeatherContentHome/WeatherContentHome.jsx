@@ -1,23 +1,23 @@
 import React from "react";
-import {useEffect, useState} from "react"
-import {getGeoCoordinatesUser} from "../../Service/UserGeoLocation";
+import { useEffect, useState } from "react"
+import { getGeoCoordinatesUser } from "../../Service/UserGeoLocation";
 import {
     getLogoFromYandex,
     getLogoWeatherDescription,
     getNameWeatherFromRegExp
 } from "../../Service/tools";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
     getSelectorWeathersData,
     getSelectorWeathersAlert,
     getSelectorWeathersIsLoader
 } from "../../Store/WeatherReducer/selectors";
-import {featchWeather} from "../../Store/WeatherReducer/action";
+import { featchWeather } from "../../Store/WeatherReducer/action";
 import Spinner from 'react-bootstrap/Spinner'
 import "./WeatherContentHome.scss"
-import {Accordion, useAccordionButton} from "react-bootstrap";
+import { Accordion, useAccordionButton } from "react-bootstrap";
 
-export const WeatherContentHome = ({nameWeatherUrl}) => {
+export const WeatherContentHome = ({ nameWeatherUrl }) => {
 
     const dispatch = useDispatch()
 
@@ -41,7 +41,7 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
     return (
         <div>
             <div className="loader-spinner">
-                {!weather[nameWeather] && isLoader ? <Spinner animation="border" variant="warning"/> : ""}
+                {!weather[nameWeather] && isLoader ? <Spinner animation="border" variant="warning" /> : ""}
             </div>
             <main className="weather-home">
                 {weather[nameWeather] ?
@@ -51,9 +51,6 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                                 {nameWeather}
                             </div>
                             <a href="#/" className="link-custom text-style">По&nbsp;дням</a>
-                            {/*                            <p className="weather-home__info-time">
-                                {getCurrentTime(currentDate)}
-                            </p>*/}
                         </div>
                         <div className="text-style">
                             Сегодня от +3°C ... +11°C; переменная облачность; без осадков
@@ -203,7 +200,7 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
     )
 }
 
-function CustomToggle ({children, eventKey}) {
+function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
         console.log('totally custom!'),
     );

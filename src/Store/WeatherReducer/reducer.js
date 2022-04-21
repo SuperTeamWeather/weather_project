@@ -8,8 +8,8 @@ import {
 
 const initialState = {
     weather: {},
-    isLoader: false,
-    alert: null
+    isLoader: {},
+    alert: {}
 
 }
 
@@ -25,25 +25,25 @@ export const weatherReducer = (state = initialState, { type, payload }) => {
         case SHOW_LOADER:
             return {
                 ...state,
-                isLoader: true
+                isLoader: ({ ...state["isLoader"], [payload]: true })
             }
 
         case HIDE_LOADER:
             return {
                 ...state,
-                isLoader: false
+                isLoader: ({ ...state["isLoader"], [payload]: false })
             }
 
         case SHOW_ALERT:
             return {
                 ...state,
-                alert: payload
+                alert: ({ ...state["alert"], [payload.nameWeather]: payload.text })
             }
 
         case HIDE_ALERT:
             return {
                 ...state,
-                alert: null
+                alert: ({ ...state["alert"], [payload]: "" })
             }
 
         default:
