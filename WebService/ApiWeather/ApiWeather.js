@@ -19,7 +19,7 @@ exports.getOpenWeather = function async (coordinates) {
         return fetchNode(getUrlWeather(_urlOpenWeather, coordinates, _apiKeyOpenWeather))
             .then(response => response.json())
             .then(data => {
-                    console.log(`Ответ: ${JSON.stringify(data)}`);
+                    //console.log(`Ответ: ${JSON.stringify(data)}`);
                     return data
                 }
             )
@@ -38,7 +38,7 @@ exports.getWeatherBit = function async (coordinates) {
         return fetchNode(getUrlWeatherBit(_urlWeatherBit, coordinates, _apiKeyWeatherBit))
             .then(response => response.json())
             .then(data => {
-                    console.log(`Ответ: ${JSON.stringify(data)}`);
+                //console.log(`Ответ: ${JSON.stringify(data)}`);
                     return data
                 }
             )
@@ -57,7 +57,7 @@ exports.getVisualcrossingWeather = function async (coordinates) {
         return fetchNode(getUrlVisualcrossingWeather(_urlVisualcrossingWeather, coordinates, _apiKeyVisualcrossingWeather))
             .then(response => response.json())
             .then(data => {
-                    console.log(`Ответ: ${JSON.stringify(data)}`);
+                //console.log(`Ответ: ${JSON.stringify(data)}`);
                     return data
                 }
             )
@@ -81,7 +81,7 @@ exports.getYandexWeather = function async (coordinates) {
         })
             .then(response => response.json())
             .then(data => {
-                    console.log(`Ответ: ${JSON.stringify(data)}`);
+                //console.log(`Ответ: ${JSON.stringify(data)}`);
                     return data
                 }
             )

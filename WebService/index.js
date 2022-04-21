@@ -13,12 +13,12 @@ app.use(cors());
 function getReq(sourceName, getWeatherFunc) {
     app.get(`/api/v1/${sourceName}/lat=:lat&lot=:lot`, async function (req, res) {
         console.log('Запрос от клиента:', req.url);
-        console.log('параметры запроса:', req.params);
+        //console.log('параметры запроса:', req.params);
         const content = {
             latitude: req.params.lat,
             longitude: req.params.lot
         };
-        res.send(await getWeatherFunc(content));
+        res.json(await getWeatherFunc(content));
     });
 }
 
