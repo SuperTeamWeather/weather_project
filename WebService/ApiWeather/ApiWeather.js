@@ -28,8 +28,8 @@ exports.getOpenWeather = function async (coordinates) {
 }
 
 const getUrlWeather = (name, coordinates, apiKey) => {
-    console.log(`Запрос к стороннему сервису ${name}/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${apiKey}&lang=${_lang}&units=metric`)
-    return `${name}/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${apiKey}&lang=${_lang}&units=metric`
+    console.log(`Запрос к стороннему сервису ${name}/data/2.5/onecall?lat=${coordinates.latitude}&lon=${coordinates.longitude}&exclude=minutely,alerts&appid=${apiKey}&lang=${_lang}&units=metric`)
+    return `${name}/data/2.5/onecall?lat=${coordinates.latitude}&lon=${coordinates.longitude}&exclude=minutely,alerts&appid=${apiKey}&lang=${_lang}&units=metric`
 }
 
 // WeatherBit source
@@ -66,8 +66,8 @@ exports.getVisualcrossingWeather = function async (coordinates) {
 }
 
 const getUrlVisualcrossingWeather = (name, coordinates, apiKey) => {
-    console.log(`Запрос к стороннему сервису ${name}/VisualCrossingWebServices/rest/services/timeline/${coordinates.latitude}%2C${coordinates.longitude}?unitGroup=metric&key=${apiKey}&contentType=json`)
-    return `${name}/VisualCrossingWebServices/rest/services/timeline/${coordinates.latitude}%2C${coordinates.longitude}?unitGroup=metric&key=${apiKey}&contentType=json`
+    console.log(`Запрос к стороннему сервису ${name}/VisualCrossingWebServices/rest/services/timeline/${coordinates.latitude}%2C${coordinates.longitude}/next7days?unitGroup=metric&include=current%2Cdays%2Chours&key=${apiKey}&contentType=json`)
+    return `${name}/VisualCrossingWebServices/rest/services/timeline/${coordinates.latitude}%2C${coordinates.longitude}/next7days?unitGroup=metric&include=current%2Cdays%2Chours&key=${apiKey}&contentType=json`
 }
 
 // Yandex source

@@ -11,7 +11,8 @@ export const getWeatherData = async (coordinates, weatherNameUrl) => {
         if (!response.ok) {
             throw new Error("Что-то пошло не так!")
         }
-        const data = await response.json()
+        const data = await response.json();
+        // console.log(weatherNameUrl, data);
         return getUnitedWeatherData(data, weatherNameUrl)
 
     } else
