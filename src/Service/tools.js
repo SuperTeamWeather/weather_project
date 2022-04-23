@@ -129,6 +129,35 @@ export const getLogoFromYandex = (description) => {
 
 }
 
+export const getWindDirText = (windDegree) => {
+    const windDirText = ["С", "ССВ", "СВ", "ВСВ", "В", "ВЮВ", "ЮВ", "ЮЮВ", "Ю", "ЮЮЗ", "ЮЗ", "ЗЮЗ", "З", "ЗСЗ", "СЗ", "ССЗ", "С"]
+    return windDirText[Math.round(windDegree / 22.5)]
+}
+
+export const getWindDirTextYandex = (windDirection) => {
+    switch (windDirection) {
+        case "nw":
+            return "СЗ"
+        case "n":
+            return "С"
+        case "ne":
+            return "СВ"
+        case "e":
+            return "В"
+        case "se":
+            return "ЮВ"
+        case "s":
+            return "Ю"
+        case "sw":
+            return "ЮЗ"
+        case "w":
+            return "З"
+        case "c":
+            return "штиль"
+        default:
+            return ""
+    }
+}
 
 export const getRusWeatherConditionYandex = (condition) => {
     switch (condition) {
@@ -170,6 +199,99 @@ export const getRusWeatherConditionYandex = (condition) => {
             return "Дождь с грозой"
         case "thunderstorm-with-hail":
             return "Гроза с градом"
+        default:
+            return ""
+    }
+}
+
+export const getRusWeatherConditionVisualcrossing = (condition) => {
+    switch (condition) {
+        case "Blowing Or Drifting Snow":
+            return "Метель или позёмка"
+        case "Drizzle":
+            return "Морось"
+        case "Heavy Drizzle":
+            return "Сильная морось"
+        case "Light Drizzle":
+            return "Слабая морось"
+        case "Heavy Drizzle/Rain":
+            return "Сильная морось/дождь"
+        case "Light Drizzle/Rain":
+            return "Слабая морось/дождь"
+        case "Duststorm":
+            return "Пыльная буря"
+        case "Fog":
+            return "Туман"
+        case "Freezing Drizzle/Freezing Rain":
+            return "Ледяная морось"
+        case "Heavy Freezing Drizzle/Freezing Rain":
+            return "Сильная ледяная морось"
+        case "Light Freezing Drizzle/Freezing Rain":
+            return "Слабая ледяная морось"
+        case "Freezing Fog":
+            return "Ледяной туман"
+        case "Heavy Freezing Rain":
+            return "Сильный ледяной дождь"
+        case "Light Freezing Rain":
+            return "Слабый ледяной дождь"
+        case "Funnel Cloud/Tornado":
+            return "Воронкообразное облако/торнадо"
+        case "Hail Showers":
+            return "Ливни с градом"
+        case "Ice":
+            return "Гололёд"
+        case "Lightning Without Thunder":
+            return "Молния без грома"
+        case "Mist":
+            return "Туман"
+        case "Precipitation In Vicinity":
+            return "Осадки в окрестностях"
+        case "Rain":
+            return "Дождь"
+        case "Heavy Rain And Snow":
+            return "Сильный дождь и снег"
+        case "Light Rain And Snow":
+            return "Небольшой дождь и снег"
+        case "Rain Showers":
+            return "Ливень"
+        case "Heavy Rain":
+            return "Сильный дождь"
+        case "Light Rain":
+            return "Небольшой дождь"
+        case "Sky Coverage Decreasing":
+            return "Покрытие неба облаками уменьшается"
+        case "Sky Coverage Increasing":
+            return "Покрытие неба облаками увеличивается"
+        case "Sky Unchanged":
+            return "Покрытие неба облаками без изменений"
+        case "Smoke Or Haze":
+            return "Дымка"
+        case "Snow":
+            return "Снег"
+        case "Snow And Rain Showers":
+            return "Дождь со снегом"
+        case "Snow Showers":
+            return "Снежный ливень"
+        case "Heavy Snow":
+            return "Сильный снегопад"
+        case "Light Snow":
+            return "Слабый снегопад"
+        case "Squalls":
+            return "Шквал"
+        case "Thunderstorm":
+            return "Гроза"
+        case "Thunderstorm Without Precipitation":
+            return "Гроза без осадков"
+        case "Diamond Dust":
+            return "Алмазная пыль"
+        case "Hail":
+            return "Град"
+        case "Overcast":
+            return "Пасмурно"
+        case "Partially cloudy":
+            return "Переменная облачность"
+        case "Clear":
+            return "Ясно"
         default:
             return ""
     }

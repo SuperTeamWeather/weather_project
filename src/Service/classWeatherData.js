@@ -1,5 +1,5 @@
 export class WeatherData {
-    constructor(cityName, temp, feelsTemp, description, windSpeed, windDirection, humidity, pressure, icon) {
+    constructor(cityName, temp, feelsTemp, description, windSpeed, windDirection, humidity, pressure, icon, tempMin, tempMax) {
         this.cityName = cityName;
         this.temp = temp;
         this.feelsTemp = feelsTemp;
@@ -9,36 +9,15 @@ export class WeatherData {
         this.humidity = humidity;
         this.pressure = pressure;
         this.icon = icon;
+        this.tempMin = tempMin;
+        this.tempMax = tempMax;
     }
+}
 
-    getWindDirText() {
-        const windDirText = ["С", "ССВ", "СВ", "ВСВ", "В", "ВЮВ", "ЮВ", "ЮЮВ", "Ю", "ЮЮЗ", "ЮЗ", "ЗЮЗ", "З", "ЗСЗ", "СЗ", "ССЗ", "С"]
-        return windDirText[Math.round(this.windDirection / 22.5)]
-    }
-
-
-    getWindDirTextYandex() {
-        switch (this.windDirection) {
-            case "nw":
-                return "СЗ"
-            case "n":
-                return "С"
-            case "ne":
-                return "СВ"
-            case "e":
-                return "В"
-            case "se":
-                return "ЮВ"
-            case "s":
-                return "Ю"
-            case "sw":
-                return "ЮЗ"
-            case "w":
-                return "З"
-            case "c":
-                return "штиль"
-            default:
-                return ""
-        }
+export class WeatherDataHourly {
+    constructor(time, temp, icon) {
+        this.time = time;
+        this.temp = temp;
+        this.icon = icon;
     }
 }

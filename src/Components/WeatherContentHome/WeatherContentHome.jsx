@@ -81,7 +81,7 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                                     </div>
                                 </div>
                                 <div className="text-style">
-                                    <div>Ветер: {weather[nameWeather].windSpeed} м/с,{weather[nameWeather].windDirection}</div>
+                                    <div>Ветер: {weather[nameWeather].windSpeed} м/с,&nbsp;{weather[nameWeather].windDirection}</div>
                                     <div>Влажность: {weather[nameWeather].humidity}%</div>
                                     <div>Давление: {weather[nameWeather].pressure} мм рт. ст.</div>
                                 </div>
