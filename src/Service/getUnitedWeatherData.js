@@ -5,14 +5,18 @@ import {
     _urlVisualWeather
 } from "./Constant"
 import { WeatherData, WeatherDataHourly } from "./classWeatherData"
-import { getWindDirText,
+import {
+    getWindDirText,
     getWindDirTextYandex,
     getRusWeatherConditionYandex,
-    getRusWeatherConditionVisualcrossing } from "./tools"
+    getRusWeatherConditionVisualcrossing
+} from "./tools"
 import { getNameWeatherFromRegExp } from "./tools"
 
 
 export const getUnitedWeatherData = (data, apiName) => {
+
+    const propertyHourly = "hourly";
 
     switch (apiName) {
         case _urlOpenWeather:
@@ -38,16 +42,16 @@ export const getUnitedWeatherData = (data, apiName) => {
                 if (idx < 24) {
                     let dataHour = new WeatherDataHourly(
                         new Date(el.dt * 1000).getHours(), // здесь и далее преобразование Timestamp в значение часа
-                        el.temp,
+                        Math.round(el.temp),
                         el.weather[0].icon // либо заменить на "el.weather[0].description" если нужно описание
                     )
                     openWeatherHourly.push(dataHour);
                 }
             });
 
-            console.log("openWeatherHourly ", openWeatherHourly) 
-            console.log(data.daily[0].temp.min, data.daily[0].temp.max);
-            return openWeather // возвращать массив или объект из двух переменных openWeather и openWeatherHourly, применить ко всем источникам
+            openWeather[getNameWeatherFromRegExp(apiName)].add(propertyHourly, openWeatherHourly)
+
+            return openWeather
 
         case _urlYandex:
             const yandex = {}
@@ -66,7 +70,7 @@ export const getUnitedWeatherData = (data, apiName) => {
                 Math.round(data.forecasts[0].parts.day_short.temp_min),
                 Math.round(data.forecasts[0].parts.day_short.temp)
             )
-            
+
             const yandexHoursArray = data.forecasts[0].hours;
             yandexHoursArray.forEach(el => {
                 let dataHour = new WeatherDataHourly(
@@ -77,8 +81,8 @@ export const getUnitedWeatherData = (data, apiName) => {
                 yandexHourly.push(dataHour);
             });
 
-            console.log("yandexHourly ", yandexHourly);
-            console.log(data.forecasts[0].parts.day_short.temp_min, data.forecasts[0].parts.day_short.temp);
+            yandex[getNameWeatherFromRegExp(apiName)].add(propertyHourly, yandexHourly)
+
             return yandex
 
         case _urlWeatherBit:
@@ -98,7 +102,11 @@ export const getUnitedWeatherData = (data, apiName) => {
                 null,
                 null
             )
+
+            weatherBit[getNameWeatherFromRegExp(apiName)].add(propertyHourly, weatherBitHourly)
+
             return weatherBit
+
 
         case _urlVisualWeather:
             const visualWeather = {}
@@ -128,8 +136,8 @@ export const getUnitedWeatherData = (data, apiName) => {
                 visualWeatherHourly.push(dataHour);
             });
 
-            console.log("visualWeatherHourly ", visualWeatherHourly);
-            console.log(data.days[0].tempmin, data.days[0].tempmax);
+            visualWeather[getNameWeatherFromRegExp(apiName)].add(propertyHourly, visualWeatherHourly)
+
             return visualWeather
 
         default:
