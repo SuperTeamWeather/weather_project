@@ -12,6 +12,11 @@ export class WeatherData {
         this.tempMin = tempMin;
         this.tempMax = tempMax;
     }
+
+    add(key, value) {
+        this[key] = value;
+
+    }
 }
 
 export class WeatherDataHourly {

@@ -1,17 +1,17 @@
 import React from "react";
-import {useState, useEffect, useCallback} from "react";
-import {useSelector, useDispatch} from "react-redux";
-import {MyModal} from "../MyModal/MyModal";
-import {SearchCityHome} from "../SearchCityHome/SearchCityHome";
-import {featchWeather} from "../../Store/WeatherReducer/action";
+import { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { MyModal } from "../MyModal/MyModal";
+import { SearchCityHome } from "../SearchCityHome/SearchCityHome";
+import { featchWeather } from "../../Store/WeatherReducer/action";
 import {
     changeActiveModal, changeActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/action";
 import {
     getSelectorCurrentUserActiveModal, getSelectorCurrentUserActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/selectors";
-import {getSelectorWeathersData} from "../../Store/WeatherReducer/selectors";
-import {getCurrentTime} from "../../Service/tools";
+import { getSelectorWeathersData } from "../../Store/WeatherReducer/selectors";
+import { getCurrentTime } from "../../Service/tools";
 import "./CityName.scss"
 
 export const CityName = () => {
@@ -47,18 +47,22 @@ export const CityName = () => {
         dispatch(featchWeather(cityCoord, urlName))
     }, [dispatch])
 
-    return (<div className="city-name">
-        <div>
-            {activeBtn === "city-change-open-modal" ? <MyModal active={activeModal}>
-                <SearchCityHome getNewWeather={getNewWeather}/>
-            </MyModal> : ""}
-        </div>
-        <div className="city-name__title">
-            {cityName}
-            <i data-name="city-change-open-modal" onClick={changeCity} className="fa-regular fa-pen-to-square"></i>
-        </div>
-        <div>
-            {getCurrentTime(currentDate)}
-        </div>
-    </div>)
+
+    if (cityName) {
+        return (<div className="city-name">
+            <div>
+                {activeBtn === "city-change-open-modal" ? <MyModal active={activeModal}>
+                    <SearchCityHome getNewWeather={getNewWeather} />
+                </MyModal> : ""}
+            </div>
+            <div className="city-name__title">
+                {cityName}
+                <i data-name="city-change-open-modal" onClick={changeCity} className="fa-regular fa-pen-to-square"></i>
+            </div>
+            <div>
+                {getCurrentTime(currentDate)}
+            </div>
+        </div>)
+
+    } else { return <div></div> }
 }

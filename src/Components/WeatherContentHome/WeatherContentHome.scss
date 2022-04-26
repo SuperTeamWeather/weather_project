@@ -35,17 +35,11 @@
   }
 
 
-  &__temperature {
+  &__temperature {}
 
-  }
+  &__temperature-felt {}
 
-  &__temperature-felt {
-
-  }
-
-  &__text {
-
-  }
+  &__text {}
 
   &__info {
     display: flex;
@@ -89,6 +83,10 @@
 .text-style {
   color: white;
   font-weight: 300;
+}
+
+.text-error {
+  font-size: 24px;
 }
 
 .big-text {

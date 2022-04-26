@@ -1,23 +1,23 @@
-import React, {useRef} from "react";
-import {useEffect, useState} from "react"
-import {getGeoCoordinatesUser} from "../../Service/UserGeoLocation";
+import React, { useRef } from "react";
+import { useEffect, useState, useCallback } from "react"
+import { getGeoCoordinatesUser } from "../../Service/UserGeoLocation";
 import {
     getLogoFromYandex,
     getLogoWeatherDescription,
     getNameWeatherFromRegExp
 } from "../../Service/tools";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
     getSelectorWeathersData,
     getSelectorWeathersAlert,
     getSelectorWeathersIsLoader
 } from "../../Store/WeatherReducer/selectors";
-import {featchWeather} from "../../Store/WeatherReducer/action";
+import { featchWeather } from "../../Store/WeatherReducer/action";
 import Spinner from 'react-bootstrap/Spinner'
 import "./WeatherContentHome.scss"
-import {Accordion, useAccordionButton} from "react-bootstrap";
+import { Accordion, useAccordionButton } from "react-bootstrap";
 
-export const WeatherContentHome = ({nameWeatherUrl}) => {
+export const WeatherContentHome = ({ nameWeatherUrl }) => {
 
     const dispatch = useDispatch()
 
@@ -36,7 +36,7 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
         if (currentPositionCoordinates) {
             dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl, nameWeather))
         }
-    }, [currentPositionCoordinates, nameWeatherUrl, dispatch]);
+    }, [currentPositionCoordinates, nameWeatherUrl, dispatch, nameWeather]);
 
     const myRef = useRef(null);
 
@@ -49,10 +49,11 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
         myRef.current.scrollLeft = leftPos - 85
     }
 
+
     return (
         <div>
             <div className="loader-spinner">
-                {isLoader[nameWeather] ? <Spinner animation="border" variant="warning"/> : ""}
+                {isLoader[nameWeather] ? <Spinner animation="border" variant="warning" /> : ""}
             </div>
             <main className="weather-home">
                 {weather[nameWeather] ?
@@ -63,9 +64,16 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                             </div>
                             <div className="link-custom text-style btn-style unselectable">По&nbsp;дням</div>
                         </div>
-                        <div className="text-style">
-                            Сегодня от +3°C ... +11°C; {weather[nameWeather].description}; без осадков
-                        </div>
+                        {weather[nameWeather].tempMin ?
+                            <div className="text-style">
+                                Сегодня от {weather[nameWeather].tempMin}&nbsp;&#176;C до {weather[nameWeather].tempMax}&nbsp;&#176;C;
+                                <span> {weather[nameWeather].description}</span>
+                            </div>
+                            :
+                            <div className="text-style">
+                                <span>{weather[nameWeather].description}</span>
+                            </div>}
+
                         <Accordion className="accordion-style">
                             <div className="weather-home__description">
                                 <div className="weather-home__temperature text-style">
@@ -95,106 +103,21 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                                         <i className="fa-solid fa-circle-chevron-left"></i>
                                     </button>
                                     <div className="hours" ref={myRef}>
-                                        <div className="item-hours text-style">
-                                            <div>00:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
-                                        <div className="item-hours text-style">
-                                            <div>01:00</div>
-                                            <img src="/img/test.png" alt="test.png"></img>
-                                            <div>+11°C</div>
-                                        </div>
+
+                                        <div className="item-hours text-error">{weather[nameWeather]?.hourly?.length === 0 ? "Нет данных" : ""}</div>
+
+                                        {weather[nameWeather]?.hourly?.map((el, idx) => {
+                                            return <div
+                                                key={idx}
+                                                className="item-hours text-style">
+                                                <div>{el.time}</div>
+                                                <div className="icon-weather">
+                                                    {nameWeatherUrl === "api/v1/YandexWeather" ? getLogoFromYandex(weather[nameWeather].description) : getLogoWeatherDescription(el.icon)}
+                                                </div>
+                                                <div>{el.temp}&nbsp;&#176;C</div>
+                                            </div>
+                                        })}
+
                                     </div>
                                     <button className="carousel-btn btn-style" onClick={scrollRight}>
                                         <i className="fa-solid fa-circle-chevron-right"></i>
@@ -211,7 +134,7 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
     )
 }
 
-function CustomToggle ({children, eventKey}) {
+function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
         console.log('totally custom!'),
     );
