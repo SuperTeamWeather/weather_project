@@ -1,6 +1,7 @@
 import {
-    GET_USER_LOGIN,
-    GET_USER_PASSWORD,
+    SET_CURRENT_USER,
+    // GET_USER_LOGIN,
+    // GET_USER_PASSWORD,
     ACTIVE_MODAL,
     GO_OUT_USER,
     ACTIVE_BTN_MODAL,
@@ -8,8 +9,7 @@ import {
 } from "./action";
 
 const initialState = {
-    login: "",
-    password: "",
+    user: {},
     activeModal: false,
     activeBtnModal: "",
     activeStyleModal: "SignIn"
@@ -18,17 +18,23 @@ const initialState = {
 
 export const currentUserDataReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case GET_USER_LOGIN:
+        case SET_CURRENT_USER:
             return {
                 ...state,
-                login: payload,
+                user: payload
             }
 
-        case GET_USER_PASSWORD:
-            return {
-                ...state,
-                password: payload,
-            }
+        // case GET_USER_LOGIN:
+        //     return {
+        //         ...state,
+        //         login: payload,
+        //     }
+
+        // case GET_USER_PASSWORD:
+        //     return {
+        //         ...state,
+        //         password: payload,
+        //     }
 
         case ACTIVE_MODAL:
             return {
@@ -51,8 +57,7 @@ export const currentUserDataReducer = (state = initialState, { type, payload }) 
         case GO_OUT_USER:
             return {
                 ...state,
-                login: "",
-                password: "",
+                user: {},
                 activeBtnModal: ""
             }
 

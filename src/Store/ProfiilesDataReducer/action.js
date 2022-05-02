@@ -5,7 +5,10 @@ export const setProfilesData = (data) => ({
 })
 
 export const SET_FAVORITES = "PROFILES_DATA::SET_FAVORITES";
-export const setFavorites = (city) => ({
+export const setFavorites = (userId, city) => ({
     type: SET_FAVORITES,
-    payload: city,
+    payload: {
+        userId,
+        city
+    },
 })

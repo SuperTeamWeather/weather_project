@@ -15,7 +15,7 @@ export const profilesDataReducer = (state = initialState, { type, payload }) => 
         case SET_FAVORITES:
             return {
                 ...state,
-                [payload.name]: ({ ...state[payload.name], ["favoritesWeather"]: ([...state[payload.name]["favoritesWeather"], payload.favorites]) })
+                [payload.userId]: ({ ...state[payload.userId], ["favoritesWeather"]: ([...state[payload.userId]["favoritesWeather"], payload.city]) })
             }
         default:
             return state;
