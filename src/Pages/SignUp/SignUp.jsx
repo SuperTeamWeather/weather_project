@@ -6,10 +6,10 @@ import { setProfilesData } from "../../Store/ProfiilesDataReducer/action";
 import { setCurrentUser } from "../../Store/CurrentUserDataReducer/action";
 import { signUp } from "../../firebase";
 import { AuthForm } from "../../Components/AuthForm/AuthForm";
-import "./SignUpForm.scss"
+import "./SignUp.scss"
 
 
-export const SignUpForm = () => {
+export const SignUp = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate();

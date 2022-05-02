@@ -6,9 +6,9 @@ import { setCurrentUser } from
     "../../Store/CurrentUserDataReducer/action";
 import { signIn } from "../../firebase";
 import { AuthForm } from "../../Components/AuthForm/AuthForm";
-import "./SignInForm.scss"
+import "./SignIn.scss"
 
-export const SignInForm = () => {
+export const SignIn = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

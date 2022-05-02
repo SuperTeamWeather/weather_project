@@ -6,8 +6,8 @@ import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 import { WeatherSearch } from "../../Pages/WeatherSearch/WeatherSearch";
 import { WeatherItem } from "../../Pages/WeatherItem/WeatherItem";
 import { Profile } from "../../Pages/Profile/Profile";
-import { SignUpForm } from "../../Pages/SignUp/SignUpForm"
-import { SignInForm } from "../../Pages/SignIn/SignInForm";
+import { SignUp } from "../../Pages/SignUp/SignUp"
+import { SignIn } from "../../Pages/SignIn/SignIn";
 
 export const AppsRoutes = () => {
     return (
@@ -16,8 +16,8 @@ export const AppsRoutes = () => {
 
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='signUp' element={<SignUpForm />} />
-                <Route path='signIn' element={<SignInForm />} />
+                <Route path='signUp' element={<SignUp />} />
+                <Route path='signIn' element={<SignIn />} />
 
                 <Route path='weather' element={<PrivateRoute />}>
                     <Route path='' element={<WeatherSearch />} />
