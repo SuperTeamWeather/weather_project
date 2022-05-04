@@ -18,7 +18,7 @@ app.use(cors());
 function getReq (sourceName, getWeatherFunc) {
     app.get(`/api/v1/${sourceName}/lat=:lat&lot=:lot`, async function (req, res) {
 
-        if (ENV == 'production') {
+        if (ENV === 'production') {
             console.log('ENV5', ENV);
             res.setHeader('Access-Control-Allow-Origin', 'https://superweather.site');
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -47,7 +47,7 @@ getReq('WeatherBit', apiWeather.getWeatherBit);
 getReq('VisualcrossingWeather', apiWeather.getVisualcrossingWeather);
 getReq('YandexWeather', apiWeather.getYandexWeather);
 
-if (ENV == 'production') {
+if (ENV === 'production') {
 
     // Certificate
     const privateKey = fs.readFileSync('/etc/letsencrypt/live/superweather.site/privkey.pem', 'utf8');
