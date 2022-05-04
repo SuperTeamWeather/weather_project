@@ -6,7 +6,6 @@ import "./WeatherItem.scss"
 
 export const WeatherItem = () => {
     const { id } = useParams()
-
     useEffect(() => {
 
         //! Сдесь перчислены разные варианты получения данных погоды можно выбрать одно
@@ -25,7 +24,6 @@ export const WeatherItem = () => {
             .then(response => response.json())
             .then(data => console.log(data))
     }, [id])
-
     return (
         <div className="weather-item">
             <h3 className="weather-item__title">Weather</h3>
