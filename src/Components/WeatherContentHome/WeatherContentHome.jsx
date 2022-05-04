@@ -1,23 +1,23 @@
-import React, { useRef } from "react";
-import { useEffect, useState, useCallback } from "react"
-import { getGeoCoordinatesUser } from "../../Service/UserGeoLocation";
+import React, {useRef} from "react";
+import {useEffect, useState} from "react"
+import {getGeoCoordinatesUser} from "../../Service/UserGeoLocation";
 import {
     getLogoFromYandex,
     getLogoWeatherDescription,
     getNameWeatherFromRegExp
 } from "../../Service/tools";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
     getSelectorWeathersData,
     getSelectorWeathersAlert,
     getSelectorWeathersIsLoader
 } from "../../Store/WeatherReducer/selectors";
-import { featchWeather } from "../../Store/WeatherReducer/action";
+import {featchWeather} from "../../Store/WeatherReducer/action";
 import Spinner from 'react-bootstrap/Spinner'
 import "./WeatherContentHome.scss"
-import { Accordion, useAccordionButton } from "react-bootstrap";
+import {Accordion, useAccordionButton} from "react-bootstrap";
 
-export const WeatherContentHome = ({ nameWeatherUrl }) => {
+export const WeatherContentHome = ({nameWeatherUrl}) => {
 
     const dispatch = useDispatch()
 
@@ -42,18 +42,17 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
 
     const scrollRight = () => {
         let leftPos = myRef.current.scrollLeft;
-        myRef.current.scrollLeft = leftPos + 85
+        myRef.current.scrollLeft = leftPos + 90 * 4;
     }
     const scrollLeft = () => {
         let leftPos = myRef.current.scrollLeft;
-        myRef.current.scrollLeft = leftPos - 85
+        myRef.current.scrollLeft = leftPos - 90 * 4;
     }
-
 
     return (
         <div>
             <div className="loader-spinner">
-                {isLoader[nameWeather] ? <Spinner animation="border" variant="warning" /> : ""}
+                {isLoader[nameWeather] ? <Spinner animation="border" variant="warning"/> : ""}
             </div>
             <main className="weather-home">
                 {weather[nameWeather] ?
@@ -62,7 +61,9 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
                             <div className="weather-home__name-api-weather text-style">
                                 {nameWeather}
                             </div>
-                            <div className="link-custom text-style btn-style unselectable">По&nbsp;дням</div>
+                            <div className="link-custom text-style btn-style unselectable">
+                                <a className='link-href' href="/weather/1">По&nbsp;дням</a>
+                            </div>
                         </div>
                         {weather[nameWeather].tempMin ?
                             <div className="text-style">
@@ -103,14 +104,14 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
                                         <i className="fa-solid fa-circle-chevron-left"></i>
                                     </button>
                                     <div className="hours" ref={myRef}>
-
-                                        <div className="item-hours text-error">{weather[nameWeather]?.hourly?.length === 0 ? "Нет данных" : ""}</div>
-
+                                        <div className="item-hours text-error">
+                                            {weather[nameWeather]?.hourly?.length === 0 ? "Нет данных" : ""}
+                                        </div>
                                         {weather[nameWeather]?.hourly?.map((el, idx) => {
                                             return <div
                                                 key={idx}
                                                 className="item-hours text-style">
-                                                <div>{el.time}</div>
+                                                <div>{el.time < 10 ? `0${el.time}:00` : `${el.time}:00`}</div>
                                                 <div className="icon-weather">
                                                     {nameWeatherUrl === "api/v1/YandexWeather" ? getLogoFromYandex(weather[nameWeather].description) : getLogoWeatherDescription(el.icon)}
                                                 </div>
@@ -134,7 +135,7 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
     )
 }
 
-function CustomToggle({ children, eventKey }) {
+function CustomToggle ({children, eventKey}) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
         console.log('totally custom!'),
     );

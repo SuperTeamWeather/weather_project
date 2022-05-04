@@ -35,11 +35,14 @@
   }
 
 
-  &__temperature {}
+  &__temperature {
+  }
 
-  &__temperature-felt {}
+  &__temperature-felt {
+  }
 
-  &__text {}
+  &__text {
+  }
 
   &__info {
     display: flex;
@@ -140,4 +143,17 @@
     color: #9d912c;
   }
 
+}
+
+.link-href {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: #f5e241;
+  }
+
+  &:active {
+    color: #9d912c;
+  }
 }

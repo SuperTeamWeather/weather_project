@@ -19,11 +19,12 @@ export const getWeatherData = async (coordinates, weatherNameUrl) => {
         return 'Координаты отсутствуют'
 }
 
-
+let settingsFileName = 'settings.json';
+if( process.env.NODE_ENV == 'production') settingsFileName = 'settings_prod.json';
 
 //Запрашиваем адрес до сервиса
 const getAddressToServer = async () => {
-    return fetch('settings.json')
+    return fetch(settingsFileName)
         .then(res => res.json())
         .then(data => {
             return data
