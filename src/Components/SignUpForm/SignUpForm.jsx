@@ -7,7 +7,9 @@ import { getSelectorProfilesDataReducer } from
 import { changeActiveModal } from "../../Store/CurrentUserDataReducer/action";
 import { changeActiveBtnModal } from "../../Store/CurrentUserDataReducer/action";
 import { changeActiveStyleModal } from "../../Store/CurrentUserDataReducer/action";
+import { signUp } from "../../firebase";
 import "./SignUpForm.scss"
+
 
 export const SignUpForm = () => {
 
@@ -16,6 +18,7 @@ export const SignUpForm = () => {
     const profileData = useSelector(getSelectorProfilesDataReducer);
 
     const [inputLogin, setInputLogin] = useState("");
+    const [inputEmail, setInputEmail] = useState("");
     const [inputPass, setInputPass] = useState("");
     const [messageError, setMessageError] = useState("")
 
@@ -28,11 +31,15 @@ export const SignUpForm = () => {
         setInputLogin(prev => prev = event.target.value)
     }
 
+    const hendleInputEmail = (event) => {
+        setInputEmail(prev => prev = event.target.value)
+    }
+
     const hendleInputPass = (event) => {
         setInputPass(prev => prev = event.target.value)
     }
 
-    const setProfileData = (event) => {
+    const setProfileData = async (event) => {
         event.preventDefault()
 
         if (inputLogin === "" || inputPass === "") {
@@ -44,14 +51,21 @@ export const SignUpForm = () => {
             setMessageError(prev => prev = "Такой логин уже существует, выбирит едругой")
             return
         }
-        const prifileData = {
-            [inputLogin]: {
-                pass: inputPass,
-                favoritesWeather: []
+
+        try {
+            const { user } = await signUp(inputEmail, inputPass);
+            const profileData = {
+                [user.uid]: {
+                    login: inputLogin,
+                    favoritesWeather: []
+                }
             }
+            dispatch(setProfilesData(profileData))
+        } catch (err) {
+            setMessageError(prev => prev = err.message)
+            return
         }
 
-        dispatch(setProfilesData(prifileData))
 
         setInputLogin(prev => prev = "")
         setInputPass(prev => prev = "")
@@ -69,16 +83,16 @@ export const SignUpForm = () => {
 
 
     // const setFavor = () => {
-    //     const aaa = {
-    //         nameProfile: "Alex",
-    //         citys: {
+    //    
+    //         userId: "Alex",
+    //         city: {
     //             id: 123,
-    //             name: "JJJJJ"
+    //             name: "Москва"
     //         }
-    //     }
-    //     console.log(aaa)
+    //     
+    //   
 
-    //     dispatch(setFavorites(aaa))
+    //     dispatch(setFavorites(userId,city))
     // }
 
 
@@ -93,6 +107,13 @@ export const SignUpForm = () => {
                     className="sign-up__input"
                     onChange={hendleInputLogin}
                     type="text" /></p>
+
+                <p><input
+                    value={inputEmail}
+                    placeholder="email"
+                    className="sign-in__input"
+                    onChange={hendleInputEmail}
+                    type="email" /></p>
 
                 <p><input
                     className="sign-up__input"

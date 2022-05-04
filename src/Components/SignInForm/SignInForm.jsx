@@ -1,24 +1,22 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserLogin, getUserPassword } from
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from
     "../../Store/CurrentUserDataReducer/action";
-import { getSelectorProfilesDataReducer } from
-    "../../Store/ProfiilesDataReducer/selectors";
 import { changeActiveModal } from "../../Store/CurrentUserDataReducer/action";
 import { changeActiveBtnModal } from "../../Store/CurrentUserDataReducer/action";
 import { changeActiveStyleModal } from "../../Store/CurrentUserDataReducer/action";
+import { signIn } from "../../firebase";
 import "./SignInForm.scss"
 
 export const SignInForm = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const profilesData = useSelector(getSelectorProfilesDataReducer);
 
     const inputRef = useRef(null)
-    const [inputLogin, setInputLogin] = useState("");
+    const [inputEmail, setInputEmail] = useState("");
     const [inputPass, setInputPass] = useState("");
     const [messageError, setMessageError] = useState("")
 
@@ -27,40 +25,41 @@ export const SignInForm = () => {
     }, [])
 
 
-    const hendleInputLogin = (event) => {
-        setInputLogin(prev => prev = event.target.value)
+    const hendleInputEmail = (event) => {
+        setInputEmail(prev => prev = event.target.value)
     }
 
     const hendleInputPass = (event) => {
         setInputPass(prev => prev = event.target.value)
     }
 
-    const setLoginAndPass = (event) => {
+    const setLoginAndPass = async (event) => {
         event.preventDefault();
 
-        if (inputLogin === "" || inputPass === "") {
+        if (inputEmail === "" || inputPass === "") {
             setMessageError(prev => prev = "Поля ввода не должны быть пустые!")
             return
         }
 
-        if (!profilesData.hasOwnProperty(inputLogin)) {
-            setMessageError(prev => prev = "Не правильное имя логина")
+
+        try {
+            const { user } = await signIn(inputEmail, inputPass)
+            const dataUser = {
+                email: user.email,
+                id: user.uid
+            }
+            dispatch(setCurrentUser(dataUser))
+        } catch (err) {
+            setMessageError(prev => prev = err.message)
             return
         }
 
-        if (profilesData[inputLogin]?.pass !== inputPass) {
-            setMessageError(prev => prev = "Не верный пароль")
-            return
-        }
 
-        dispatch(getUserLogin(inputLogin));
-        dispatch(getUserPassword(inputPass))
-
-        setInputLogin(prev => prev = "")
+        setInputEmail(prev => prev = "")
         setInputPass(prev => prev = "")
         setMessageError(prev => prev = "")
 
-        navigate("profile")
+        navigate("/")
 
         dispatch(changeActiveModal(false))
         dispatch(changeActiveBtnModal(""))
@@ -76,13 +75,14 @@ export const SignInForm = () => {
         <div className="sign-in">
             <form onSubmit={setLoginAndPass} className="sign-in__form">
                 <h4 className="sign-in__title">SignIn</h4>
+
                 <p><input
                     ref={inputRef}
-                    value={inputLogin}
-                    placeholder="login"
+                    value={inputEmail}
+                    placeholder="email"
                     className="sign-in__input"
-                    onChange={hendleInputLogin}
-                    type="text" /></p>
+                    onChange={hendleInputEmail}
+                    type="email" /></p>
 
                 <p><input
                     onChange={hendleInputPass}

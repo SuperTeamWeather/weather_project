@@ -1,14 +1,24 @@
-export const GET_USER_LOGIN = "CURRENT_USER_DATA::GET_USER_LOGIN"
-export const getUserLogin = (login) => ({
-    type: GET_USER_LOGIN,
-    payload: login,
+export const SET_CURRENT_USER = "CURRENT_USER_DATA::SET_CURRENT_USER"
+export const setCurrentUser = (id, email) => ({
+    type: SET_CURRENT_USER,
+    payload: {
+        id,
+        email
+    }
 })
 
-export const GET_USER_PASSWORD = "CURRENT_USER_DATA::GET_USER_PASSWORD"
-export const getUserPassword = (pass) => ({
-    type: GET_USER_PASSWORD,
-    payload: pass,
-})
+
+// export const GET_USER_LOGIN = "CURRENT_USER_DATA::GET_USER_LOGIN"
+// export const getUserLogin = (login) => ({
+//     type: GET_USER_LOGIN,
+//     payload: login,
+// })
+
+// export const GET_USER_PASSWORD = "CURRENT_USER_DATA::GET_USER_PASSWORD"
+// export const getUserPassword = (pass) => ({
+//     type: GET_USER_PASSWORD,
+//     payload: pass,
+// })
 
 export const GO_OUT_USER = "CURRENT_USER_DATA::GO_OUT_USER"
 export const goOutUser = () => ({
