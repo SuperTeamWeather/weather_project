@@ -8,7 +8,7 @@ const _urlVisualcrossingWeather = 'https://weather.visualcrossing.com';
 const _apiKeyVisualcrossingWeather = '37ZJGF2UWPULHEVHU6S9EFXCJ';
 
 const _urlYandexWeather = 'https://api.weather.yandex.ru';
-const _apiKeyYandexWeather = 'b7ab09cb-cfaf-484d-bf9f-820c9bf9b192';
+const _apiKeyYandexWeather = '17628888-de14-4203-aef3-9f85191884d8';
 
 const _lang = 'ru'
 const fetchNode = require('node-fetch');
@@ -21,8 +21,7 @@ exports.getOpenWeather = function async(coordinates) {
             .then(data => {
                 //console.log(`Ответ: ${JSON.stringify(data)}`);
                 return data
-            }
-            )
+            })
     } else
         return 'Координаты отсутствуют'
 }
@@ -35,21 +34,37 @@ const getUrlWeather = (name, coordinates, apiKey) => {
 // WeatherBit source
 exports.getWeatherBit = function async(coordinates) {
     if (coordinates) {
-        return fetchNode(getUrlWeatherBit(_urlWeatherBit, coordinates, _apiKeyWeatherBit))
+        return fetchNode(getUrlWeatherBitCurrent(_urlWeatherBit, coordinates, _apiKeyWeatherBit))
             .then(response => response.json())
             .then(data => {
-                //console.log(`Ответ: ${JSON.stringify(data)}`);
+                // console.log(`Ответ: ${JSON.stringify(data)}`);
                 return data
-            }
-            )
+            })
     } else
         return 'Координаты отсутствуют'
 }
 
-const getUrlWeatherBit = (name, coordinates, apiKey) => {
+const getUrlWeatherBitCurrent = (name, coordinates, apiKey) => {
     console.log(`Запрос к стороннему сервису ${name}/v2.0/current?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&lang=${_lang}`)
     return `${name}/v2.0/current?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&lang=${_lang}`
 }
+
+// exports.getWeatherBitDaily = function async(coordinates) {
+//     if (coordinates) {
+//         return fetchNode(getUrlWeatherBitDaily(_urlWeatherBit, coordinates, _apiKeyWeatherBit))
+//             .then(response => response.json())
+//             .then(data => {
+//                 // console.log(`Ответ: ${JSON.stringify(data)}`);
+//                 return data
+//             })
+//     } else
+//         return 'Координаты отсутствуют'
+// }
+
+// const getUrlWeatherBitDaily = (name, coordinates, apiKey) => {
+//     console.log(`Запрос к стороннему сервису ${name}/v2.0/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&lang=${_lang}&days=7`)
+//     return `${name}/v2.0/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&lang=${_lang}&days=7`
+// }
 
 // Visual crossing source
 exports.getVisualcrossingWeather = function async(coordinates) {
@@ -59,8 +74,7 @@ exports.getVisualcrossingWeather = function async(coordinates) {
             .then(data => {
                 // console.log(`Ответ: ${JSON.stringify(data)}`);
                 return data
-            }
-            )
+            })
     } else
         return 'Координаты отсутствуют'
 }
@@ -83,8 +97,7 @@ exports.getYandexWeather = function async(coordinates) {
             .then(data => {
                 //console.log(`Ответ: ${JSON.stringify(data)}`);
                 return data
-            }
-            )
+            })
     } else
         return 'Координаты отсутствуют'
 }

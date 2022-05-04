@@ -26,3 +26,19 @@ export class WeatherDataHourly {
         this.icon = icon;
     }
 }
+
+export class WeatherDataDaily {
+    constructor(temp, tempMin, tempMax, description, windSpeed, windDirection, humidity, pressure, icon, day, dayOfWeek) {
+        this.temp = temp;
+        this.tempMin = tempMin;
+        this.tempMax = tempMax;
+        this.description = description;
+        this.windSpeed = windSpeed;
+        this.windDirection = windDirection;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        this.icon = icon;
+        this.day = day;
+        this.dayOfWeek = dayOfWeek;
+    }
+}
