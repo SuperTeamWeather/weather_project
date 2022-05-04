@@ -13,7 +13,7 @@ export const getNameWeatherFromRegExp = (urlName) => {
 
 }
 
-const getWeek = (week) => {
+export const getWeek = (week) => {
     switch (week) {
         case 0:
             return "Воскресение"
@@ -40,6 +40,7 @@ const getWeek = (week) => {
             return ""
     }
 }
+
 export const getCurrentTime = (currentDate) => {
     const addLeadingZero = (d) => {
         return (d < 10) ? "0" + d : d
@@ -52,8 +53,19 @@ export const getCurrentTime = (currentDate) => {
     const year = currentDate.getFullYear()
 
     return `${addLeadingZero(day)}.${addLeadingZero(month + 1)}.${year}  ${getWeek(currentDate.getDay())} ${addLeadingZero(hours)}:${addLeadingZero(minutes)}`
-
 }
+
+export const getDayMonth = (date) => {
+    const addLeadingZero = (d) => {
+        return (d < 10) ? "0" + d : d
+    }
+
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    return `${addLeadingZero(day)}.${addLeadingZero(month)}`;
+}
+
 export const getLogoWeatherDescription = (logo) => {
     switch (logo) {
         case "01d": case "01n": case "c01d": case "c01n": case "clear-day":

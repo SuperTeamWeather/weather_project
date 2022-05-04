@@ -26,19 +26,12 @@ getReq('OpenWeather', apiWeather.getOpenWeather);
 
 getReq('WeatherBit', apiWeather.getWeatherBit);
 
+// getReq('WeatherBitDaily', apiWeather.getWeatherBitDaily);
+
 getReq('VisualcrossingWeather', apiWeather.getVisualcrossingWeather);
 
 getReq('YandexWeather', apiWeather.getYandexWeather);
 
-// app.get('/api/v1/OpenWeather/lat=:lat&lot=:lot', async function (req, res) {
-//     console.log('Запрос от клиента:', req.url);
-//     console.log('параметры запроса:', req.params);
-//     const content = {
-//         latitude: req.params.lat,
-//         longitude: req.params.lot
-//     };
-//     res.send(await openWeather.getOpenWeather(content));
-// });
 
 app.listen(port, host, () =>
     console.log(`Server listens http://${host}:${port}`)

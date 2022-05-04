@@ -110,7 +110,7 @@ export const WeatherContentHome = ({ nameWeatherUrl }) => {
                                             return <div
                                                 key={idx}
                                                 className="item-hours text-style">
-                                                <div>{el.time}</div>
+                                                <div>{el.time < 10 ? `0${el.time}:00` : `${el.time}:00` }</div>
                                                 <div className="icon-weather">
                                                     {nameWeatherUrl === "api/v1/YandexWeather" ? getLogoFromYandex(weather[nameWeather].description) : getLogoWeatherDescription(el.icon)}
                                                 </div>

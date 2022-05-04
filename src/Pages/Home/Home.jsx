@@ -6,6 +6,7 @@ import {SvgRain} from '../../Components/SVGIcons/SvgRain/SvgRain';
 import {
     _urlOpenWeather,
     _urlWeatherBit,
+    _urlWeatherBitDaily,
     _urlVisualWeather,
     _urlYandex
 } from '../../Service/Constant';

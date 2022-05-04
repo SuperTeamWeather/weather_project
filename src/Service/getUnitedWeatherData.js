@@ -2,10 +2,13 @@ import {
     _urlOpenWeather,
     _urlYandex,
     _urlWeatherBit,
+    _urlWeatherBitDaily,
     _urlVisualWeather
 } from "./Constant"
-import { WeatherData, WeatherDataHourly } from "./classWeatherData"
+import { WeatherData, WeatherDataDaily, WeatherDataHourly } from "./classWeatherData"
 import {
+    getWeek,
+    getDayMonth,
     getWindDirText,
     getWindDirTextYandex,
     getRusWeatherConditionYandex,
@@ -17,11 +20,13 @@ import { getNameWeatherFromRegExp } from "./tools"
 export const getUnitedWeatherData = (data, apiName) => {
 
     const propertyHourly = "hourly";
+    const propertyDaily = "daily";
 
     switch (apiName) {
         case _urlOpenWeather:
             const openWeather = {}
             const openWeatherHourly = []
+            const openWeatherDaily = []
 
             openWeather[getNameWeatherFromRegExp(apiName)] = new WeatherData(
                 data.timezone,
@@ -51,11 +56,35 @@ export const getUnitedWeatherData = (data, apiName) => {
 
             openWeather[getNameWeatherFromRegExp(apiName)].add(propertyHourly, openWeatherHourly)
 
+            const openWeatherDailyArray = data.daily;
+            openWeatherDailyArray.forEach((el, idx) => {
+                if (idx < 7) {
+                    let dataDay = new WeatherDataDaily(
+                        Math.round(el.temp.day),
+                        Math.round(el.temp.min),
+                        Math.round(el.temp.max),
+                        el.weather[0].description.charAt(0).toUpperCase() + el.weather[0].description.slice(1),
+                        el.wind_speed.toFixed(1),
+                        getWindDirText(el.wind_deg),
+                        Math.round(el.humidity),
+                        Math.round(el.pressure * 0.75),
+                        el.weather[0].icon,
+                        getDayMonth(new Date(el.dt * 1000)),
+                        getWeek(new Date(el.dt * 1000).getDay())
+                    )
+                    openWeatherDaily.push(dataDay);
+                }
+            });
+
+            openWeather[getNameWeatherFromRegExp(apiName)].add(propertyDaily, openWeatherDaily);
+            // console.log('OW', openWeatherDaily);
+
             return openWeather
 
         case _urlYandex:
             const yandex = {}
             const yandexHourly = []
+            const yandexDaily = []
 
             yandex[getNameWeatherFromRegExp(apiName)] = new WeatherData(
                 data.geo_object.locality.name,
@@ -83,6 +112,29 @@ export const getUnitedWeatherData = (data, apiName) => {
 
             yandex[getNameWeatherFromRegExp(apiName)].add(propertyHourly, yandexHourly)
 
+            const yandexDailyArray = data.forecasts;
+            yandexDailyArray.forEach((el, idx) => {
+                if (idx < 7) {
+                    let dataDay = new WeatherDataDaily(
+                        Math.round(el.parts.day.temp_avg),
+                        Math.round(el.parts.day_short.temp_min),
+                        Math.round(el.parts.day_short.temp),
+                        getRusWeatherConditionYandex(el.parts.day_short.condition),
+                        el.parts.day_short.wind_speed.toFixed(1),
+                        getWindDirTextYandex(el.parts.day_short.wind_dir),
+                        Math.round(el.parts.day_short.humidity),
+                        el.parts.day_short.pressure_mm,
+                        el.parts.day_short.icon,
+                        getDayMonth(new Date(el.date_ts * 1000)),
+                        getWeek(new Date(el.date_ts * 1000).getDay())
+                    )
+                    yandexDaily.push(dataDay);
+                }
+            });
+
+            yandex[getNameWeatherFromRegExp(apiName)].add(propertyDaily, yandexDaily);
+            // console.log("Y", yandexDaily);
+
             return yandex
 
         case _urlWeatherBit:
@@ -104,13 +156,13 @@ export const getUnitedWeatherData = (data, apiName) => {
             )
 
             weatherBit[getNameWeatherFromRegExp(apiName)].add(propertyHourly, weatherBitHourly)
-
+            console.log(weatherBit);
             return weatherBit
-
 
         case _urlVisualWeather:
             const visualWeather = {}
             const visualWeatherHourly = []
+            const visualWeatherDaily = []
 
             visualWeather[getNameWeatherFromRegExp(apiName)] = new WeatherData(
                 data.timezone,
@@ -137,6 +189,29 @@ export const getUnitedWeatherData = (data, apiName) => {
             });
 
             visualWeather[getNameWeatherFromRegExp(apiName)].add(propertyHourly, visualWeatherHourly)
+
+            const visualWeatherDailyArray = data.days;
+            visualWeatherDailyArray.forEach((el, idx) => {
+                if (idx < 7) {
+                    let dataDay = new WeatherDataDaily(
+                        Math.round(el.temp),
+                        Math.round(el.tempmin),
+                        Math.round(el.tempmax),
+                        getRusWeatherConditionVisualcrossing(el.conditions),
+                        el.windspeed.toFixed(1),
+                        getWindDirText(el.winddir),
+                        Math.round(el.humidity),
+                        Math.round(el.pressure * 0.75),
+                        el.icon,
+                        getDayMonth(new Date(el.datetimeEpoch * 1000)),
+                        getWeek(new Date(el.datetimeEpoch * 1000).getDay())
+                    )
+                    visualWeatherDaily.push(dataDay);
+                }
+            });
+
+            visualWeather[getNameWeatherFromRegExp(apiName)].add(propertyDaily, visualWeatherDaily);
+            // console.log("VC", visualWeatherDaily);
 
             return visualWeather
 
