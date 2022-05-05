@@ -50,15 +50,9 @@
     font-size: 32px;
     text-align: center;
   }
-}
 
-@keyframes show-weather {
-  0% {
-    transform: scale(0);
-  }
-
-  100% {
-    transform: scale(1);
+  &__text {
+    text-align: center;
   }
 }
 
@@ -79,10 +73,6 @@
   font-weight: 300;
 }
 
-.text-error {
-  font-size: 24px;
-}
-
 .big-text {
   font-size: 46px;
 }
@@ -92,35 +82,9 @@
   justify-items: center;
 }
 
-.hours {
-  display: flex;
-  gap: 16px;
-  overflow: hidden;
-  scroll-behavior: smooth;
-}
-
-.item-hours {
-  display: grid;
-  justify-items: center;
-}
-
 .accordion-style {
   display: grid;
   grid-gap: 16px;
-}
-
-.carousel {
-  display: grid;
-  grid-template-columns: 40px 1fr 40px;
-  width: 100%;
-  align-items: center;
-}
-
-.carousel-btn {
-  border: none;
-  background: none;
-  color: #ffffffba;
-  font-size: 25px;
 }
 
 .btn-style {
@@ -154,5 +118,15 @@
     grid-template-columns: auto auto;
     justify-content: space-around;
     justify-items: stretch;
+  }
+}
+
+@keyframes show-weather {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

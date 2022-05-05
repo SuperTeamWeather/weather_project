@@ -1,0 +1,73 @@
+.carousel {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  width: 100%;
+  align-items: center;
+}
+
+.carousel-mobile {
+  display: grid;
+  width: 100%;
+  align-items: center;
+}
+
+.carousel-btn {
+  border: none;
+  background: none;
+  color: #ffffffba;
+  font-size: 25px;
+}
+
+.btn-style {
+  cursor: pointer;
+
+  &:hover {
+    color: #f5e241;
+  }
+
+  &:active {
+    color: #9d912c;
+  }
+
+}
+
+.icon-weather {
+  display: grid;
+  justify-items: center;
+}
+
+.hours {
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.hours-mobile {
+  display: flex;
+  gap: 16px;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+.item-hours {
+  display: grid;
+  justify-items: center;
+}
+
+.text-error {
+  font-size: 24px;
+}
+
+.link-href {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: #f5e241;
+  }
+
+  &:active {
+    color: #9d912c;
+  }
+}
