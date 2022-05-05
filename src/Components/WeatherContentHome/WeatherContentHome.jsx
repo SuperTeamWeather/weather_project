@@ -74,9 +74,9 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                                 </div>
                             </div>
                             <div className="text-style">
-                                <div>Ветер: {weather[nameWeather].windSpeed} м/с,&nbsp;{weather[nameWeather].windDirection}</div>
+                                <div>Ветер: {weather[nameWeather].windSpeed}&nbsp;м/с,&nbsp;{weather[nameWeather].windDirection}</div>
                                 <div>Влажность: {weather[nameWeather].humidity}%</div>
-                                <div>Давление: {weather[nameWeather].pressure} мм рт. ст.</div>
+                                <div>Давление: {weather[nameWeather].pressure}&nbsp;мм&nbsp;рт.&nbsp;ст.</div>
                             </div>
                             <CustomToggle eventKey="0">
                                 По&nbsp;часам
@@ -95,6 +95,13 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
 
 function CustomToggle ({children, eventKey}) {
     const decoratedOnClick = useAccordionButton(eventKey, () => console.log('totally custom!'),);
-    return (<div className="link-custom text-style btn-style unselectable max-line"
-                 onClick={decoratedOnClick}>{children}</div>);
+    return (
+        <div className="text-flex">
+            <div className="link-custom text-style btn-style unselectable max-line"
+                 onClick={decoratedOnClick}>
+                {children}
+            </div>
+        </div>
+
+    );
 }

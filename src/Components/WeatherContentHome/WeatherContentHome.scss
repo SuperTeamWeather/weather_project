@@ -46,8 +46,7 @@
   }
 
   &__alert {
-    color: red;
-    font-size: 32px;
+    color: rgba(255, 0, 0, 0.71);
     text-align: center;
   }
 
@@ -111,6 +110,11 @@
   &:active {
     color: #9d912c;
   }
+}
+
+.text-flex {
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 630px) {
