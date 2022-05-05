@@ -26,9 +26,6 @@ export const Carousel = ({nameWeatherUrl}) => {
             <i className="fa-solid fa-circle-chevron-left"></i>
         </button> : ''}
         <div className={!isMobile.any() ? 'hours' : 'hours-mobile'} ref={myRef}>
-            <div className="item-hours text-error">
-                {weather[nameWeather]?.hourly?.length === 0 ? "Нет данных" : ""}
-            </div>
             {weather[nameWeather]?.hourly?.map((el, idx) => {
                 return <div
                     key={idx}

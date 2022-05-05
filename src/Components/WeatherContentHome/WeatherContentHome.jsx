@@ -78,9 +78,14 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                                 <div>Влажность: {weather[nameWeather].humidity}%</div>
                                 <div>Давление: {weather[nameWeather].pressure}&nbsp;мм&nbsp;рт.&nbsp;ст.</div>
                             </div>
-                            <CustomToggle eventKey="0">
-                                По&nbsp;часам
-                            </CustomToggle>
+                            {weather[nameWeather]?.hourly?.length === 0 ?
+                                ''
+                                :
+                                <CustomToggle eventKey="0">
+                                    По&nbsp;часам
+                                </CustomToggle>
+                            }
+
                         </div>
                         <Accordion.Collapse eventKey="0">
                             <Carousel nameWeatherUrl={nameWeatherUrl}/>
