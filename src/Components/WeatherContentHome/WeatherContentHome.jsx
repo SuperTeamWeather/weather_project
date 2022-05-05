@@ -74,7 +74,6 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                             <div className="text-style">
                                 <span>{weather[nameWeather].description}</span>
                             </div>}
-
                         <Accordion className="accordion-style">
                             <div className="weather-home__description">
                                 <div className="weather-home__temperature text-style">
@@ -140,6 +139,6 @@ function CustomToggle ({children, eventKey}) {
         console.log('totally custom!'),
     );
     return (
-        <div className="link-custom text-style btn-style unselectable" onClick={decoratedOnClick}>{children}</div>
+        <div className="link-custom text-style btn-style unselectable max-line" onClick={decoratedOnClick}>{children}</div>
     );
 }

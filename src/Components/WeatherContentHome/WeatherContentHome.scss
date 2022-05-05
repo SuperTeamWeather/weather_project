@@ -34,16 +34,6 @@
     font-size: 20px;
   }
 
-
-  &__temperature {
-  }
-
-  &__temperature-felt {
-  }
-
-  &__text {
-  }
-
   &__info {
     display: flex;
     justify-content: space-between;
@@ -81,6 +71,7 @@
   border-bottom: 1px solid white;
   text-decoration: none;
   font-size: 16px;
+  max-width: 70px;
 }
 
 .text-style {
@@ -155,5 +146,13 @@
 
   &:active {
     color: #9d912c;
+  }
+}
+
+@media (max-width: 630px) {
+  .weather-home__description {
+    grid-template-columns: auto auto;
+    justify-content: space-around;
+    justify-items: stretch;
   }
 }

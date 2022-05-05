@@ -1,22 +1,21 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { NavDropdown } from "react-bootstrap";
+import {useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {NavDropdown} from "react-bootstrap";
 import './Header.scss'
-import { CityName } from "../CityName/CityName";
-import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { getSelectorCurrentUserData } from '../../Store/CurrentUserDataReducer/selectors';
-import { getSelectorProfilesDataReducer } from "../../Store/ProfiilesDataReducer/selectors"
-import { logOut } from '../../firebase';
-import { goOutUser } from '../../Store/CurrentUserDataReducer/action';
-
+import {CityName} from "../CityName/CityName";
+import {Link} from "react-router-dom";
+import {useSelector} from 'react-redux';
+import {getSelectorCurrentUserData} from '../../Store/CurrentUserDataReducer/selectors';
+import {getSelectorProfilesDataReducer} from "../../Store/ProfiilesDataReducer/selectors"
+import {logOut} from '../../firebase';
+import {goOutUser} from '../../Store/CurrentUserDataReducer/action';
 
 export const Header = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { id } = useSelector(getSelectorCurrentUserData)
+    const {id} = useSelector(getSelectorCurrentUserData)
     const usersProfiles = useSelector(getSelectorProfilesDataReducer)
 
     const handleUserOutClick = async () => {
@@ -29,14 +28,13 @@ export const Header = () => {
         }
     }
 
-
     return (<header className="header">
         <div className="content content-center">
             <div className="logo-title">
-                <Link to={'/'} >
-                    <img className="logo" src="./img/logo_small.png" alt="logo" />
+                <Link to={'/'}>
+                    <img className="logo" src="./img/weather-icon2.png" alt="logo"/>
                 </Link>
-                <CityName />
+                <CityName/>
             </div>
 
             <div>
@@ -62,5 +60,5 @@ export const Header = () => {
                     </NavDropdown>}
             </div>
         </div>
-    </header >)
+    </header>)
 }

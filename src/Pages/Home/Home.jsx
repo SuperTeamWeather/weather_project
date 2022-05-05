@@ -12,7 +12,6 @@ import {
 import "./Home.scss"
 
 export const Home = () => {
-
     return (
         <div className="home-page">
             <div className="content-center">
@@ -27,7 +26,6 @@ export const Home = () => {
                     <WeatherContentHome nameWeatherUrl={_urlWeatherBit}/>
                     <WeatherContentHome nameWeatherUrl={_urlVisualWeather}/>
                 </div>
-
             </div>
         </div>
     )

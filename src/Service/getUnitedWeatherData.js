@@ -2,7 +2,6 @@ import {
     _urlOpenWeather,
     _urlYandex,
     _urlWeatherBit,
-    _urlWeatherBitDaily,
     _urlVisualWeather
 } from "./Constant"
 import { WeatherData, WeatherDataDaily, WeatherDataHourly } from "./classWeatherData"
@@ -156,7 +155,7 @@ export const getUnitedWeatherData = (data, apiName) => {
             )
 
             weatherBit[getNameWeatherFromRegExp(apiName)].add(propertyHourly, weatherBitHourly)
-            console.log(weatherBit);
+            //console.log(weatherBit);
             return weatherBit
 
         case _urlVisualWeather:
