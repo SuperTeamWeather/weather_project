@@ -1,18 +1,20 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { MyModal } from "../MyModal/MyModal";
-import { SearchCityHome } from "../SearchCityHome/SearchCityHome";
-import { featchWeather } from "../../Store/WeatherReducer/action";
+import {useState, useEffect, useCallback} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {MyModal} from "../MyModal/MyModal";
+import {SearchCityHome} from "../SearchCityHome/SearchCityHome";
+import {featchWeather} from "../../Store/WeatherReducer/action";
 import {
     changeActiveModal, changeActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/action";
 import {
     getSelectorCurrentUserActiveModal, getSelectorCurrentUserActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/selectors";
-import { getSelectorWeathersData } from "../../Store/WeatherReducer/selectors";
-import { getCurrentTime } from "../../Service/tools";
+import {getSelectorWeathersData} from "../../Store/WeatherReducer/selectors";
+import {getCurrentTime} from "../../Service/tools";
 import "./CityName.scss"
+import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const CityName = () => {
 
@@ -47,12 +49,11 @@ export const CityName = () => {
         dispatch(featchWeather(cityCoord, urlName))
     }, [dispatch])
 
-
     if (cityName) {
         return (<div className="city-name">
             <div>
                 {activeBtn === "city-change-open-modal" ? <MyModal active={activeModal}>
-                    <SearchCityHome getNewWeather={getNewWeather} />
+                    <SearchCityHome getNewWeather={getNewWeather}/>
                 </MyModal> : ""}
             </div>
             <div className="city-name__title">
@@ -64,5 +65,12 @@ export const CityName = () => {
             </div>
         </div>)
 
-    } else { return <div></div> }
+    } else {
+        return <div>
+            <SkeletonTheme baseColor="#5184cc" highlightColor="#ffd21e">
+                <Skeleton height={18} width={150}/>
+                <Skeleton height={18} width={200}/>
+            </SkeletonTheme>
+        </div>
+    }
 }

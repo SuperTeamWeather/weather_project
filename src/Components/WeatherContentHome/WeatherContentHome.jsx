@@ -13,9 +13,9 @@ import {
     getSelectorWeathersIsLoader
 } from "../../Store/WeatherReducer/selectors";
 import {featchWeather} from "../../Store/WeatherReducer/action";
-import Spinner from 'react-bootstrap/Spinner'
 import "./WeatherContentHome.scss"
 import {Accordion, useAccordionButton} from "react-bootstrap";
+import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 
 export const WeatherContentHome = ({nameWeatherUrl}) => {
 
@@ -52,7 +52,12 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
     return (
         <div>
             <div className="loader-spinner">
-                {isLoader[nameWeather] ? <Spinner animation="border" variant="warning"/> : ""}
+                {isLoader[nameWeather] ?
+                    <SkeletonTheme borderRadius={16}
+                                   baseColor="#5184cc"
+                                   highlightColor="#ffd21e">
+                        <Skeleton height={170}/>
+                    </SkeletonTheme> : ""}
             </div>
             <main className="weather-home">
                 {weather[nameWeather] ?
@@ -139,6 +144,7 @@ function CustomToggle ({children, eventKey}) {
         console.log('totally custom!'),
     );
     return (
-        <div className="link-custom text-style btn-style unselectable max-line" onClick={decoratedOnClick}>{children}</div>
+        <div className="link-custom text-style btn-style unselectable max-line"
+             onClick={decoratedOnClick}>{children}</div>
     );
 }
