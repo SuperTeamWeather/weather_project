@@ -21,7 +21,6 @@ export const CityName = () => {
     const activeModal = useSelector(getSelectorCurrentUserActiveModal)
     const activeBtn = useSelector(getSelectorCurrentUserActiveBtnModal)
     const weather = useSelector(getSelectorWeathersData)
-    const [currentDate, setCurrentDate] = useState(() => new Date());
 
     const dispatch = useDispatch()
 
@@ -61,7 +60,7 @@ export const CityName = () => {
                 <i data-name="city-change-open-modal" onClick={changeCity} className="fa-regular fa-pen-to-square"></i>
             </div>
             <div>
-                {getCurrentTime(currentDate)}
+                {getCurrentTime()}
             </div>
         </div>)
 

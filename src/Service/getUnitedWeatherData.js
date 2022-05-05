@@ -4,7 +4,7 @@ import {
     _urlWeatherBit,
     _urlVisualWeather
 } from "./Constant"
-import { WeatherData, WeatherDataDaily, WeatherDataHourly } from "./classWeatherData"
+import {WeatherData, WeatherDataDaily, WeatherDataHourly} from "./classWeatherData"
 import {
     getWeek,
     getDayMonth,
@@ -13,8 +13,7 @@ import {
     getRusWeatherConditionYandex,
     getRusWeatherConditionVisualcrossing
 } from "./tools"
-import { getNameWeatherFromRegExp } from "./tools"
-
+import {getNameWeatherFromRegExp} from "./tools"
 
 export const getUnitedWeatherData = (data, apiName) => {
 

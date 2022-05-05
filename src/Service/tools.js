@@ -4,6 +4,10 @@ import {Cloud} from "../Components/SVGIcons/SvgDescription/Cloud/Cloud";
 import {Rain} from "../Components/SVGIcons/SvgDescription/Rain/Rain";
 import {Snow} from "../Components/SVGIcons/SvgDescription/Snow/Snow";
 import {SnowAndRain} from "../Components/SVGIcons/SvgDescription/SnowAndRain/SnowAndRain";
+import moment from 'moment';
+import 'moment/locale/ru';
+
+moment.locale('ru')
 
 export const getNameWeatherFromRegExp = (urlName) => {
     const reg = /api\/v1\//gi;
@@ -39,18 +43,8 @@ export const getWeek = (week) => {
     }
 }
 
-export const getCurrentTime = (currentDate) => {
-    const addLeadingZero = (d) => {
-        return (d < 10) ? "0" + d : d
-    }
-
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes()
-    const month = currentDate.getMonth()
-    const day = currentDate.getDate()
-    const year = currentDate.getFullYear()
-
-    return `${addLeadingZero(day)}.${addLeadingZero(month + 1)}.${year}  ${getWeek(currentDate.getDay())} ${addLeadingZero(hours)}:${addLeadingZero(minutes)}`
+export const getCurrentTime = () => {
+    return moment().format('dddd, D MMMM, HH:MM');
 }
 
 export const getDayMonth = (date) => {

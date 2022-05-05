@@ -119,8 +119,8 @@
 
 @media (max-width: 630px) {
   .weather-home__description {
-    grid-template-columns: auto auto;
-    justify-content: space-around;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
     justify-items: stretch;
   }
 }
