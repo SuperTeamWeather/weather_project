@@ -1,16 +1,12 @@
 import React from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setCurrentUser } from
-    "../../Store/CurrentUserDataReducer/action";
 import { signIn } from "../../firebase";
 import { AuthForm } from "../../Components/AuthForm/AuthForm";
 import "./SignIn.scss"
 
 export const SignIn = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [messageError, setMessageError] = useState("");
 
@@ -21,10 +17,8 @@ export const SignIn = () => {
             return;
         }
 
-
         try {
-            const { user } = await signIn(inputEmail, inputPass);
-            dispatch(setCurrentUser(user.uid, user.email));
+            await signIn(inputEmail, inputPass);
         } catch (err) {
             setMessageError(prev => prev = err.message);
             return;

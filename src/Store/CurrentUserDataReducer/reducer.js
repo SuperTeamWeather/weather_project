@@ -1,19 +1,23 @@
 import {
     SET_CURRENT_USER,
-    // GET_USER_LOGIN,
-    // GET_USER_PASSWORD,
+    SET_FAVORIT_WEATHER,
     ACTIVE_MODAL,
     GO_OUT_USER,
     ACTIVE_BTN_MODAL,
-    ACTIVE_STYLE_MODAL
+    ACTIVE_STYLE_MODAL,
+    SHOW_LOADER_USER,
+    HIDE_LOADER_USER
 } from "./action";
 
 const initialState = {
-    user: {},
+    userData: {
+        login: "",
+        favoritWeather: []
+    },
+    isLoader: false,
     activeModal: false,
     activeBtnModal: "",
-    activeStyleModal: "SignIn"
-
+    activeStyleModal: "SignIn",
 }
 
 export const currentUserDataReducer = (state = initialState, { type, payload }) => {
@@ -21,20 +25,29 @@ export const currentUserDataReducer = (state = initialState, { type, payload }) 
         case SET_CURRENT_USER:
             return {
                 ...state,
-                user: payload
+                userData: ({
+                    ...state["userData"], ["login"]: payload.login,
+                    ["favoritWeather"]: payload.favoritWeather
+                })
             }
 
-        // case GET_USER_LOGIN:
-        //     return {
-        //         ...state,
-        //         login: payload,
-        //     }
+        case SET_FAVORIT_WEATHER:
+            return {
+                ...state,
+                userData: ({ ...state["userData"], ["favoritWeather"]: ([...state["userData"]["favoritWeather"], payload]) })
+            }
 
-        // case GET_USER_PASSWORD:
-        //     return {
-        //         ...state,
-        //         password: payload,
-        //     }
+        case SHOW_LOADER_USER:
+            return {
+                ...state,
+                isLoader: true
+            }
+
+        case HIDE_LOADER_USER:
+            return {
+                ...state,
+                isLoader: false
+            }
 
         case ACTIVE_MODAL:
             return {
@@ -57,7 +70,10 @@ export const currentUserDataReducer = (state = initialState, { type, payload }) 
         case GO_OUT_USER:
             return {
                 ...state,
-                user: {},
+                userData: ({
+                    ...state["userData"], ["login"]: "",
+                    ["favoritWeather"]: []
+                }),
                 activeBtnModal: ""
             }
 
