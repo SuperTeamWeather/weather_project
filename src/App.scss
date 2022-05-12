@@ -16,6 +16,20 @@ html, body {
   margin: 0;
 }
 
+.home-page::-webkit-scrollbar {
+  width: 10px;
+}
+
+.home-page::-webkit-scrollbar-track {
+  //-webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: rgba(249, 249, 253, 0);
+  border-radius: 4px;
+}
+
+.home-page::-webkit-scrollbar-thumb {
+  background-color: #25648D;
+  border-radius: 4px;
+}
 
 .app {
   display: grid;

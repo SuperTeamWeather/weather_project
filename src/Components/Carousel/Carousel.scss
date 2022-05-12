@@ -39,8 +39,12 @@
 .hours {
   display: flex;
   gap: 16px;
-  overflow: hidden;
+  overflow: auto;
   scroll-behavior: smooth;
+}
+
+.hours::-webkit-scrollbar {
+  width: 0;
 }
 
 .hours-mobile {

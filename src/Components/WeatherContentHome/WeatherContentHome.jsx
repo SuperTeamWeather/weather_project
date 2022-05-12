@@ -79,7 +79,11 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                                 <div>Давление: {weather[nameWeather].pressure}&nbsp;мм&nbsp;рт.&nbsp;ст.</div>
                             </div>
                             {weather[nameWeather]?.hourly?.length === 0 ?
-                                ''
+                                <div className="text-flex">
+                                    <div className="disabled-btn unselectable max-line">
+                                        По&nbsp;часам
+                                    </div>
+                                </div>
                                 :
                                 <CustomToggle eventKey="0">
                                     По&nbsp;часам
