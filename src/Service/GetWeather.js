@@ -20,7 +20,7 @@ export const getWeatherData = async (coordinates, weatherNameUrl) => {
 }
 
 let settingsFileName = 'settings.json';
-if( process.env.NODE_ENV == 'production') settingsFileName = 'settings_prod.json';
+if( process.env.NODE_ENV === 'production') settingsFileName = 'settings_prod.json';
 
 //Запрашиваем адрес до сервиса
 const getAddressToServer = async () => {

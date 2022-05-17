@@ -6,6 +6,11 @@ const https = require('https');
 const {getGeoCoding} = require("./ApiWeather/ApiGeoCode");
 const app = express();
 
+const fetchNode = require("node-fetch");
+const _apiKeyYandexGeoCode = '4de7ea0f-368d-482b-8b18-f10e10af13c4'
+const _urlYandexGeoCode = 'https://geocode-maps.yandex.ru';
+const _limitResponse = '10';
+
 const host = '127.0.0.1';
 const port = 7000;
 
@@ -37,9 +42,17 @@ function getReq (sourceName, getWeatherFunc) {
 }
 
 app.get(`/api/v1/geocode/geocode=:geocode`, async function (req, res) {
-    console.log('Запрос от клиента:', (req.url));
-    res.json(await getGeoCoding(encodeURIComponent(req.params.geocode)))
-
+    try {
+        console.log('Запрос от клиента:', (req.url), 'param: ', req.params.geocode);
+        // res.json(await getGeoCoding(encodeURIComponent(req.params.geocode)));
+        res.json(await fetchNode(`${_urlYandexGeoCode}/1.x/?apikey=${_apiKeyYandexGeoCode}&format=json&geocode=${encodeURIComponent(req.params.geocode)}&results=${_limitResponse}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        //console.log(`Ответ: ${JSON.stringify(data)}`);
+                        return data
+                    })
+        )
+    } catch (err) {console.log('error: ', err)}
 });
 
 getReq('OpenWeather', apiWeather.getOpenWeather);
