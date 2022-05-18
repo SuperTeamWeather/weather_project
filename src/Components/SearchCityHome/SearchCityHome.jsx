@@ -18,7 +18,6 @@ export const SearchCityHome = ({ getNewWeather, show, changeCity }) => {
     const [valueInput, setValueInput] = useState("")
     const [listWeatherCitys, setListWeatherCitys] = useState([])
 
-
     const hendleInput = (event) => {
         setValueInput(prev => prev = event.target.value)
     }
@@ -59,6 +58,7 @@ export const SearchCityHome = ({ getNewWeather, show, changeCity }) => {
                         onChange={hendleInput}
                         onInput={searchCity}
                         value={valueInput}
+                        autoFocus
                     />
 
                     <ListGroup>
