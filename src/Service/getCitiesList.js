@@ -1,5 +1,8 @@
+import { sha256 } from 'js-sha256';
+
 class CityData {
-    constructor(coordinates, formattedAdress, pointDescription, pointName) {
+    constructor(id, coordinates, formattedAdress, pointDescription, pointName) {
+        this.id = id;
         this.coordinates = coordinates;
         this.formattedAdress = formattedAdress;
         this.pointDescription = pointDescription;
@@ -22,6 +25,7 @@ export const getCitiesList = (data) => {
     geoObjectCollection.forEach(el => {
         const coordinatesArray = el.GeoObject.Point.pos.match(regexp);
         citiesList.push(new CityData(
+            sha256(el.GeoObject.Point.pos),
             new Coordinates(coordinatesArray[1], coordinatesArray[0]),
             el.GeoObject.metaDataProperty.GeocoderMetaData.Address.formatted,
             el.GeoObject.description,
