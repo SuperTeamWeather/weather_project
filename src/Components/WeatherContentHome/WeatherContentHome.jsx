@@ -14,12 +14,13 @@ import {Accordion, useAccordionButton} from "react-bootstrap";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import {Carousel} from "../Carousel/Carousel";
 
-export const WeatherContentHome = ({nameWeatherUrl}) => {
+export const WeatherContentHome = ({nameWeatherUrl, id}) => {
+    const dispatch = useDispatch();
+    const weather = useSelector(getSelectorWeathersData);
 
-    const dispatch = useDispatch()
-
-    const weather = useSelector(getSelectorWeathersData)
-    const isLoader = useSelector(getSelectorWeathersIsLoader)
+    console.log('weather from WeatherContentHome: ', weather);
+    
+    const isLoader = useSelector(getSelectorWeathersIsLoader);
     const alertText = useSelector(getSelectorWeathersAlert)
     const nameWeather = getNameWeatherFromRegExp(nameWeatherUrl)
 
@@ -30,7 +31,16 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
     }, [])
 
     useEffect(() => {
+        
+        console.log('currentPositionCoordinates from weather content home: ', currentPositionCoordinates);
+
         if (currentPositionCoordinates) {
+            
+            console.log('currentPositionCoordinates?.coords from weather content home: ', currentPositionCoordinates?.coords);
+            console.log('nameWeatherUrl from weather content home: ', nameWeatherUrl);
+            console.log('nameWeather from weather content home: ', nameWeather);
+
+            
             dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl, nameWeather))
         }
     }, [currentPositionCoordinates, nameWeatherUrl, dispatch, nameWeather]);
@@ -50,7 +60,7 @@ export const WeatherContentHome = ({nameWeatherUrl}) => {
                             {nameWeather}
                         </div>
                         <div className="link-custom text-style btn-style unselectable">
-                            <a className='link-href' href="/weather/1">По&nbsp;дням</a>
+                            <a className='link-href' href={`/weather_days/${id}`} >По&nbsp;дням</a>
                         </div>
                     </div>
                     {weather[nameWeather].tempMin ? <div className="text-style">

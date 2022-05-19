@@ -1,0 +1,144 @@
+.weather-home {
+  border-radius: 16px;
+  background: #25648D;
+  box-shadow: 4px 4px 4px 0 #00000040;
+
+  .dayTitleArea
+
+  
+  &__content {
+    padding: 16px;
+    display: grid;
+    grid-gap: 8px;
+  }
+
+  &__description {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: space-around;
+    align-items: center;
+    grid-gap: 16px;
+  }
+
+  &__weather_text {
+    font-size: 24px;
+    color: white;
+  }
+
+  &__name-api-weather {
+    font-size: 20px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__info-time {
+    font-size: 30px;
+    color: white;
+  }
+
+  &__alert {
+    color: rgba(255, 0, 0, 0.71);
+    text-align: center;
+  }
+
+  &__text {
+    text-align: center;
+  }
+}
+
+.loader-spinner {
+  text-align: center;
+}
+
+.link-custom {
+  display: inline;
+  border-bottom: 1px solid white;
+  text-decoration: none;
+  font-size: 16px;
+  max-width: 70px;
+}
+
+.disabled-btn {
+  cursor: not-allowed;
+  color: #ffffff63;
+  border-bottom: 1px solid #ffffff63;;
+}
+
+.text-style {
+  color: white;
+  font-weight: 300;
+}
+
+.big-text {
+  font-size: 46px;
+}
+
+.icon-weather {
+  display: grid;
+  justify-items: center;
+}
+
+.accordion-style {
+  display: grid;
+  grid-gap: 16px;
+}
+
+.btn-style {
+  cursor: pointer;
+
+  &:hover {
+    color: #f5e241;
+  }
+
+  &:active {
+    color: #9d912c;
+  }
+
+}
+
+.link-href {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: #f5e241;
+  }
+
+  &:active {
+    color: #9d912c;
+  }
+}
+
+.text-flex {
+  display: flex;
+  justify-content: center;
+}
+
+
+@media (max-width: 630px) {
+  .weather-home__description {
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    justify-items: stretch;
+  }
+}
+
+
+.weather-day {
+  &__info {    
+    display: flex;
+    justify-content: space-between;    
+    color: #fff;
+    font-size: 30px;
+    // margin-top: 5px;
+    // margin-bottom: 20px;
+  }  
+}
+
+h1 {
+  color: #fff;
+}

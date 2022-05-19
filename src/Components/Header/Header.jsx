@@ -32,7 +32,7 @@ export const Header = () => {
         <div className="content content-center">
             <div className="logo-title">
                 <Link to={'/'}>
-                    <img className="logo" src="./img/weather-icon2.png" alt="logo"/>
+                    <img className="logo" src="/img/weather-icon2.png" alt="logo"/>
                 </Link>
                 <CityName/>
             </div>
