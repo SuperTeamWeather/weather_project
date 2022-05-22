@@ -35,11 +35,10 @@ function getReq (sourceName, getWeatherFunc) {
 
     });
 }
-
+// запрос для поиска города
 app.get(`/api/v1/geocode/geocode=:geocode`, async function (req, res) {
     console.log('Запрос от клиента:', (req.url));
     res.json(await getGeoCoding(encodeURIComponent(req.params.geocode)))
-
 });
 
 getReq('OpenWeather', apiWeather.getOpenWeather);

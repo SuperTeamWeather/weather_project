@@ -14,7 +14,7 @@ import {getSelectorWeathersData} from "../../Store/WeatherReducer/selectors";
 import {getCurrentTime} from "../../Service/tools";
 import "./CityName.scss"
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export const CityName = () => {
 
@@ -24,7 +24,8 @@ export const CityName = () => {
 
     const dispatch = useDispatch()
 
-    const [cityName, setCityName] = useState("")
+    const [cityName, setCityName] = useState("");
+    const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
 
@@ -37,10 +38,10 @@ export const CityName = () => {
         }
     }, [weather])
 
-    const changeCity = (event) => {
-
-        dispatch(changeActiveBtnModal(event.target.dataset.name))
-        dispatch(changeActiveModal(true))
+    const changeCity = () => {
+        setOpenModal(prev => prev = !prev);
+        // dispatch(changeActiveBtnModal(event.target.dataset.name))
+        // dispatch(changeActiveModal(true))
 
     }
 
@@ -51,9 +52,10 @@ export const CityName = () => {
     if (cityName) {
         return (<div className="city-name">
             <div>
-                {activeBtn === "city-change-open-modal" ? <MyModal active={activeModal}>
+                {/* {activeBtn === "city-change-open-modal" ? <MyModal active={activeModal}>
                     <SearchCityHome getNewWeather={getNewWeather}/>
-                </MyModal> : ""}
+                </MyModal> : ""} */}
+                <SearchCityHome getNewWeather={getNewWeather} show={openModal} changeCity={changeCity} />
             </div>
             <div className="city-name__title">
                 {cityName}

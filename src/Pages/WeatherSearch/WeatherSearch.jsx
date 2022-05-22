@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react"
-import { fetchCitys } from "../../Service/FetchCitys";
+// import { fetchCitys } from "../../Service/FetchCitys";
 import { FieldWeatherList } from "../../Components/FieldWeatherList/FieldWeatherList";
 import "./WeatherSearch.scss"
 
@@ -28,7 +28,7 @@ export const WeatherSearch = () => {
     const searchCity = async (event) => {
         event.preventDefault()
 
-        setListWeatherCitys(await fetchCitys(valueInput))
+        // setListWeatherCitys(await fetchCitys(valueInput))
 
     }
 

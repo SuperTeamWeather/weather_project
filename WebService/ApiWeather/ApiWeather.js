@@ -20,7 +20,10 @@ exports.getOpenWeather = function async (coordinates) {
             .then(data => {
                 //console.log(`Ответ: ${JSON.stringify(data)}`);
                 return data
-            })
+            }).catch(error => {
+                console.error('ETIMEDOUT');
+            });
+
     } else
         return 'Координаты отсутствуют'
 }
@@ -38,7 +41,9 @@ exports.getWeatherBit = function async (coordinates) {
             .then(data => {
                 // console.log(`Ответ: ${JSON.stringify(data)}`);
                 return data
-            })
+            }).catch(error => {
+                console.error('ETIMEDOUT');
+            });
     } else
         return 'Координаты отсутствуют'
 }
@@ -73,7 +78,9 @@ exports.getVisualcrossingWeather = function async (coordinates) {
             .then(data => {
                 // console.log(`Ответ: ${JSON.stringify(data)}`);
                 return data
-            })
+            }).catch(error => {
+                console.error('ETIMEDOUT');
+            });
     } else
         return 'Координаты отсутствуют'
 }
@@ -96,7 +103,9 @@ exports.getYandexWeather = function async (coordinates) {
             .then(data => {
                 //console.log(`Ответ: ${JSON.stringify(data)}`);
                 return data
-            })
+            }).catch(error => {
+                console.error('ETIMEDOUT');
+            });
     } else
         return 'Координаты отсутствуют'
 }

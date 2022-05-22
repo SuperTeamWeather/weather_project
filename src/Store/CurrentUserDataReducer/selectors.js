@@ -1,8 +1,8 @@
 export const getSelectorCurrentUserActiveModal = (state => state.currentUserDataReducer.activeModal)
 
-export const getSelectorCurrentUserData = (state => state.currentUserDataReducer.user)
+export const getSelectorCurrentUserUserData = (state => state.currentUserDataReducer.userData)
 
-
+export const getSelectorCurrentUserLoader = (state => state.currentUserDataReducer.isLoader)
 
 export const getSelectorCurrentUserActiveBtnModal = (state => state.currentUserDataReducer.activeBtnModal)
 

@@ -21,7 +21,7 @@ export const getWeatherData = async (coordinates, weatherNameUrl) => {
 
 const pathToSettingsFile = '/';
 let settingsFileName = 'settings.json';
-if( process.env.NODE_ENV == 'production') settingsFileName = 'settings_prod.json';
+if( process.env.NODE_ENV === 'production') settingsFileName = 'settings_prod.json';
 
 const fullPathToSettings = pathToSettingsFile + settingsFileName;
 

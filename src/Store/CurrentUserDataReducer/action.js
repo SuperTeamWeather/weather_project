@@ -1,24 +1,35 @@
 export const SET_CURRENT_USER = "CURRENT_USER_DATA::SET_CURRENT_USER"
-export const setCurrentUser = (id, email) => ({
+export const setCurrentUser = (login, favoritWeather) => ({
     type: SET_CURRENT_USER,
     payload: {
-        id,
-        email
+        login,
+        favoritWeather
     }
 })
 
+export const GET_DATA_CURRENT_USER_FB = "CURRENT_USER_DATA::GET_DATA_CURRENT_USER_FB"
+export const getDataCurrentUserFb = (userId) => ({
+    type: GET_DATA_CURRENT_USER_FB,
+    payload: { userId }
+})
 
-// export const GET_USER_LOGIN = "CURRENT_USER_DATA::GET_USER_LOGIN"
-// export const getUserLogin = (login) => ({
-//     type: GET_USER_LOGIN,
-//     payload: login,
-// })
+export const SET_FAVORIT_WEATHER = "CURRENT_USER_DATA::SET_FAVORIT_WEATHER"
+export const setFavoritWeather = (city) => ({
+    type: SET_FAVORIT_WEATHER,
+    payload: city
+})
 
-// export const GET_USER_PASSWORD = "CURRENT_USER_DATA::GET_USER_PASSWORD"
-// export const getUserPassword = (pass) => ({
-//     type: GET_USER_PASSWORD,
-//     payload: pass,
-// })
+export const SHOW_LOADER_USER = "CURRENT_USER_DATA::SHOW_LOADER_USER"
+export const showLoaderUser = () => ({
+    type: SHOW_LOADER_USER,
+})
+
+
+export const HIDE_LOADER_USER = "CURRENT_USER_DATA::HIDE_LOADER_USER"
+export const hideLoaderUser = () => ({
+    type: HIDE_LOADER_USER,
+})
+
 
 export const GO_OUT_USER = "CURRENT_USER_DATA::GO_OUT_USER"
 export const goOutUser = () => ({

@@ -1,0 +1,15 @@
+.nav-comp {
+
+    &__nav-btn {
+        color: white;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+
+    &__nav-btn:hover {
+        color: blue;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: white;
+    }
+}
