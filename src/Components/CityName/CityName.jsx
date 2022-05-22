@@ -1,19 +1,19 @@
 import React from "react";
-import {useState, useEffect, useCallback} from "react";
-import {useSelector, useDispatch} from "react-redux";
-import {MyModal} from "../MyModal/MyModal";
-import {SearchCityHome} from "../SearchCityHome/SearchCityHome";
-import {featchWeather} from "../../Store/WeatherReducer/action";
+import { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { MyModal } from "../MyModal/MyModal";
+import { SearchCityHome } from "../SearchCityHome/SearchCityHome";
+import { featchWeather } from "../../Store/WeatherReducer/action";
 import {
     changeActiveModal, changeActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/action";
 import {
     getSelectorCurrentUserActiveModal, getSelectorCurrentUserActiveBtnModal
 } from "../../Store/CurrentUserDataReducer/selectors";
-import {getSelectorWeathersData} from "../../Store/WeatherReducer/selectors";
-import {getCurrentTime} from "../../Service/tools";
+import { getSelectorWeathersData } from "../../Store/WeatherReducer/selectors";
+import { getCurrentTime } from "../../Service/tools";
 import "./CityName.scss"
-import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css';
 
 export const CityName = () => {
@@ -42,7 +42,6 @@ export const CityName = () => {
         setOpenModal(prev => prev = !prev);
         // dispatch(changeActiveBtnModal(event.target.dataset.name))
         // dispatch(changeActiveModal(true))
-
     }
 
     const getNewWeather = useCallback(async (cityCoord, urlName) => {
@@ -69,8 +68,8 @@ export const CityName = () => {
     } else {
         return <div>
             <SkeletonTheme baseColor="#5184cc" highlightColor="#ffd21e">
-                <Skeleton height={18} width={150}/>
-                <Skeleton height={18} width={200}/>
+                <Skeleton height={18} width={150} />
+                <Skeleton height={18} width={200} />
             </SkeletonTheme>
         </div>
     }

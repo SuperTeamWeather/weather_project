@@ -63,7 +63,10 @@
     }
 
     &__err-message {
-        color: white;
+        color: red;
+        font-size: inherit;
+        display: flex;
+        align-items: center;
         font-size: 18px;
         padding: 10px;
     }

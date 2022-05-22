@@ -4,7 +4,12 @@ import {
     hideLoaderUser
 } from "../CurrentUserDataReducer/action"
 import { onValue } from 'firebase/database';
-import { getUserRef, getUserFavoritesWeatherRef } from '../../firebase';
+import {
+    getUserRef,
+    getUserFavoritesWeatherRef,
+    getUserFavoritesWeatherListItemRef
+} from '../../firebase';
+import { featchWeather } from "../WeatherReducer/action";
 
 
 function* workerGetDataCurrentUserFb({ payload: { userId } }) {
@@ -42,14 +47,19 @@ const getFavoritWeather = (userId) => {
     return new Promise((resolve, reject) => {
         onValue(getUserFavoritesWeatherRef(userId), (snapshot) => {
             let favoritWeather = []
+            let response = {}
             snapshot.forEach(el => {
 
                 if (Object.values(el.val())) {
-
-                    favoritWeather.push(...Object.values(el.val()))
-
+                    //  favoritWeather.push(...Object.values(el.val()))
+                    response = Object.assign(response, el.val())
                 } else return;
             })
+
+            for (let key in response) {
+                favoritWeather = [...favoritWeather, ...(Object.values(response[key]))]
+            }
+
             resolve(favoritWeather)
         })
     })
