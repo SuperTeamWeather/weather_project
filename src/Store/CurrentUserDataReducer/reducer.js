@@ -6,7 +6,8 @@ import {
     ACTIVE_BTN_MODAL,
     ACTIVE_STYLE_MODAL,
     SHOW_LOADER_USER,
-    HIDE_LOADER_USER
+    HIDE_LOADER_USER,
+    DELETE_FAVORIT_WEATHER
 } from "./action";
 
 const initialState = {
@@ -35,6 +36,12 @@ export const currentUserDataReducer = (state = initialState, { type, payload }) 
             return {
                 ...state,
                 userData: ({ ...state["userData"], ["favoritWeather"]: ([...state["userData"]["favoritWeather"], payload]) })
+            }
+
+        case DELETE_FAVORIT_WEATHER:
+            return {
+                ...state,
+                userData: ({ ...state["userData"], ["favoritWeather"]: ([...state["userData"]["favoritWeather"].filter(el => el.id !== payload)]) })
             }
 
         case SHOW_LOADER_USER:

@@ -40,3 +40,5 @@ export const getUserRef = (id) => ref(db, `users/${id}`);
 export const getUserFavoritesWeatherRef = (id) => ref(db, `users/${id}/favoritWeather`);
 
 export const getUserFavoritesWeatherListRef = (id) => ref(db, `users/${id}/favoritWeather/citys`);
+
+export const getUserFavoritesWeatherListItemRef = (id, idItem) => ref(db, `users/${id}/favoritWeather/citys/${idItem}`);

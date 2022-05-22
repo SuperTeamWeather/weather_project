@@ -19,23 +19,27 @@ export const setFavoritWeather = (city) => ({
     payload: city
 })
 
-export const SHOW_LOADER_USER = "CURRENT_USER_DATA::SHOW_LOADER_USER"
-export const showLoaderUser = () => ({
-    type: SHOW_LOADER_USER,
-})
-
-
-export const HIDE_LOADER_USER = "CURRENT_USER_DATA::HIDE_LOADER_USER"
-export const hideLoaderUser = () => ({
-    type: HIDE_LOADER_USER,
-})
-
-
 export const GO_OUT_USER = "CURRENT_USER_DATA::GO_OUT_USER"
 export const goOutUser = () => ({
     type: GO_OUT_USER
 })
 
+export const DELETE_FAVORIT_WEATHER = "CURRENT_USER_DATA::DELETE_FAVORIT_WEATHER"
+export const deleteFavoritWeather = (idItem) => ({
+    type: DELETE_FAVORIT_WEATHER,
+    payload: idItem
+})
+
+
+export const SHOW_LOADER_USER = "CURRENT_USER_DATA::SHOW_LOADER_USER"
+export const showLoaderUser = () => ({
+    type: SHOW_LOADER_USER,
+})
+
+export const HIDE_LOADER_USER = "CURRENT_USER_DATA::HIDE_LOADER_USER"
+export const hideLoaderUser = () => ({
+    type: HIDE_LOADER_USER,
+})
 
 export const ACTIVE_MODAL = "CURRENT_USER_DATA::ACTIVE_MODAL"
 export const changeActiveModal = (flag) => ({
