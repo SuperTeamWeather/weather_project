@@ -21,10 +21,10 @@ export const Home = () => {
                     <SvgRain/>
                 </div>
                 <div className="grid-layout">
-                    <WeatherContentHome nameWeatherUrl={_urlOpenWeather}/>
-                    <WeatherContentHome nameWeatherUrl={_urlYandex}/>
-                    <WeatherContentHome nameWeatherUrl={_urlWeatherBit}/>
-                    <WeatherContentHome nameWeatherUrl={_urlVisualWeather}/>
+                    <WeatherContentHome nameWeatherUrl={_urlOpenWeather} id='0'/>
+                    <WeatherContentHome nameWeatherUrl={_urlYandex} id='1'/>
+                    <WeatherContentHome nameWeatherUrl={_urlWeatherBit} id='2'/>
+                    <WeatherContentHome nameWeatherUrl={_urlVisualWeather} id='3'/>
                 </div>
             </div>
         </div>

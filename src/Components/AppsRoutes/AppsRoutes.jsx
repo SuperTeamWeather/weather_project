@@ -23,8 +23,8 @@ export const AppsRoutes = () => {
                     <Route path='' element={<WeatherSearch/>}/>
                 </Route>
 
-                <Route path='weather/:id' element={<WeatherItem/>}/>
-
+                <Route path='/weather_days/:id' element={<WeatherItem/>}/>
+                
                 <Route path='profile' element={<PrivateRoute/>}>
                     <Route path='' element={<Profile/>}/>
                 </Route>
