@@ -28,7 +28,7 @@ import "./SearchCityHome.scss"
 
 
 
-export const SearchCityHome = ({ getNewWeather, show, changeCity }) => {
+export const SearchCityHome = ({ getNewWeather, show, findCity }) => {
 
     const dispatch = useDispatch();
     const { login, favoritWeather } = useSelector(getSelectorCurrentUserUserData);
@@ -69,7 +69,7 @@ export const SearchCityHome = ({ getNewWeather, show, changeCity }) => {
         setValueInput(prev => prev = "")
         setListWeatherCitys(prev => prev = []);
 
-        changeCity();
+        findCity();
 
     }
 
@@ -100,7 +100,7 @@ export const SearchCityHome = ({ getNewWeather, show, changeCity }) => {
 
     return (
         <div>
-            <Modal show={show} onHide={changeCity}>
+            <Modal show={show} onHide={findCity}>
                 <Modal.Header closeButton>
                     <Modal.Title>Найти город или район</Modal.Title>
                 </Modal.Header>
@@ -123,7 +123,7 @@ export const SearchCityHome = ({ getNewWeather, show, changeCity }) => {
                                         <Button
                                             variant="outline-primary"
                                             size="sm"
-                                            onClick={() => deleteFav(el.id)}>-</Button>
+                                            onClick={() => deleteFav(el.id)}><i className="fa-solid fa-trash"></i></Button>
                                         :
                                         <Button
                                             variant="outline-primary"
