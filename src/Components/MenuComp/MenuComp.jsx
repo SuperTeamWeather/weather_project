@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import { auth } from '../../firebase';
 import { useAuthState } from "react-firebase-hooks/auth"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { getDataCurrentUserFb } from '../../Store/CurrentUserDataReducer/action';
+import { FavouriteCitiesList} from '../FavouriteCitiesList/FavouriteCitiesList';
 import "./MenuComp.scss"
 
 
@@ -26,12 +27,17 @@ export const MenuComp = () => {
     const { login } = useSelector(getSelectorCurrentUserUserData)
     const isLoader = useSelector(getSelectorCurrentUserLoader)
 
+    const [openModal, setOpenModal] = useState(false);
+
     useEffect(() => {
 
         dispatch(getDataCurrentUserFb(user?.uid))
 
     }, [user?.uid])
 
+    const changeCity = () => {
+        setOpenModal(prev => prev = !prev);
+    }
 
     const handleUserOutClick = async () => {
         try {
@@ -48,9 +54,12 @@ export const MenuComp = () => {
         return (
 
             <div>
-
+                <FavouriteCitiesList show={openModal} changeCity={changeCity}></FavouriteCitiesList>
                 {login
                     ? <NavDropdown title={login}>
+                        <NavDropdown.Item onClick={changeCity}>
+                            Избраннные города
+                        </NavDropdown.Item>
                         <NavDropdown.Item
                             onClick={handleUserOutClick}
                             href="#action/3.4">Выйти</NavDropdown.Item>
