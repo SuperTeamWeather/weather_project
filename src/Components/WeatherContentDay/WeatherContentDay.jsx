@@ -24,18 +24,20 @@ export const WeatherContentDay = ({
     
     weekDay= weekDay.charAt(0).toUpperCase() + weekDay.slice(1);
     weekDay = dayNum == 0 ? 'Сегодня' : weekDay;
+
+    let dayOffClass = weekDay=='Суббота' || weekDay=='Воскресенье' ? 'dayOff' : '';
     
     
     return (
      
-        <div className="dayItem">
+        <div className={`dayItem ${dayOffClass}`}>
             <main className="weather-home weather-day">                
                 <div className="weather-home__content">                    
                     <div className="weather-home__info weather-day__info">                        
                         <div className="infoItem">
                             {dateDay}
                         </div>
-                        <div className="infoItem">
+                        <div className="infoItem dayName">
                             {weekDay} 
                         </div>
                         <div className="infoItem">
@@ -78,7 +80,7 @@ export const WeatherContentDay = ({
                         </Accordion.Collapse>
                     </Accordion>
                 </div>
-                : 
+                {/* :  */}
                 {/* <div className="weather-home__alert">{alertText}</div> */}
             </main>
         </div>
