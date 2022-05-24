@@ -7,10 +7,11 @@ import Normalize from 'react-normalize';
 import "./App.scss"
 import {HTMLTitle} from "./Components/Html_title/HtmlTitle";
 import {_urlYandex} from "./Service/Constant";
+import "./Components/BgAnimation/animated.scss"
 
 function App () {
     return (
-        <div className='app background'>
+        <div className="app background">
             <Normalize/>
             <Provider store={store}>
                 <HTMLTitle nameWeatherUrl={_urlYandex}/>

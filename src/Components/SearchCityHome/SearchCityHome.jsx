@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import { getGeoData } from "../../Service/FetchCitys";
+import {useSelector, useDispatch} from "react-redux";
+import {useState, useEffect} from "react";
+import {getGeoData} from "../../Service/FetchCitys";
 import {
     _urlYandex,
     _urlVisualWeather,
@@ -15,29 +15,26 @@ import Modal from 'react-bootstrap/Modal';
 import {
     getSelectorCurrentUserUserData
 } from '../../Store/CurrentUserDataReducer/selectors';
-import { useAuthState } from "react-firebase-hooks/auth"
-import { auth } from "../../firebase";
-import { push, set } from "firebase/database";
-import { getUserFavoritesWeatherListItemRef } from "../../firebase";
+import {useAuthState} from "react-firebase-hooks/auth"
+import {auth} from "../../firebase";
+import {push, set} from "firebase/database";
+import {getUserFavoritesWeatherListItemRef} from "../../firebase";
 import {
     setFavoritWeather,
     deleteFavoritWeather
 } from "../../Store/CurrentUserDataReducer/action";
-import { ListGroupItem } from "react-bootstrap";
+import {ListGroupItem} from "react-bootstrap";
 import "./SearchCityHome.scss"
 
-
-
-export const SearchCityHome = ({ getNewWeather, show, findCity }) => {
+export const SearchCityHome = ({getNewWeather, show, findCity}) => {
 
     const dispatch = useDispatch();
-    const { login, favoritWeather } = useSelector(getSelectorCurrentUserUserData);
+    const {login, favoritWeather} = useSelector(getSelectorCurrentUserUserData);
 
     const [user] = useAuthState(auth);
     const [valueInput, setValueInput] = useState("");
     const [listWeatherCitys, setListWeatherCitys] = useState([]);
     const [messageError, setMessageError] = useState("");
-
 
     const hendleInput = (event) => {
         setValueInput(prev => prev = event.target.value);
@@ -57,14 +54,12 @@ export const SearchCityHome = ({ getNewWeather, show, findCity }) => {
         }
     }, [show])
 
-
     const getNewCity = (cityItem) => {
 
         getNewWeather(cityItem.coordinates, _urlOpenWeather);
         getNewWeather(cityItem.coordinates, _urlYandex);
         getNewWeather(cityItem.coordinates, _urlWeatherBit);
         getNewWeather(cityItem.coordinates, _urlVisualWeather);
-
 
         setValueInput(prev => prev = "")
         setListWeatherCitys(prev => prev = []);
@@ -111,34 +106,39 @@ export const SearchCityHome = ({ getNewWeather, show, findCity }) => {
                         value={valueInput}
                         autoFocus
                     />
-                    <div
-                        className="search-city__err-message">
+                    <div className="search-city__err-message">
                         {messageError}
                     </div>
                     <ListGroup>
                         {Array.isArray(listWeatherCitys) ?
                             listWeatherCitys.map((el, idx) => {
-                                return <div className="listWeatherElement" key={idx}>
-                                    {getCheckedItem(el.id) ?
-                                        <Button
-                                            variant="outline-primary"
-                                            size="sm"
-                                            onClick={() => deleteFav(el.id)}><i className="fa-solid fa-trash"></i></Button>
-                                        :
-                                        <Button
-                                            variant="outline-primary"
-                                            size="sm"
-                                            onClick={() => addToFav(el)}>+</Button>
-                                    }
+                                return (
+                                    <div className="listWeatherElement" key={idx}>
+                                        {getCheckedItem(el.id) ?
+                                            <Button
+                                                variant="outline-warning"
+                                                size="sm"
+                                                onClick={() => deleteFav(el.id)}>
+                                                <i className="fas fa-star"></i>
+                                            </Button>
+                                            :
+                                            <Button
+                                                variant="outline-warning"
+                                                size="sm"
+                                                onClick={() => addToFav(el)}>
+                                                <i className="far fa-star"></i>
 
-                                    <ListGroup.Item
-                                        action
-                                        variant="light"
-                                        onClick={() => getNewCity(el)}
-                                    >
-                                        {el.formattedAdress}
-                                    </ListGroup.Item>
-                                </div>
+                                            </Button>
+                                        }
+
+                                        <ListGroup.Item
+                                            action
+                                            variant="light"
+                                            onClick={() => getNewCity(el)}>
+                                            {el.formattedAdress}
+                                        </ListGroup.Item>
+                                    </div>
+                                )
                             })
                             : <ListGroup.Item as="div" disabled>
                                 Ничего не найдено
@@ -147,7 +147,7 @@ export const SearchCityHome = ({ getNewWeather, show, findCity }) => {
                     </ListGroup>
                 </Modal.Body>
             </Modal>
-        </div >
+        </div>
     )
 
 }

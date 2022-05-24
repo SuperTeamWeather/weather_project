@@ -13,13 +13,13 @@ import "./WeatherContentHome.scss"
 import {Accordion, useAccordionButton} from "react-bootstrap";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import {Carousel} from "../Carousel/Carousel";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export const WeatherContentHome = ({nameWeatherUrl, id}) => {
     const dispatch = useDispatch();
     const weather = useSelector(getSelectorWeathersData);
 
-    console.log('weather from WeatherContentHome: ', weather);
+    //console.log('weather from WeatherContentHome: ', weather);
 
     const isLoader = useSelector(getSelectorWeathersIsLoader);
     const alertText = useSelector(getSelectorWeathersAlert)
@@ -33,13 +33,13 @@ export const WeatherContentHome = ({nameWeatherUrl, id}) => {
 
     useEffect(() => {
 
-        console.log('currentPositionCoordinates from weather content home: ', currentPositionCoordinates);
+        //console.log('currentPositionCoordinates from weather content home: ', currentPositionCoordinates);
 
         if (currentPositionCoordinates) {
 
-            console.log('currentPositionCoordinates?.coords from weather content home: ', currentPositionCoordinates?.coords);
-            console.log('nameWeatherUrl from weather content home: ', nameWeatherUrl);
-            console.log('nameWeather from weather content home: ', nameWeather);
+            //console.log('currentPositionCoordinates?.coords from weather content home: ', currentPositionCoordinates?.coords);
+            //console.log('nameWeatherUrl from weather content home: ', nameWeatherUrl);
+            //console.log('nameWeather from weather content home: ', nameWeather);
 
             dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl, nameWeather))
         }
@@ -47,78 +47,81 @@ export const WeatherContentHome = ({nameWeatherUrl, id}) => {
 
     return (<div>
             <div className="loader-spinner">
-                {isLoader[nameWeather] ? <SkeletonTheme borderRadius={16}
-                                                        baseColor="#5184cc"
-                                                        highlightColor="#ffd21e">
-                    <Skeleton height={170}/>
-                </SkeletonTheme> : ""}
+                {isLoader[nameWeather] ?
+                    <SkeletonTheme
+                        borderRadius={16}
+                        baseColor="#5184cc"
+                        highlightColor="#ffd21e">
+                        <Skeleton height={170}/>
+                    </SkeletonTheme> : ""}
             </div>
             <main className="weather-home">
                 {weather[nameWeather] ? <div className="weather-home__content">
-                    <div className="weather-home__info">
-                        <div className="weather-home__name-api-weather text-style">
-                            {nameWeather}
-                        </div>
-                        
-                        {weather[nameWeather].daily ?
-                            <Link className='link-custom text-style link-href' to={`/weather_days/${id}`}>
-                                По&nbsp;дням
-                            </Link>
-                            :
-                            <Link 
-                                className="link-custom disabled-btn unselectable" 
-                                to={`/weather_days/${id}`}
-                                onClick={ (event) => event.preventDefault() }
-                                disabled
-                            >
+                        <div className="weather-home__info">
+                            <div className="weather-home__name-api-weather text-style">
+                                {nameWeather}
+                            </div>
+                            {weather[nameWeather].daily ?
+                                <Link className='link-custom text-style link-href' to={`/weather_days/${id}`}>
                                     По&nbsp;дням
-                            </Link>
-                        }
-                        
-                    </div>
-                    {weather[nameWeather].tempMin ? <div className="text-style">
-                        Сегодня от {weather[nameWeather].tempMin}&nbsp;&#176;C до {weather[nameWeather].tempMax}&nbsp;&#176;C;
-                        <span> {weather[nameWeather].description}</span>
-                    </div> : <div className="text-style">
-                        <span>{weather[nameWeather].description}</span>
-                    </div>}
-                    <Accordion className="accordion-style">
-                        <div className="weather-home__description">
-                            <div className="weather-home__temperature text-style">
-                                <div className="big-text">{Math.round(weather[nameWeather].temp)}&nbsp;&#176;C</div>
-                                <div className="weather-home__temperature-felt text-style">
-                                    Ощущается как {Math.round(weather[nameWeather].feelsTemp)}&nbsp;&#176;C
-                                </div>
-                            </div>
-                            <div className="icon-weather">
-                                {nameWeatherUrl === "api/v1/YandexWeather" ? getLogoFromYandex(weather[nameWeather].description) : getLogoWeatherDescription(weather[nameWeather].icon)}
-                                <div className="weather-home__text text-style">
-                                    {weather[nameWeather].description}
-                                </div>
-                            </div>
-                            <div className="text-style">
-                                <div>Ветер: {weather[nameWeather].windSpeed}&nbsp;м/с,&nbsp;{weather[nameWeather].windDirection}</div>
-                                <div>Влажность: {weather[nameWeather].humidity}%</div>
-                                <div>Давление: {weather[nameWeather].pressure}&nbsp;мм&nbsp;рт.&nbsp;ст.</div>
-                            </div>
-                            {weather[nameWeather]?.hourly?.length === 0 ?
-                                <div className="text-flex">
-                                    <div className="disabled-btn unselectable max-line">
-                                        По&nbsp;часам
-                                    </div>
-                                </div>
+                                </Link>
                                 :
-                                <CustomToggle eventKey="0">
-                                    По&nbsp;часам
-                                </CustomToggle>
+                                <Link
+                                    className="link-custom disabled-btn unselectable"
+                                    to={`/weather_days/${id}`}
+                                    onClick={(event) => event.preventDefault()}
+                                    disabled
+                                >
+                                    По&nbsp;дням
+                                </Link>
                             }
 
                         </div>
-                        <Accordion.Collapse eventKey="0">
-                            <Carousel nameWeatherUrl={nameWeatherUrl}/>
-                        </Accordion.Collapse>
-                    </Accordion>
-                </div> : <div className="weather-home__alert">{alertText[nameWeather]}</div>}
+                        {weather[nameWeather].tempMin ?
+                            <div className="text-style">
+                                Сегодня от {weather[nameWeather].tempMin}&nbsp;&#176;C до {weather[nameWeather].tempMax}&nbsp;&#176;C;
+                                <span> {weather[nameWeather].description}</span>
+                            </div>
+                            :
+                            <div className="text-style">
+                                <span>{weather[nameWeather].description}</span>
+                            </div>}
+                        <Accordion className="accordion-style">
+                            <div className="weather-home__description">
+                                <div className="weather-home__temperature text-style">
+                                    <div className="big-text">{Math.round(weather[nameWeather].temp)}&nbsp;&#176;C</div>
+                                    <div className="weather-home__temperature-felt text-style">
+                                        Ощущается как {Math.round(weather[nameWeather].feelsTemp)}&nbsp;&#176;C
+                                    </div>
+                                </div>
+                                <div className="icon-weather">
+                                    {nameWeatherUrl === "api/v1/YandexWeather" ? getLogoFromYandex(weather[nameWeather].description) : getLogoWeatherDescription(weather[nameWeather].icon)}
+                                    <div className="weather-home__text text-style">
+                                        {weather[nameWeather].description}
+                                    </div>
+                                </div>
+                                <div className="text-style">
+                                    <div>Ветер: {weather[nameWeather].windSpeed}&nbsp;м/с,&nbsp;{weather[nameWeather].windDirection}</div>
+                                    <div>Влажность: {weather[nameWeather].humidity}%</div>
+                                    <div>Давление: {weather[nameWeather].pressure}&nbsp;мм&nbsp;рт.&nbsp;ст.</div>
+                                </div>
+                                {weather[nameWeather]?.hourly?.length === 0
+                                    ?
+                                    <div className="text-flex">
+                                        <div className="disabled-btn unselectable max-line">По&nbsp;часам</div>
+                                    </div>
+                                    :
+                                    <CustomToggle eventKey="0">По&nbsp;часам</CustomToggle>
+                                }
+
+                            </div>
+                            <Accordion.Collapse eventKey="0">
+                                <Carousel nameWeatherUrl={nameWeatherUrl}/>
+                            </Accordion.Collapse>
+                        </Accordion>
+                    </div>
+                    :
+                    <div className="weather-home__alert">{alertText[nameWeather]}</div>}
             </main>
         </div>
 

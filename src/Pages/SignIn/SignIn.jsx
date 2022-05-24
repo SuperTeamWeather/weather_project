@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate, Link } from 'react-router-dom';
-import { useState } from "react";
-import { signIn } from "../../firebase";
-import { AuthForm } from "../../Components/AuthForm/AuthForm";
+import {useNavigate} from 'react-router-dom';
+import {useState} from "react";
+import {signIn} from "../../firebase";
+import {AuthForm} from "../../Components/AuthForm/AuthForm";
 import "./SignIn.scss"
 
 export const SignIn = () => {
@@ -29,16 +29,6 @@ export const SignIn = () => {
     }
 
     return (
-        <div className="sign-in">
-            <AuthForm
-                messageError={messageError}
-                setAuthUser={setLoginAndPass}
-                titleForm={"SignIn"} />
-
-            <p>ИЛИ</p>
-            <Link to={"/SignUp"}>
-                <button className="sign-in__btn-signin">SignUp</button>
-            </Link>
-        </div>
+        <AuthForm messageError={messageError} setAuthUser={setLoginAndPass} titleForm={"SignIn"}/>
     )
 }

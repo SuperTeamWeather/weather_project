@@ -1,11 +1,13 @@
 .weather-home {
   border-radius: 16px;
-  background: #25648D;
-  box-shadow: 4px 4px 4px 0 #00000040;
+  background: #3872c78f;
+  box-shadow: 0 0 10px 0 #00000040;
+  text-shadow: #696755 0 1px 5px;
 
-  .dayTitleArea
+  .dayTitleArea {
+  }
 
-  
+
   &__content {
     padding: 16px;
     display: grid;
@@ -131,16 +133,16 @@
 
 
 .weather-day {
-  &__info {    
+  &__info {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
     color: #fff;
     font-size: 30px;
     // margin-top: 5px;
     // margin-bottom: 20px;
   }
-  
-  
+
+
 }
 
 .dayOff .dayName {

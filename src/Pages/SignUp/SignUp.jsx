@@ -1,11 +1,10 @@
 import React from "react";
-import { useState } from "react";
-import { useNavigate, Link } from 'react-router-dom';
-import { signUp, getUserRef } from "../../firebase";
-import { AuthForm } from "../../Components/AuthForm/AuthForm";
-import { set } from "firebase/database";
+import {useState} from "react";
+import {useNavigate} from 'react-router-dom';
+import {signUp, getUserRef} from "../../firebase";
+import {AuthForm} from "../../Components/AuthForm/AuthForm";
+import {set} from "firebase/database";
 import "./SignUp.scss"
-
 
 export const SignUp = () => {
 
@@ -21,10 +20,10 @@ export const SignUp = () => {
         }
 
         try {
-            const { user } = await signUp(inputEmail, inputPass);
+            const {user} = await signUp(inputEmail, inputPass);
             const profileData = {
                 login: inputLogin,
-                favoritWeather: { empty: true },
+                favoritWeather: {empty: true},
             }
             set(getUserRef(user.uid), profileData)
 
@@ -37,16 +36,6 @@ export const SignUp = () => {
     }
 
     return (
-        <div className="sign-up">
-            <AuthForm
-                messageError={messageError}
-                setAuthUser={setProfileData}
-                titleForm={"SignUp"} />
-
-            <p>ИЛИ</p>
-            <Link to={"/SignIn"}>
-                <button className="sign-up__btn-signin">SignIn</button>
-            </Link>
-        </div>
+        <AuthForm messageError={messageError} setAuthUser={setProfileData} titleForm={"SignUp"}/>
     )
 }

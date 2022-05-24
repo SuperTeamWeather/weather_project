@@ -1,10 +1,11 @@
-.header {}
 
-.content {
+.content-header {
   min-height: 84px;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto;
   justify-content: space-between;
+  grid-gap: 8px;
+  align-items: center;
 }
 
 
@@ -27,4 +28,15 @@
 }
 
 
-//background-image: url(../../../public/img/logo.jpg);
+.block-btn {
+  display: flex;
+  gap: 8px;
+}
+
+
+@media (max-width: 480px) {
+  .content-header {
+    grid-template-columns: auto;
+    padding: 8px !important;
+  }
+}

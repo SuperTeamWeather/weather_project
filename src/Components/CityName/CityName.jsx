@@ -1,13 +1,14 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { SearchCityHome } from "../SearchCityHome/SearchCityHome";
-import { featchWeather } from "../../Store/WeatherReducer/action";
-import { getSelectorWeathersData } from "../../Store/WeatherReducer/selectors";
-import { getCurrentTime } from "../../Service/tools";
+import {useState, useEffect, useCallback} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {SearchCityHome} from "../SearchCityHome/SearchCityHome";
+import {featchWeather} from "../../Store/WeatherReducer/action";
+import {getSelectorWeathersData} from "../../Store/WeatherReducer/selectors";
+import {getCurrentTime} from "../../Service/tools";
 import "./CityName.scss"
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css';
+import Button from "react-bootstrap/Button";
 
 export const CityName = () => {
 
@@ -39,14 +40,17 @@ export const CityName = () => {
 
     if (cityName) {
         return (<div className="city-name">
-            <div>
-                <SearchCityHome getNewWeather={getNewWeather} show={openModal} findCity={findCity} />
-            </div>
-            <div className="city-name__title">
+            <SearchCityHome getNewWeather={getNewWeather} show={openModal} findCity={findCity}/>
+            <Button size="sm"
+                    className="btn-change-city"
+                    variant="outline-light"
+                    onClick={findCity}
+                    data-name="city-change-open-modal">
                 {cityName}
-                <i data-name="city-change-open-modal" onClick={findCity} className="fa-regular fa-pen-to-square"></i>
-            </div>
-            <div>
+                <i className="fa-regular fa-pen-to-square"></i>
+            </Button>
+
+            <div className="title-time">
                 {getCurrentTime()}
             </div>
         </div>)
@@ -54,8 +58,8 @@ export const CityName = () => {
     } else {
         return <div>
             <SkeletonTheme baseColor="#5184cc" highlightColor="#ffd21e">
-                <Skeleton height={18} width={150} />
-                <Skeleton height={18} width={200} />
+                <Skeleton height={18} width={150}/>
+                <Skeleton height={18} width={200}/>
             </SkeletonTheme>
         </div>
     }

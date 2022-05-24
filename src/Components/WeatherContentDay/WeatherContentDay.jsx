@@ -1,48 +1,45 @@
 import React from "react";
 import {
-    getLogoFromYandex, 
-    getLogoWeatherDescription,
-    getWeek,
-    getCurrentTime
+    getLogoFromYandex,
+    getLogoWeatherDescription
 } from "../../Service/tools";
 import "./WeatherContentDay.scss"
 import {Accordion, useAccordionButton} from "react-bootstrap";
 import {Carousel} from "../Carousel/Carousel";
 import moment from 'moment';
 import 'moment/locale/ru';
+import '../BgAnimation/animated.scss'
 
 export const WeatherContentDay = ({
-    weather, 
-    nameWeather,
-    nameWeatherUrl,
-    dayNum
-}) => {
-    
-    
-    let dateDay = moment().add(dayNum, 'days').format('D MMMM');    
+                                      weather,
+                                      nameWeather,
+                                      nameWeatherUrl,
+                                      dayNum
+                                  }) => {
+
+    let dateDay = moment().add(dayNum, 'days').format('D MMMM');
     let weekDay = moment().add(dayNum, 'days').format('dddd');
-    
-    weekDay= weekDay.charAt(0).toUpperCase() + weekDay.slice(1);
+
+    weekDay = weekDay.charAt(0).toUpperCase() + weekDay.slice(1);
     weekDay = dayNum == 0 ? `Сегодня, ${weekDay}` : weekDay;
 
-    let dayOffClass = weekDay=='Суббота' || weekDay=='Воскресенье' ? 'dayOff' : '';
-    
-    
+    let dayOffClass = weekDay == 'Суббота' || weekDay == 'Воскресенье' ? 'background-animation' : '';
+
     return (
-     
-        <div className={`dayItem ${dayOffClass}`}>
-            <main className="weather-home weather-day">                
-                <div className="weather-home__content">                    
-                    <div className="weather-home__info weather-day__info">                        
+
+        <div className="dayItem">
+            <main className={`weather-home weather-day ${dayOffClass} `}>
+                <div className="weather-home__content">
+                    <div className="weather-home__info weather-day__info">
                         <div className="infoItem">
                             {dateDay}
                         </div>
                         <div className="infoItem dayName">
-                            {weekDay} 
+                            {weekDay}
                         </div>
                         <div className="infoItem">
                         </div>
-                    </div>                    
+                    </div>
                     <div className="text-style">
                         от {weather?.tempMin}&nbsp;&#176;C до {weather?.tempMax}&nbsp;&#176;C;
                         <span> {weather?.description}</span>
@@ -80,8 +77,6 @@ export const WeatherContentDay = ({
                         </Accordion.Collapse>
                     </Accordion>
                 </div>
-                {/* :  */}
-                {/* <div className="weather-home__alert">{alertText}</div> */}
             </main>
         </div>
 
