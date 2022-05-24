@@ -23,7 +23,7 @@ export const WeatherContentDay = ({
     let weekDay = moment().add(dayNum, 'days').format('dddd');
     
     weekDay= weekDay.charAt(0).toUpperCase() + weekDay.slice(1);
-    weekDay = dayNum == 0 ? 'Сегодня' : weekDay;
+    weekDay = dayNum == 0 ? `Сегодня, ${weekDay}` : weekDay;
 
     let dayOffClass = weekDay=='Суббота' || weekDay=='Воскресенье' ? 'dayOff' : '';
     
