@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react"
-import {NavDropdown} from "react-bootstrap";
+import {Dropdown, DropdownButton, NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {
@@ -57,7 +57,7 @@ export const MenuComp = () => {
                     ?
                     <React.Fragment>
                         <FavouriteCitiesList show={openModal} changeCity={changeCity}></FavouriteCitiesList>
-                        <NavDropdown title={loginCut(login)}>
+                        <NavDropdown className="login-desc" title={loginCut(login)}>
                             <NavDropdown.Item onClick={changeCity}>
                                 Избранные города
                             </NavDropdown.Item>
@@ -65,16 +65,37 @@ export const MenuComp = () => {
                                 Выйти
                             </NavDropdown.Item>
                         </NavDropdown>
+                        <Dropdown className='menu-mobile'>
+                            <Dropdown.Toggle id="dropdown-basic" variant="warning">
+                                <i className="fa-solid fa-bars"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={changeCity}>Избранные города</Dropdown.Item>
+                                <Dropdown.Item onClick={handleUserOutClick}>Выйти</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </React.Fragment>
                     :
-                    <div className='block-btn'>
-                        <Link to={"/SignUp"}>
-                            <Button variant="outline-warning">Регистрация</Button>
-                        </Link>
-                        <Link to={"/SignIn"}>
-                            <Button variant="warning">Войти</Button>
-                        </Link>
+                    <div>
+                        <div className='block-btn'>
+                            <Link to={"/SignUp"}>
+                                <Button variant="outline-warning">Регистрация</Button>
+                            </Link>
+                            <Link to={"/SignIn"}>
+                                <Button variant="warning">Войти</Button>
+                            </Link>
+                        </div>
+                        <Dropdown className='menu-mobile'>
+                            <Dropdown.Toggle id="dropdown-basic" variant="warning">
+                                <i className="fa-solid fa-bars"></i>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item><Link to={"/SignUp"}>Регистрация </Link></Dropdown.Item>
+                                <Dropdown.Item><Link to={"/SignIn"}>Войти</Link></Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </div>
+
                 }
             </div>
         )

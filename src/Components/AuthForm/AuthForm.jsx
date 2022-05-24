@@ -50,8 +50,7 @@ export const AuthForm = ({messageError, setAuthUser, titleForm}) => {
                                 ref={inputRef}
                                 value={inputLogin}
                                 onChange={handleInputLogin}
-                                type="text"
-                                placeholder="Придумайте логин"/>
+                                type="text"/>
                         </Form.Group>
                     }
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -60,8 +59,7 @@ export const AuthForm = ({messageError, setAuthUser, titleForm}) => {
                             ref={titleForm === "SignIn" ? inputRef : null}
                             value={inputEmail}
                             onChange={handleInputEmail}
-                            type="email"
-                            placeholder="Укажите электронный адрес"/>
+                            type="email"/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -69,17 +67,13 @@ export const AuthForm = ({messageError, setAuthUser, titleForm}) => {
                         <Form.Control
                             value={inputPass}
                             onChange={handleInputPass}
-                            type="password"
-                            placeholder="Придумайте пароль"/>
-                        <Form.Text className="text-muted">
-                            Пароль должен быть длиннее 6 символов
-                        </Form.Text>
+                            type="password"/>
+                        <Form.Text className="text-muted">Пароль должен быть длиннее 6 символов</Form.Text>
                     </Form.Group>
-                    {messageError &&
-                        <Alert variant='warning'>
-                            {messageError}
-                        </Alert>}
-
+                    {messageError
+                        &&
+                        <Alert variant='warning'>{messageError}</Alert>
+                    }
                     {titleForm === "SignUp" ?
                         <Button variant="primary" type="submit">Зарегистрироваться</Button>
                         :
