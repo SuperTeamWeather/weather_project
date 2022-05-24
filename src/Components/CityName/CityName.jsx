@@ -1,12 +1,12 @@
 import React from "react";
-import {useState, useEffect, useCallback} from "react";
-import {useSelector, useDispatch} from "react-redux";
-import {SearchCityHome} from "../SearchCityHome/SearchCityHome";
-import {featchWeather} from "../../Store/WeatherReducer/action";
-import {getSelectorWeathersData} from "../../Store/WeatherReducer/selectors";
-import {getCurrentTime} from "../../Service/tools";
+import { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { SearchCityHome } from "../SearchCityHome/SearchCityHome";
+import { featchWeather } from "../../Store/WeatherReducer/action";
+import { getSelectorWeathersData } from "../../Store/WeatherReducer/selectors";
+import { getCurrentTime } from "../../Service/tools";
 import "./CityName.scss"
-import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css';
 import Button from "react-bootstrap/Button";
 
@@ -40,12 +40,12 @@ export const CityName = () => {
 
     if (cityName) {
         return (<div className="city-name">
-            <SearchCityHome getNewWeather={getNewWeather} show={openModal} findCity={findCity}/>
+            <SearchCityHome getNewWeather={getNewWeather} show={openModal} findCity={findCity} />
             <Button size="sm"
-                    className="btn-change-city"
-                    variant="outline-light"
-                    onClick={findCity}
-                    data-name="city-change-open-modal">
+                className="btn-change-city"
+                variant="outline-light"
+                onClick={findCity}
+                data-name="city-change-open-modal">
                 {cityName}
                 <i className="fa-regular fa-pen-to-square"></i>
             </Button>
@@ -58,8 +58,8 @@ export const CityName = () => {
     } else {
         return <div>
             <SkeletonTheme baseColor="#5184cc" highlightColor="#ffd21e">
-                <Skeleton height={18} width={150}/>
-                <Skeleton height={18} width={200}/>
+                <Skeleton height={18} width={150} />
+                <Skeleton height={18} width={200} />
             </SkeletonTheme>
         </div>
     }
