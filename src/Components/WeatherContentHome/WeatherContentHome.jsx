@@ -13,6 +13,7 @@ import "./WeatherContentHome.scss"
 import {Accordion, useAccordionButton} from "react-bootstrap";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import {Carousel} from "../Carousel/Carousel";
+import { Link } from "react-router-dom";
 
 export const WeatherContentHome = ({nameWeatherUrl, id}) => {
     const dispatch = useDispatch();
@@ -58,14 +59,22 @@ export const WeatherContentHome = ({nameWeatherUrl, id}) => {
                         <div className="weather-home__name-api-weather text-style">
                             {nameWeather}
                         </div>
-                        <div className="link-custom text-style ">
-                            {weather[nameWeather].daily ?
-                                <a className='link-href' href={`/weather_days/${id}`}>По&nbsp;дням</a>
-                                :
-                                <a className="disabled-btn unselectable"
-                                   href={`/weather_days/${id}`}>По&nbsp;дням</a>
-                            }
-                        </div>
+                        
+                        {weather[nameWeather].daily ?
+                            <Link className='link-custom text-style link-href' to={`/weather_days/${id}`}>
+                                По&nbsp;дням
+                            </Link>
+                            :
+                            <Link 
+                                className="link-custom disabled-btn unselectable" 
+                                to={`/weather_days/${id}`}
+                                onClick={ (event) => event.preventDefault() }
+                                disabled
+                            >
+                                    По&nbsp;дням
+                            </Link>
+                        }
+                        
                     </div>
                     {weather[nameWeather].tempMin ? <div className="text-style">
                         Сегодня от {weather[nameWeather].tempMin}&nbsp;&#176;C до {weather[nameWeather].tempMax}&nbsp;&#176;C;
