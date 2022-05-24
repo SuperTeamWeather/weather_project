@@ -20,12 +20,15 @@ export const getGeoData = async (paramSearch) => {
     }
 }
 
+const pathToSettingsFile = '/';
 let settingsFileName = 'settings.json';
 if( process.env.NODE_ENV === 'production') settingsFileName = 'settings_prod.json';
 
+const fullPathToSettings = pathToSettingsFile + settingsFileName;
+
 //Запрашиваем адрес до сервиса
 const getAddressToServer = async () => {
-    return fetch(settingsFileName)
+    return fetch(fullPathToSettings)
         .then(res => res.json())
         .then(data => {
             return data
