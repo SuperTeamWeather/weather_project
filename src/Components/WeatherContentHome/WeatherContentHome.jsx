@@ -36,13 +36,7 @@ export const WeatherContentHome = ({ nameWeatherUrl, id }) => {
 
     useEffect(() => {
 
-        //console.log('currentPositionCoordinates from weather content home: ', currentPositionCoordinates);
-
         if (currentPositionCoordinates) {
-
-            //console.log('currentPositionCoordinates?.coords from weather content home: ', currentPositionCoordinates?.coords);
-            //console.log('nameWeatherUrl from weather content home: ', nameWeatherUrl);
-            //console.log('nameWeather from weather content home: ', nameWeather);
 
             dispatch(featchWeather(currentPositionCoordinates?.coords, nameWeatherUrl, nameWeather))
         }
