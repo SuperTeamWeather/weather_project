@@ -1,10 +1,7 @@
 import {
     SET_CURRENT_USER,
     SET_FAVORIT_WEATHER,
-    ACTIVE_MODAL,
     GO_OUT_USER,
-    ACTIVE_BTN_MODAL,
-    ACTIVE_STYLE_MODAL,
     SHOW_LOADER_USER,
     HIDE_LOADER_USER,
     DELETE_FAVORIT_WEATHER
@@ -16,9 +13,6 @@ const initialState = {
         favoritWeather: []
     },
     isLoader: false,
-    activeModal: false,
-    activeBtnModal: "",
-    activeStyleModal: "SignIn",
 }
 
 export const currentUserDataReducer = (state = initialState, { type, payload }) => {
@@ -54,24 +48,6 @@ export const currentUserDataReducer = (state = initialState, { type, payload }) 
             return {
                 ...state,
                 isLoader: false
-            }
-
-        case ACTIVE_MODAL:
-            return {
-                ...state,
-                activeModal: payload,
-            }
-
-        case ACTIVE_BTN_MODAL:
-            return {
-                ...state,
-                activeBtnModal: payload,
-            }
-
-        case ACTIVE_STYLE_MODAL:
-            return {
-                ...state,
-                activeStyleModal: payload,
             }
 
         case GO_OUT_USER:

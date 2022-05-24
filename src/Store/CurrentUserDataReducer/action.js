@@ -40,21 +40,3 @@ export const HIDE_LOADER_USER = "CURRENT_USER_DATA::HIDE_LOADER_USER"
 export const hideLoaderUser = () => ({
     type: HIDE_LOADER_USER,
 })
-
-export const ACTIVE_MODAL = "CURRENT_USER_DATA::ACTIVE_MODAL"
-export const changeActiveModal = (flag) => ({
-    type: ACTIVE_MODAL,
-    payload: flag,
-})
-
-export const ACTIVE_BTN_MODAL = "CURRENT_USER_DATA::ACTIVE_BTN_MODAL"
-export const changeActiveBtnModal = (btnName) => ({
-    type: ACTIVE_BTN_MODAL,
-    payload: btnName,
-})
-
-export const ACTIVE_STYLE_MODAL = "CURRENT_USER_DATA::ACTIVE_STYLE_MODAL";
-export const changeActiveStyleModal = (styleName) => ({
-    type: ACTIVE_STYLE_MODAL,
-    payload: styleName
-})

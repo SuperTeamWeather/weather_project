@@ -1,6 +1,5 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { currentUserDataReducer } from "./CurrentUserDataReducer/reducer";
-import { profilesDataReducer } from "./ProfiilesDataReducer/reducer";
 import { weatherReducer } from "./WeatherReducer/reducer";
 import { persistStore, persistReducer } from "redux-persist";
 import createSagaMiddleware from "@redux-saga/core"
@@ -14,7 +13,6 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-    profilesDataReducer,
     currentUserDataReducer,
     weatherReducer
 })
