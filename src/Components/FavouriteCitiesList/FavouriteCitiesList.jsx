@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useCallback } from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {useCallback} from "react";
 import {
     _urlYandex,
     _urlVisualWeather,
@@ -13,28 +13,25 @@ import Modal from 'react-bootstrap/Modal';
 import {
     getSelectorCurrentUserUserData
 } from '../../Store/CurrentUserDataReducer/selectors';
-import { auth } from "../../firebase";
-import { set } from "firebase/database";
-import { useAuthState } from "react-firebase-hooks/auth"
-import { featchWeather } from "../../Store/WeatherReducer/action";
-import { getUserFavoritesWeatherListItemRef } from "../../firebase";
-import { deleteFavoritWeather } from "../../Store/CurrentUserDataReducer/action";
+import {auth} from "../../firebase";
+import {set} from "firebase/database";
+import {useAuthState} from "react-firebase-hooks/auth"
+import {featchWeather} from "../../Store/WeatherReducer/action";
+import {getUserFavoritesWeatherListItemRef} from "../../firebase";
+import {deleteFavoritWeather} from "../../Store/CurrentUserDataReducer/action";
 
 import "./FavouriteCitiesList.scss"
 
-
-
-export const FavouriteCitiesList = ({ show, changeCity }) => {
+export const FavouriteCitiesList = ({show, changeCity}) => {
 
     const [user] = useAuthState(auth);
 
     const dispatch = useDispatch();
-    const { favoritWeather } = useSelector(getSelectorCurrentUserUserData);
+    const {favoritWeather} = useSelector(getSelectorCurrentUserUserData);
 
     const getNewWeather = useCallback(async (cityCoord, urlName) => {
         dispatch(featchWeather(cityCoord, urlName))
     }, [dispatch])
-
 
     const getNewCity = (cityItem) => {
 
@@ -58,20 +55,20 @@ export const FavouriteCitiesList = ({ show, changeCity }) => {
                     <Modal.Title>Избранные города</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ListGroup>
+                    <ListGroup className="list-gap">
                         {favoritWeather.length >= 1 ?
                             favoritWeather.map((el, idx) => {
                                 return <div className="listElement" key={idx}>
                                     <Button
-                                        variant="outline-primary"
+                                        className="btn-favorite"
+                                        variant="outline-danger"
                                         size="sm"
-                                        onClick={() => deleteFav(el.id)}><i className="fa-solid fa-trash"></i></Button>
-
+                                        onClick={() => deleteFav(el.id)}>
+                                        <i className="fa-solid fa-trash"></i></Button>
                                     <ListGroup.Item
                                         action
                                         variant="light"
-                                        onClick={() => getNewCity(el)}
-                                    >
+                                        onClick={() => getNewCity(el)}>
                                         {el.formattedAdress}
                                     </ListGroup.Item>
                                 </div>
@@ -83,7 +80,7 @@ export const FavouriteCitiesList = ({ show, changeCity }) => {
                     </ListGroup>
                 </Modal.Body>
             </Modal>
-        </div >
+        </div>
     )
 
 }

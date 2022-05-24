@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react"
-import {Dropdown, DropdownButton, NavDropdown} from "react-bootstrap";
+import {Dropdown, NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {
@@ -90,12 +90,12 @@ export const MenuComp = () => {
                                 <i className="fa-solid fa-bars"></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item><Link to={"/SignUp"}>Регистрация </Link></Dropdown.Item>
-                                <Dropdown.Item><Link to={"/SignIn"}>Войти</Link></Dropdown.Item>
+                                <Dropdown.Item><Link className="style-link"
+                                                     to={"/SignUp"}>Регистрация</Link></Dropdown.Item>
+                                <Dropdown.Item><Link className="style-link" to={"/SignIn"}>Войти</Link></Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-
                 }
             </div>
         )
@@ -104,7 +104,7 @@ export const MenuComp = () => {
         return (
             <div>
                 <SkeletonTheme baseColor="#5184cc" highlightColor="#ffd21e">
-                    <Skeleton height={25} width={150}/>
+                    <Skeleton height={50} width={60}/>
                 </SkeletonTheme>
             </div>
         )

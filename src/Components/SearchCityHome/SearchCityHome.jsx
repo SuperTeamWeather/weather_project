@@ -23,7 +23,7 @@ import {
     setFavoritWeather,
     deleteFavoritWeather
 } from "../../Store/CurrentUserDataReducer/action";
-import {ListGroupItem} from "react-bootstrap";
+import {Alert} from "react-bootstrap";
 import "./SearchCityHome.scss"
 
 export const SearchCityHome = ({getNewWeather, show, findCity}) => {
@@ -74,14 +74,12 @@ export const SearchCityHome = ({getNewWeather, show, findCity}) => {
             setMessageError(prev => prev = "Зарегистрируйтесь или войдите в ваш профиль");
             return;
         }
-
         push(getUserFavoritesWeatherListItemRef(user.uid, data.id), data);
         dispatch(setFavoritWeather(data));
 
     }
 
     const deleteFav = (itemId) => {
-
         dispatch(deleteFavoritWeather(itemId));
         set(getUserFavoritesWeatherListItemRef(user.uid, itemId), null);
     }
@@ -100,51 +98,52 @@ export const SearchCityHome = ({getNewWeather, show, findCity}) => {
                     <Modal.Title>Найти город или район</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form.Control
-                        onChange={hendleInput}
-                        onInput={searchCity}
-                        value={valueInput}
-                        autoFocus
-                    />
-                    <div className="search-city__err-message">
-                        {messageError}
+                    <div className="search-form">
+                        {messageError && <Alert variant="warning">
+                            {messageError}
+                        </Alert>}
+                        <Form.Control
+                            spellcheck="false"
+                            onChange={hendleInput}
+                            onInput={searchCity}
+                            value={valueInput}
+                            autoFocus/>
+                        <ListGroup className="list-gap">
+                            {Array.isArray(listWeatherCitys) ?
+                                listWeatherCitys.map((el, idx) => {
+                                    return (
+                                        <div className="listWeatherElement" key={idx}>
+                                            {getCheckedItem(el.id) ?
+                                                <Button className="btn-favorite"
+                                                        variant="outline-warning"
+                                                        size="sm"
+                                                        onClick={() => deleteFav(el.id)}>
+                                                    <i className="fa-solid fa-bookmark"></i>
+                                                </Button>
+                                                :
+                                                <Button className="btn-favorite"
+                                                        variant="outline-warning"
+                                                        size="sm"
+                                                        onClick={() => addToFav(el)}>
+                                                    <i className="fa-regular fa-bookmark"></i>
+                                                </Button>
+                                            }
+                                            <ListGroup.Item
+                                                action
+                                                variant="light"
+                                                onClick={() => getNewCity(el)}>
+                                                {el.formattedAdress}
+                                            </ListGroup.Item>
+                                        </div>
+                                    )
+                                })
+                                : <ListGroup.Item as="div" disabled>
+                                    Ничего не найдено
+                                </ListGroup.Item>
+                            }
+                        </ListGroup>
                     </div>
-                    <ListGroup>
-                        {Array.isArray(listWeatherCitys) ?
-                            listWeatherCitys.map((el, idx) => {
-                                return (
-                                    <div className="listWeatherElement" key={idx}>
-                                        {getCheckedItem(el.id) ?
-                                            <Button
-                                                variant="outline-warning"
-                                                size="sm"
-                                                onClick={() => deleteFav(el.id)}>
-                                                <i className="fas fa-star"></i>
-                                            </Button>
-                                            :
-                                            <Button
-                                                variant="outline-warning"
-                                                size="sm"
-                                                onClick={() => addToFav(el)}>
-                                                <i className="far fa-star"></i>
 
-                                            </Button>
-                                        }
-
-                                        <ListGroup.Item
-                                            action
-                                            variant="light"
-                                            onClick={() => getNewCity(el)}>
-                                            {el.formattedAdress}
-                                        </ListGroup.Item>
-                                    </div>
-                                )
-                            })
-                            : <ListGroup.Item as="div" disabled>
-                                Ничего не найдено
-                            </ListGroup.Item>
-                        }
-                    </ListGroup>
                 </Modal.Body>
             </Modal>
         </div>

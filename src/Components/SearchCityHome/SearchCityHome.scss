@@ -1,79 +1,16 @@
-.search-city {
-
-  &__title {
-    font-size: 32px;
-    padding: 5px;
-    margin-bottom: 10px;
-    color: black;
-    text-align: center;
-  }
-
-  &__input {
-    width: 100%;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: wheat;
-    font-size: 18px;
-  }
-
-  &__btn {
-    background-color: rgb(90, 137, 167);
-    padding: 5px 10px;
-    border-radius: 5px;
-    width: auto;
-    margin-left: auto;
-    display: block;
-    font-size: 18px;
-    cursor: pointer;
-  }
-
-  &__city-list {
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  &__content {
-    background-color: rgba(17, 73, 66, 0.5);
-    border-radius: 10px;
-    margin-top: 10px;
-  }
-
-  &__item {
-    padding: 10px;
-    color: white;
-    font-size: 32px;
-    font-size: 100%;
-    display: flex;
-    cursor: pointer;
-  }
-
-  &__item-name {
-    margin-right: 5px;
-  }
-
-  &__item-flag {
-    margin-right: 7px;
-    margin-left: 7px;
-  }
-
-  &__item-flag img {
-    width: 30px;
-    height: 20px;
-  }
-
-  &__err-message {
-    color: red;
-    font-size: inherit;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    padding: 10px;
-  }
-
-}
 
 .listWeatherElement {
   display: grid;
   grid-template-columns: auto 1fr;
+}
+
+
+.search-form {
+  display: grid;
+  grid-gap: 16px;
+}
+
+.btn-favorite {
+  border-radius: 4px 0 0 4px !important;
+  //border-right: none !important;
 }

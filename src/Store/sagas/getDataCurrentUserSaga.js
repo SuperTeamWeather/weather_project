@@ -1,18 +1,15 @@
-import { takeEvery, call, put } from "redux-saga/effects"
+import {takeEvery, call, put} from "redux-saga/effects"
 import {
     GET_DATA_CURRENT_USER_FB, setCurrentUser, showLoaderUser,
     hideLoaderUser
 } from "../CurrentUserDataReducer/action"
-import { onValue } from 'firebase/database';
+import {onValue} from 'firebase/database';
 import {
     getUserRef,
-    getUserFavoritesWeatherRef,
-    getUserFavoritesWeatherListItemRef
+    getUserFavoritesWeatherRef
 } from '../../firebase';
-import { featchWeather } from "../WeatherReducer/action";
 
-
-function* workerGetDataCurrentUserFb({ payload: { userId } }) {
+function* workerGetDataCurrentUserFb ({payload: {userId}}) {
 
     if (userId) {
         yield put(showLoaderUser())
@@ -23,11 +20,9 @@ function* workerGetDataCurrentUserFb({ payload: { userId } }) {
     } else return
 }
 
-
-export function* watcherGetDataCurrentUserFb() {
+export function* watcherGetDataCurrentUserFb () {
     yield takeEvery(GET_DATA_CURRENT_USER_FB, workerGetDataCurrentUserFb)
 }
-
 
 const getUserLogin = (userId) => {
     return new Promise((resolve, reject) => {
@@ -41,7 +36,6 @@ const getUserLogin = (userId) => {
     })
 
 }
-
 
 const getFavoritWeather = (userId) => {
     return new Promise((resolve, reject) => {

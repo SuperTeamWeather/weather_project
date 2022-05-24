@@ -1,3 +1,12 @@
 .listElement {
-    display: flex;
+  display: flex;
+}
+
+.btn-favorite {
+  border-radius: 4px 0 0 4px !important;
+  //border-right: none;
+}
+
+.list-gap {
+  gap: 8px;
 }
