@@ -8,12 +8,12 @@ const _urlVisualcrossingWeather = 'https://weather.visualcrossing.com';
 const _apiKeyVisualcrossingWeather = '37ZJGF2UWPULHEVHU6S9EFXCJ';
 
 const _urlYandexWeather = 'https://api.weather.yandex.ru';
-const _apiKeyYandexWeather = '17628888-de14-4203-aef3-9f85191884d8';
+const _apiKeyYandexWeather = 'cd43e0ff-851b-42aa-b8fb-b1f81e3f6ddd';
 const _lang = 'ru'
 const fetchNode = require('node-fetch');
 
 // OpenWeatherMap source
-exports.getOpenWeather = function async (coordinates) {
+exports.getOpenWeather = function async(coordinates) {
     if (coordinates) {
         return fetchNode(getUrlWeather(_urlOpenWeather, coordinates, _apiKeyOpenWeather))
             .then(response => response.json())
@@ -34,7 +34,7 @@ const getUrlWeather = (name, coordinates, apiKey) => {
 }
 
 // WeatherBit source
-exports.getWeatherBit = function async (coordinates) {
+exports.getWeatherBit = function async(coordinates) {
     if (coordinates) {
         return fetchNode(getUrlWeatherBitCurrent(_urlWeatherBit, coordinates, _apiKeyWeatherBit))
             .then(response => response.json())
@@ -71,7 +71,7 @@ const getUrlWeatherBitCurrent = (name, coordinates, apiKey) => {
 // }
 
 // Visual crossing source
-exports.getVisualcrossingWeather = function async (coordinates) {
+exports.getVisualcrossingWeather = function async(coordinates) {
     if (coordinates) {
         return fetchNode(getUrlVisualcrossingWeather(_urlVisualcrossingWeather, coordinates, _apiKeyVisualcrossingWeather))
             .then(response => response.json())
@@ -91,7 +91,7 @@ const getUrlVisualcrossingWeather = (name, coordinates, apiKey) => {
 }
 
 // Yandex source
-exports.getYandexWeather = function async (coordinates) {
+exports.getYandexWeather = function async(coordinates) {
     if (coordinates) {
         return fetchNode(getUrlYandexWeather(_urlYandexWeather, coordinates), {
             method: "GET",
