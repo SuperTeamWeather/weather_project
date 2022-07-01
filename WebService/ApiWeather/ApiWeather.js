@@ -8,7 +8,8 @@ const _urlVisualcrossingWeather = 'https://weather.visualcrossing.com';
 const _apiKeyVisualcrossingWeather = '37ZJGF2UWPULHEVHU6S9EFXCJ';
 
 const _urlYandexWeather = 'https://api.weather.yandex.ru';
-const _apiKeyYandexWeather = 'cd43e0ff-851b-42aa-b8fb-b1f81e3f6ddd';
+const _apiKeyYandexWeather = 'e367ae6e-12fa-49e1-b425-3032a66e9580';
+
 const _lang = 'ru'
 const fetchNode = require('node-fetch');
 
